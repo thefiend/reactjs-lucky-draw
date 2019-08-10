@@ -9136,10 +9136,10 @@ table@^5.2.3:
     slice-ansi "^2.1.0"
     string-width "^3.0.0"
 
-tabler-react@^1.29.0:
-  version "1.29.0"
-  resolved "https://registry.yarnpkg.com/tabler-react/-/tabler-react-1.29.0.tgz#716c931224b5b80b2270f3fb9d8c05668c208418"
-  integrity sha512-IXDH/tZLvPl0sTczSwei0zMwnNHM9M2IUelNa/37ZsbjaRerh4ZLpV+WaCe/Dcfwq4LFgGIx/lfxVILnW9ANvw==
+tabler-react@^1.30.1:
+  version "1.30.1"
+  resolved "https://registry.yarnpkg.com/tabler-react/-/tabler-react-1.30.1.tgz#1abe9d96908db75f83f7eedac22d4e928228b718"
+  integrity sha512-pWAjjrLdiPd+pvVz23XTSwihzAD5ItiVeQmEgz/evSiVTZplpzFMdFjOQsCxxa713OXhrE0V15SOl1uDLgXGSA==
   dependencies:
     classnames "^2.2.5"
     react-popper "^1.0.0-beta.6"
