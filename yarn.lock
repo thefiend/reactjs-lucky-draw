@@ -8051,10 +8051,10 @@ react-scripts@3.0.0:
   optionalDependencies:
     fsevents "2.0.6"
 
-react-text-loop@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/react-text-loop/-/react-text-loop-2.0.1.tgz#7dc17109aa751e64d7782b7d68ccb319ccfcdd30"
-  integrity sha512-FuqCbJyopNNzDVDzqRm/WDNgVr82kGX8sn0xKod9zmFwO8IfZ6v/hd4WxtSM0nt8zYTXbG9FN3G4QwCz9QOLQg==
+react-text-loop@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-text-loop/-/react-text-loop-2.0.2.tgz#1d7b18f33447499f9e0a4d4605fba3a79b79af58"
+  integrity sha512-emf4fM3l3xknrA/e+NSTm2SgFq1ZBXIaA/QfAa6kJ/I+00GFT39wuX5cUPjuZ77YVQTn7OHHFRU31kE2BquUmg==
   dependencies:
     cxs "^6.2.0"
     prop-types "^15.6.2"
