@@ -73,7 +73,7 @@ class SiteWrapper extends React.Component {
               </Grid.Col>
               <Grid.Col auto={true}>
                 <Button
-                  href="https://github.com/tabler/tabler-react"
+                  href="https://github.com/thefiend/random-draw"
                   size="sm"
                   outline
                   color="primary"
