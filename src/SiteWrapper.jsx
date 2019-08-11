@@ -13,7 +13,7 @@ const navBarItems = [
   {
     value: "Lucky Draw",
     icon: "box",
-    to: "/lucky-draw"
+    to: "/"
   }
 ];
 
@@ -42,16 +42,7 @@ class SiteWrapper extends React.Component<Props, State> {
         }}
         navProps={{ itemsObjects: navBarItems }}
         footerProps={{
-          links: [
-            <a href="#">First Link</a>,
-            <a href="#">Second Link</a>,
-            <a href="#">Third Link</a>,
-            <a href="#">Fourth Link</a>,
-            <a href="#">Five Link</a>,
-            <a href="#">Sixth Link</a>,
-            <a href="#">Seventh Link</a>,
-            <a href="#">Eigth Link</a>
-          ],
+          links: [],
           note: "Lucky draw tool created to make drawing winners much easier.",
           copyright: (
             <React.Fragment>
