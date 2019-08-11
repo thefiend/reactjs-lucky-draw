@@ -11,75 +11,9 @@ const navBarItems = [
     useExact: true
   },
   {
-    value: "Interface",
+    value: "Lucky Draw",
     icon: "box",
-    subItems: [
-      {
-        value: "Cards Design",
-        to: "/cards"
-      },
-      { value: "Charts", to: "/charts" },
-      {
-        value: "Pricing Cards",
-        to: "/pricing-cards"
-      }
-    ]
-  },
-  {
-    value: "Components",
-    icon: "calendar",
-    subItems: [
-      { value: "Maps", to: "/maps" },
-      { value: "Icons", to: "/icons" },
-      { value: "Store", to: "/store" },
-      { value: "Blog", to: "/blog" }
-    ]
-  },
-  {
-    value: "Pages",
-    icon: "file",
-    subItems: [
-      { value: "Profile", to: "/profile" },
-      { value: "Login", to: "/login" },
-      {
-        value: "Register",
-        to: "/register"
-      },
-      {
-        value: "Forgot password",
-        to: "/forgot-password"
-      },
-      { value: "400 error", to: "/400" },
-      { value: "401 error", to: "/401" },
-      { value: "403 error", to: "/403" },
-      { value: "404 error", to: "/404" },
-      { value: "500 error", to: "/500" },
-      { value: "503 error", to: "/503" },
-      { value: "Email", to: "/email" },
-      {
-        value: "Empty page",
-        to: "/empty-page"
-      },
-      { value: "RTL", to: "/rtl" }
-    ]
-  },
-  {
-    value: "Forms",
-    to: "/form-elements",
-    icon: "check-square"
-  },
-  {
-    value: "Gallery",
-    to: "/gallery",
-    icon: "image"
-  },
-  {
-    icon: "file-text",
-    value: "Documentation",
-    to:
-      process.env.NODE_ENV === "production"
-        ? "https://tabler.github.io/tabler-react/documentation"
-        : "/documentation"
+    to: "/lucky-draw"
   }
 ];
 
@@ -90,7 +24,7 @@ class SiteWrapper extends React.Component<Props, State> {
         headerProps={{
           href: "/",
           alt: "Random Draw",
-          imageURL: "../static/images/randomdraw-logo.svg",
+          imageURL: "images/luckydraw-logo.svg",
           navItems: (
             <Nav.Item type="div" className="d-none d-md-flex">
               <Button
@@ -118,12 +52,11 @@ class SiteWrapper extends React.Component<Props, State> {
             <a href="#">Seventh Link</a>,
             <a href="#">Eigth Link</a>
           ],
-          note:
-            "Lucky draw tool created to make drawing for winners much easier.",
+          note: "Lucky draw tool created to make drawing winners much easier.",
           copyright: (
             <React.Fragment>
               Copyright © 2019
-              <a href="."> Random Draw</a>. Powered by
+              <a href="/"> Random Draw</a>. Powered by
               <a
                 href="https://jasys.xyz"
                 target="_blank"

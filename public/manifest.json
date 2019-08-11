@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Lucky Draw",
+  "name": "Lucky Draw - Lucky Draw Random Simulator",
   "icons": [
     {
       "src": "favicon.ico",

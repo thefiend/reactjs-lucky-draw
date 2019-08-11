@@ -1,16 +1,19 @@
 import React, { Component } from "react";
+import Confetti from "react-dom-confetti";
 import TextLoop from "react-text-loop";
-import { Button, Card, Table, Grid } from "tabler-react";
-import "./App.css";
+import { Button, Grid } from "tabler-react";
 
+import "./App.css";
 import DrawForm from "./components/DrawForm";
+import PreviouslyDrawnItemsBlock from "./components/PreviouslyDrawnItemsBlock";
 import SiteWrapper from "./SiteWrapper";
 import "tabler-react/dist/Tabler.css";
 
 const style = {
-  resultsBlock: {
-    textAlign: "center",
-    alignItems: "center",
+  drawForm: {
+    paddingTop: "64px",
+    paddingBottom: "64px",
+    width: "100%",
   },
 };
 
@@ -18,14 +21,14 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-
     this.state = {
       items: [],
+      drawItems: [],
+      currentItems: [],
       pastDrawnItems: [],
       result: "",
-      animation: true,
+      showTextAnimation: true,
+      removeDrawnItem: false,
       animationInterval: 150,
       showResult: false,
       disableDrawButton: false,
@@ -38,111 +41,118 @@ class App extends Component {
         isRequired: true,
       },
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSkipAnimationChange = this.handleSkipAnimationChange.bind(this);
+    this.handleRemoveDrawnItemChange = this.handleRemoveDrawnItemChange.bind(
+      this
+    );
   }
 
   handleSubmit(e) {
     e.preventDefault();
-
-    let formInputItems = this.state.drawItems;
-    let addItems = formInputItems.split("\n");
-    this.setState({
-      ...this.state,
-      items: addItems,
-    });
+    if (this.state.drawItems.length > 2) {
+      let formInputItems = this.state.drawItems;
+      let itemList = formInputItems.split("\n");
+      this.setState({
+        ...this.state,
+        items: itemList,
+        currentItems: itemList,
+      });
+    }
   }
 
   handleChange(e) {
+    console.log(e.name, e.value);
     this.setState({ [e.name]: e.value });
   }
+
+  handleSkipAnimationChange = () => {
+    this.setState({ showTextAnimation: !this.state.showTextAnimation });
+  };
+
+  handleRemoveDrawnItemChange = () => {
+    this.setState({ removeDrawnItem: !this.state.removeDrawnItem });
+  };
 
   sleep = time => {
     return new Promise(resolve => setTimeout(resolve, time));
   };
 
   randomDrawItem = () => {
+    const { currentItems, showTextAnimation, removeDrawnItem } = this.state;
     this.setState({
       ...this.state,
       showResult: false,
       disableDrawButton: true,
     });
 
-    let maxItemIndex = this.state.items.length;
+    let maxItemIndex = currentItems.length;
     const randomIndex = Math.floor(Math.random() * maxItemIndex);
-    this.sleep(3000).then(() => {
+    this.sleep(showTextAnimation ? 3000 : 0).then(() => {
       this.setState({
         ...this.state,
-        result: this.state.items[randomIndex],
+        result: currentItems[randomIndex],
         pastDrawnItems: [
           ...this.state.pastDrawnItems,
-          this.state.items[randomIndex],
+          currentItems[randomIndex],
         ],
         showResult: true,
         disableDrawButton: false,
       });
     });
+    if (removeDrawnItem) {
+      const copyCurrentItems = [...this.state.currentItems];
+      copyCurrentItems.splice(randomIndex, 1);
+      this.setState({
+        currentItems: copyCurrentItems,
+      });
+    }
   };
 
   render() {
+    const {
+      items,
+      drawItems,
+      currentItems,
+      result,
+      disableDrawButton,
+      pastDrawnItems,
+      placeholder,
+      showResult,
+    } = this.state;
     return (
       <SiteWrapper>
-        <div className="container">
-          {this.state.items.length !== 0 && (
-            <div
-              style={{
-                textAlign: "center",
-                paddingTop: "32px",
-                paddingBottom: "32px",
-              }}
-            >
-              <Grid.Row className="Result-section">
-                <Grid.Col md={2} sm={0} />
-                <Grid.Col md={6} sm={12} className={style.resultsBlock}>
-                  <div
-                    style={{
-                      textAlign: "left",
-                      fontSize: "40px",
-                      paddingBottom: "40px",
-                      paddingTop: "40px",
-                    }}
-                  >
-                    {!this.state.showResult &&
-                    this.state.items && (
+        <div className="container" style={{ minHeight: "600px" }}>
+          {items.length !== 0 && (
+            <div className="draw-block">
+              <Grid.Row>
+                <Grid.Col md={3} sm={0} />
+                <Grid.Col md={5} sm={12}>
+                  <Confetti active={this.state.showResult} />
+                  <div className="draw-section">
+                    {!showResult &&
+                    items && (
                       <TextLoop
                         interval={100}
                         springConfig={{ stiffness: 180, damping: 8 }}
-                        children={this.state.items}
+                        children={items}
                       />
                     )}
-                    {this.state.showResult && this.state.result}
+                    {showResult && result}
                   </div>
                   <Button
                     name="drawButton"
                     color="primary"
                     onClick={this.randomDrawItem}
-                    disabled={this.state.disableDrawButton}
+                    disabled={disableDrawButton || currentItems.length <= 1}
                   >
-                    {this.state.disableDrawButton ? "Drawing..." : "Draw"}
+                    {disableDrawButton ? "Drawing..." : "Draw"}
                   </Button>
                 </Grid.Col>
                 <Grid.Col md={4} sm={12}>
-                  <Card
-                    title="Previously Drawn"
-                    body={
-                      <Table>
-                        <Table.Body>
-                          {this.state.pastDrawnItems.length == 0 ? (
-                            <p>No previous item.</p>
-                          ) : (
-                            this.state.pastDrawnItems.map((item, index) => (
-                              <Table.Row>
-                                <Table.Col>{item}</Table.Col>
-                              </Table.Row>
-                            ))
-                          )}
-                        </Table.Body>
-                      </Table>
-                    }
-                  />
+                  <PreviouslyDrawnItemsBlock pastDrawnItems={pastDrawnItems} />
                 </Grid.Col>
               </Grid.Row>
             </div>
@@ -150,14 +160,13 @@ class App extends Component {
           <Grid.Row>
             <Grid.Col sm={12} md={8}>
               <DrawForm
+                drawItems={drawItems}
                 onSubmit={this.handleSubmit}
+                handleSkipAnimationChange={this.handleSkipAnimationChange}
+                handleRemoveDrawnItemChange={this.handleRemoveDrawnItemChange}
                 onChange={this.handleChange}
-                placeholder={this.state.placeholder}
-                style={{
-                  paddingTop: "64px",
-                  paddingBottom: "64px",
-                  width: "100%",
-                }}
+                placeholder={placeholder}
+                style={style.drawForm}
               />
             </Grid.Col>
           </Grid.Row>
