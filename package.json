@@ -6,7 +6,7 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-dom-confetti": "^0.1.0",
-    "react-scripts": "3.0.0",
+    "react-scripts": "3.1.0",
     "react-text-loop": "^2.0.1",
     "tabler-react": "^1.29.0"
   },
