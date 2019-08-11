@@ -17,7 +17,7 @@ const navBarItems = [
   }
 ];
 
-class SiteWrapper extends React.Component<Props, State> {
+class SiteWrapper extends React.Component {
   render() {
     return (
       <Site.Wrapper
