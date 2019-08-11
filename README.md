@@ -6,7 +6,7 @@
 
 Ever faced this issue whereby you need to randomly select a winner but can't seem to find a beautiful and transparent way of doing so? Here's the solution to your headache! Lucky Draw allows you to randomly choose a winner easily.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App] (https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
@@ -78,7 +78,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ## Acknowledgements
 * [Tabler React](https://github.com/tabler/tabler-react) - For the awesome theme.
-* [Tabler React](https://github.com/tabler/tabler-react)
+* [React Text Loop](https://github.com/braposo/react-text-loop) - For the beautiful random effect.
+* [Confetti](https://github.com/daniel-lundin/react-dom-confetti) - For the awesome effects.
 
 ## Developers
 * [Jason Kam](https://github.com/thefiend)
