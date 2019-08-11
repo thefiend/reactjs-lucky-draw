@@ -3,6 +3,4 @@ node_js:
   - "10.14.2"
 cache: npm install
 script:
-  - npm run lint
   - npm run test
-  - npm run integration:headless
