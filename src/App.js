@@ -128,8 +128,8 @@ class App extends Component {
           {items.length !== 0 && (
             <div className="draw-block">
               <Grid.Row>
-                <Grid.Col md={3} sm={0} />
-                <Grid.Col md={5} sm={12}>
+                <Grid.Col md={3} xs={0} />
+                <Grid.Col md={5} xs={12}>
                   <Confetti active={this.state.showResult} />
                   <div className="draw-section">
                     {!showResult &&
@@ -151,14 +151,14 @@ class App extends Component {
                     {disableDrawButton ? "Drawing..." : "Draw"}
                   </Button>
                 </Grid.Col>
-                <Grid.Col md={4} sm={12}>
+                <Grid.Col md={4} xs={12}>
                   <PreviouslyDrawnItemsBlock pastDrawnItems={pastDrawnItems} />
                 </Grid.Col>
               </Grid.Row>
             </div>
           )}
           <Grid.Row>
-            <Grid.Col sm={12} md={8}>
+            <Grid.Col xs={12} md={8}>
               <DrawForm
                 drawItems={drawItems}
                 onSubmit={this.handleSubmit}
