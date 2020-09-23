@@ -5,7 +5,7 @@
   "dependencies": {
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-dom-confetti": "^0.1.0",
+    "react-dom-confetti": "^0.2.0",
     "react-scripts": "^3.4.3",
     "react-text-loop": "^2.3.0",
     "tabler-react": "^1.29.0"
