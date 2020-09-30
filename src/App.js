@@ -13,8 +13,8 @@ function App(props: Props): React.Node {
     <React.StrictMode>
       <Router>
         <Switch>
-          <Route exact path="/" component={Home} />
           <Route path="/faq" component={Faq} />
+          <Route exact path="/" component={Home} />
         </Switch>
       </Router>
     </React.StrictMode>
