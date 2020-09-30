@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from "react";
+import "./SiteWrapper.css";
 import { Site, Nav, Grid, List, Button } from "tabler-react";
 
 const navBarItems = [
@@ -8,13 +9,13 @@ const navBarItems = [
     value: "Home",
     to: "/",
     icon: "home",
-    useExact: true
+    useExact: true,
   },
   {
     value: "Lucky Draw",
     icon: "box",
-    to: "/"
-  }
+    to: "/",
+  },
 ];
 
 class SiteWrapper extends React.Component {
@@ -23,7 +24,7 @@ class SiteWrapper extends React.Component {
       <Site.Wrapper
         headerProps={{
           href: "/",
-          alt: "Random Draw",
+          alt: "Lucky Draw Simulator",
           imageURL: "images/luckydraw-logo.svg",
           navItems: (
             <Nav.Item type="div" className="d-none d-md-flex">
@@ -37,17 +38,30 @@ class SiteWrapper extends React.Component {
               >
                 Source code
               </Button>
+              <Button
+                className="donate-button"
+                pill
+                icon="heart"
+                href="https://www.buymeacoffee.com/jasonkam"
+                target="_blank"
+                size="md"
+                RootComponent="a"
+                color="orange"
+              >
+                Donate
+              </Button>
             </Nav.Item>
-          )
+          ),
         }}
         navProps={{ itemsObjects: navBarItems }}
         footerProps={{
           links: [],
-          note: "Lucky draw tool created to make drawing winners much easier.",
+          note:
+            "Raffle draw tool created to make random selecting winners much easier.",
           copyright: (
             <React.Fragment>
               Copyright © 2019
-              <a href="/"> Random Draw</a>. Powered by
+              <a href="/"> Lucky Draw Simulator</a>. Powered by
               <a
                 href="https://jasys.xyz"
                 target="_blank"
@@ -55,7 +69,8 @@ class SiteWrapper extends React.Component {
               >
                 {" "}
                 Jasys Technologies
-              </a>{" "}
+              </a>
+              {". "}
               All rights reserved.
             </React.Fragment>
           ),
@@ -83,7 +98,7 @@ class SiteWrapper extends React.Component {
                 </Button>
               </Grid.Col>
             </React.Fragment>
-          )
+          ),
         }}
       >
         {this.props.children}

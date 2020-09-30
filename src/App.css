@@ -1,3 +1,7 @@
+.main-section {
+  min-height: 600px;
+}
+
 .result-section {
   text-align: center;
 }

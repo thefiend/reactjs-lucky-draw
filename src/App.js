@@ -76,8 +76,8 @@ class App extends Component {
     this.setState({ removeDrawnItem: !this.state.removeDrawnItem });
   };
 
-  sleep = time => {
-    return new Promise(resolve => setTimeout(resolve, time));
+  sleep = (time) => {
+    return new Promise((resolve) => setTimeout(resolve, time));
   };
 
   randomDrawItem = () => {
@@ -124,7 +124,7 @@ class App extends Component {
     } = this.state;
     return (
       <SiteWrapper>
-        <div className="container" style={{ minHeight: "600px" }}>
+        <div className="container main-section">
           {items.length !== 0 && (
             <div className="draw-block">
               <Grid.Row>
@@ -132,8 +132,7 @@ class App extends Component {
                 <Grid.Col md={5} xs={12}>
                   <Confetti active={this.state.showResult} />
                   <div className="draw-section">
-                    {!showResult &&
-                    items && (
+                    {!showResult && items && (
                       <TextLoop
                         interval={100}
                         springConfig={{ stiffness: 180, damping: 8 }}
