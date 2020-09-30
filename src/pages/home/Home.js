@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Confetti from "react-dom-confetti";
 import TextLoop from "react-text-loop";
+import { Helmet } from "react-helmet";
 import { Button, Grid } from "tabler-react";
 
 import "./Home.css";
@@ -8,6 +9,7 @@ import DrawForm from "../../components/DrawForm";
 import PreviouslyDrawnItemsBlock from "../../components/PreviouslyDrawnItemsBlock";
 import SiteWrapper from "../../SiteWrapper";
 import "tabler-react/dist/Tabler.css";
+import { HOME } from "../Json-ld";
 
 const style = {
   drawForm: {
@@ -122,50 +124,54 @@ class App extends Component {
     } = this.state;
     return (
       <SiteWrapper>
-          {items.length !== 0 && (
-            <div className="draw-block">
-              <Grid.Row>
-                <Grid.Col md={3} xs={0} />
-                <Grid.Col md={5} xs={12}>
-                  <Confetti active={this.state.showResult} />
-                  <div className="draw-section">
-                    {!showResult && items && (
-                      <TextLoop
-                        interval={100}
-                        springConfig={{ stiffness: 180, damping: 8 }}
-                        children={items}
-                      />
-                    )}
-                    {showResult && result}
-                  </div>
-                  <Button
-                    name="drawButton"
-                    color="primary"
-                    onClick={this.randomDrawItem}
-                    disabled={disableDrawButton || currentItems.length <= 1}
-                  >
-                    {disableDrawButton ? "Drawing..." : "Draw"}
-                  </Button>
-                </Grid.Col>
-                <Grid.Col md={4} xs={12}>
-                  <PreviouslyDrawnItemsBlock pastDrawnItems={pastDrawnItems} />
-                </Grid.Col>
-              </Grid.Row>
-            </div>
-          )}
-          <Grid.Row>
-            <Grid.Col xs={12} md={8}>
-              <DrawForm
-                drawItems={drawItems}
-                onSubmit={this.handleSubmit}
-                handleSkipAnimationChange={this.handleSkipAnimationChange}
-                handleRemoveDrawnItemChange={this.handleRemoveDrawnItemChange}
-                onChange={this.handleChange}
-                placeholder={placeholder}
-                style={style.drawForm}
-              />
-            </Grid.Col>
-          </Grid.Row>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <script type="application/ld+json">{HOME}</script>
+        </Helmet>
+        {items.length !== 0 && (
+          <div className="draw-block">
+            <Grid.Row>
+              <Grid.Col md={3} xs={0} />
+              <Grid.Col md={5} xs={12}>
+                <Confetti active={this.state.showResult} />
+                <div className="draw-section">
+                  {!showResult && items && (
+                    <TextLoop
+                      interval={100}
+                      springConfig={{ stiffness: 180, damping: 8 }}
+                      children={items}
+                    />
+                  )}
+                  {showResult && result}
+                </div>
+                <Button
+                  name="drawButton"
+                  color="primary"
+                  onClick={this.randomDrawItem}
+                  disabled={disableDrawButton || currentItems.length <= 1}
+                >
+                  {disableDrawButton ? "Drawing..." : "Draw"}
+                </Button>
+              </Grid.Col>
+              <Grid.Col md={4} xs={12}>
+                <PreviouslyDrawnItemsBlock pastDrawnItems={pastDrawnItems} />
+              </Grid.Col>
+            </Grid.Row>
+          </div>
+        )}
+        <Grid.Row>
+          <Grid.Col xs={12} md={8}>
+            <DrawForm
+              drawItems={drawItems}
+              onSubmit={this.handleSubmit}
+              handleSkipAnimationChange={this.handleSkipAnimationChange}
+              handleRemoveDrawnItemChange={this.handleRemoveDrawnItemChange}
+              onChange={this.handleChange}
+              placeholder={placeholder}
+              style={style.drawForm}
+            />
+          </Grid.Col>
+        </Grid.Row>
       </SiteWrapper>
     );
   }
