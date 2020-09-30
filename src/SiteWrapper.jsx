@@ -58,7 +58,7 @@ class SiteWrapper extends React.Component {
         footerProps={{
           links: [],
           note:
-            "Raffle draw tool created to make random selecting winners much easier.",
+            "Raffle lucky draw online tool created to select random winners much easier. Randomizing a winner is now easier than ever! Random picker, raffle, draw, contest.",
           copyright: (
             <React.Fragment>
               Copyright © 2019 - {new Date().getFullYear()}
