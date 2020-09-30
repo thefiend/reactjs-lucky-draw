@@ -14,7 +14,7 @@ function App(props: Props): React.Node {
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/faq" component={Faq} />
+          <Route path="/faq" component={Faq} />
         </Switch>
       </Router>
     </React.StrictMode>
