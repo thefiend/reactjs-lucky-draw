@@ -1,11 +1,11 @@
 import "./Faq.css";
 import React, { Component } from "react";
 import { APP_NAME } from "../../constants.js";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 import SiteWrapper from "../../SiteWrapper";
 import "tabler-react/dist/Tabler.css";
 import { Card } from "tabler-react";
-import {FAQ} from "../Json-ld"
+import { FAQ } from "../Json-ld";
 
 class Faq extends Component {
   render() {
@@ -14,9 +14,7 @@ class Faq extends Component {
         <Helmet>
           <meta charSet="utf-8" />
           <title>{APP_NAME} - Frequently Asked Questions (FAQ)</title>
-          <script type="application/ld+json">
-            {FAQ}
-          </script>
+          <script type="application/ld+json">{FAQ}</script>
         </Helmet>
         <h1>Frequently Asked Questions (FAQ)</h1>
         <Card>
