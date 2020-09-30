@@ -60,7 +60,7 @@ class SiteWrapper extends React.Component {
             "Raffle draw tool created to make random selecting winners much easier.",
           copyright: (
             <React.Fragment>
-              Copyright © 2019
+              Copyright © 2019 - {(new Date().getFullYear())}
               <a href="/"> Lucky Draw Simulator</a>. Powered by
               <a
                 href="https://jasys.xyz"
