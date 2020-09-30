@@ -97,6 +97,24 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 * [React Text Loop](https://github.com/braposo/react-text-loop) - For the beautiful random effect.
 * [Confetti](https://github.com/daniel-lundin/react-dom-confetti) - For the awesome effects.
 
+### Contributors
+
+This project exists thanks to all the people who contributed. [[Contribute](CONTRIBUTING.md)]. <a href="https://github.com/thefiend/reactjs-lucky-draw/graphs/contributors"><img src="https://opencollective.com/lucky-draw-simulator/contributors.svg?width=890&button=false"></a>
+
+### Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/tech-interview-handbook#backer)]
+
+<a href="https://opencollective.com/tech-interview-handbook#backers" target="_blank"><img src="https://opencollective.com/lucky-draw-simulator/backers.svg?width=890"></a>
+
+<a href="https://www.buymeacoffee.com/jasonkam" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important; width: auto !important;"></a>
+
+### Sponsors
+
+Support this project by becoming a sponsor. Your logo/profile picture will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/lucky-draw-simulator#sponsor)]
+
+<a href="https://opencollective.com/lucky-draw-simulator/sponsor/0/website" target="_blank"><img src="https://opencollective.com/lucky-draw-simulator/sponsor/0/avatar.svg"></a> <a href="https://opencollective.com/lucky-draw-simulator/sponsor/1/website" target="_blank"><img src="https://opencollective.com/lucky-draw-simulator/sponsor/1/avatar.svg"></a> <a href="https://opencollective.com/lucky-draw-simulator/sponsor/2/website" target="_blank"><img src="https://opencollective.com/lucky-draw-simulator/sponsor/2/avatar.svg"></a> <a href="https://opencollective.com/lucky-draw-simulator/sponsor/3/website" target="_blank"><img src="https://opencollective.com/lucky-draw-simulator/sponsor/3/avatar.svg"></a> <a href="https://opencollective.com/lucky-draw-simulator/sponsor/4/website" target="_blank"><img src="https://opencollective.com/lucky-draw-simulator/sponsor/4/avatar.svg"></a> <a href="https://opencollective.com/lucky-draw-simulator/sponsor/5/website" target="_blank"><img src="https://opencollective.com/lucky-draw-simulator/sponsor/5/avatar.svg"></a> <a href="https://opencollective.com/lucky-draw-simulator/sponsor/6/website" target="_blank"><img src="https://opencollective.com/lucky-draw-simulator/sponsor/6/avatar.svg"></a> <a href="https://opencollective.com/lucky-draw-simulator/sponsor/7/website" target="_blank"><img src="https://opencollective.com/lucky-draw-simulator/sponsor/7/avatar.svg"></a> <a href="https://opencollective.com/lucky-draw-simulator/sponsor/8/website" target="_blank"><img src="https://opencollective.com/lucky-draw-simulator/sponsor/8/avatar.svg"></a> <a href="https://opencollective.com/lucky-draw-simulator/sponsor/9/website" target="_blank"><img src="https://opencollective.com/lucky-draw-simulator/sponsor/9/avatar.svg"></a>
+
 ## Maintainers
 
 * [Jason Kam](https://github.com/thefiend)
