@@ -88,7 +88,7 @@ class SiteWrapper extends React.Component {
                     <a href="./docs/index.html">Documentation</a>
                   </List.Item>
                   <List.Item className="list-inline-item">
-                    <a href="./faq.html">FAQ</a>
+                    <a href="./faq">FAQ</a>
                   </List.Item>
                 </List>
               </Grid.Col>
