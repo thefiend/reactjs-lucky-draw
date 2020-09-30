@@ -17,6 +17,11 @@ const navBarItems = [
     icon: "box",
     to: "/",
   },
+  {
+    value: "FAQ",
+    icon: "list",
+    to: "/faq",
+  },
 ];
 
 class SiteWrapper extends React.Component {
@@ -102,7 +107,10 @@ class SiteWrapper extends React.Component {
           ),
         }}
       >
+        <div className="container main-section">
         {this.props.children}
+        </div>
+        
       </Site.Wrapper>
     );
   }

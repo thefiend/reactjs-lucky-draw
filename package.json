@@ -6,6 +6,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.0",
     "react-dom-confetti": "^0.2.0",
+    "react-helmet": "^6.1.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
     "react-text-loop": "^2.3.0",
     "tabler-react": "^1.29.0"
