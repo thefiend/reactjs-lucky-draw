@@ -1,0 +1,1 @@
+export let APP_NAME="Lucky Draw Simulator";

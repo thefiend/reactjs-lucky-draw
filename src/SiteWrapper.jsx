@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import "./SiteWrapper.css";
+import { APP_NAME } from "./constants.js";
 import { Site, Nav, Grid, List, Button } from "tabler-react";
 
 const navBarItems = [
@@ -24,7 +25,7 @@ class SiteWrapper extends React.Component {
       <Site.Wrapper
         headerProps={{
           href: "/",
-          alt: "Lucky Draw Simulator",
+          alt: APP_NAME,
           imageURL: "images/luckydraw-logo.svg",
           navItems: (
             <Nav.Item type="div" className="d-none d-md-flex">
@@ -60,8 +61,8 @@ class SiteWrapper extends React.Component {
             "Raffle draw tool created to make random selecting winners much easier.",
           copyright: (
             <React.Fragment>
-              Copyright © 2019 - {(new Date().getFullYear())}
-              <a href="/"> Lucky Draw Simulator</a>. Powered by
+              Copyright © 2019 - {new Date().getFullYear()}
+              <a href="/"> {APP_NAME}</a>. Powered by
               <a
                 href="https://jasys.xyz"
                 target="_blank"
