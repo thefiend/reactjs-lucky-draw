@@ -43,10 +43,10 @@ export let FAQ = JSON.stringify({
 
 export let HOME = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "WebApplication",
+  "@type": "SoftwareApplication",
   "name": "Lucky Draw Simulator",
   "operatingSystem": "Website",
-  "applicationCategory": "GameApplication",
+  "applicationCategory": "WebApplication",
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "5",
