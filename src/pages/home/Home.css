@@ -7,6 +7,10 @@
   padding-bottom: 32px;
 } */
 
+.draw-block {
+  text-align: center;
+}
+
 .draw-section {
   font-size: 40px;
   padding-bottom: 40px;

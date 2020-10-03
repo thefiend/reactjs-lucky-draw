@@ -6,6 +6,7 @@ import { Button, Grid } from "tabler-react";
 
 import "./Home.css";
 import DrawForm from "../../components/DrawForm";
+import AdComponent from "../../components/AdComponent/AdComponent";
 import PreviouslyDrawnItemsBlock from "../../components/PreviouslyDrawnItemsBlock";
 import SiteWrapper from "../../SiteWrapper";
 import "tabler-react/dist/Tabler.css";
@@ -64,7 +65,6 @@ class App extends Component {
   }
 
   handleChange(e) {
-    console.log(e.name, e.value);
     this.setState({ [e.name]: e.value });
   }
 
@@ -131,20 +131,22 @@ class App extends Component {
         {items.length !== 0 && (
           <div className="draw-block">
             <Grid.Row>
-              <Grid.Col md={3} xs={0} />
-              <Grid.Col md={5} xs={12}>
-                <Confetti active={this.state.showResult} />
+              <Grid.Col md={5} sm={12}>
                 <div className="draw-section">
                   {!showResult && items && (
                     <TextLoop
+                      className="draw-text"
                       interval={100}
                       springConfig={{ stiffness: 180, damping: 8 }}
                       children={items}
                     />
                   )}
+                  <Confetti active={this.state.showResult} />
                   {showResult && result}
                 </div>
                 <Button
+                  pill
+                  block
                   name="drawButton"
                   color="primary"
                   onClick={this.randomDrawItem}
@@ -153,7 +155,7 @@ class App extends Component {
                   {disableDrawButton ? "Drawing..." : "Draw"}
                 </Button>
               </Grid.Col>
-              <Grid.Col md={4} xs={12}>
+              <Grid.Col md={4} sm={12}>
                 <PreviouslyDrawnItemsBlock pastDrawnItems={pastDrawnItems} />
               </Grid.Col>
             </Grid.Row>
@@ -170,6 +172,11 @@ class App extends Component {
               placeholder={placeholder}
               style={style.drawForm}
             />
+          </Grid.Col>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Col md={4}>
+            <AdComponent />
           </Grid.Col>
         </Grid.Row>
       </SiteWrapper>
