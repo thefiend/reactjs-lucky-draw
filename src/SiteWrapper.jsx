@@ -61,7 +61,7 @@ class SiteWrapper extends React.Component {
         }}
         navProps={{ itemsObjects: navBarItems }}
         footerProps={{
-          links: [],
+          links: (<script data-cfasync="false" type="text/javascript" src="https://www.greatdexchange.com/a/display.php?r=3773459"></script>),
           note:
             "Raffle lucky draw online tool created to select random winners much easier. Randomizing a winner is now easier than ever! Random picker, raffle, draw, contest.",
           copyright: (

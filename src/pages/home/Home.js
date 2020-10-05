@@ -6,7 +6,6 @@ import { Button, Grid } from "tabler-react";
 
 import "./Home.css";
 import DrawForm from "../../components/DrawForm";
-import AdComponent from "../../components/AdComponent/AdComponent";
 import PreviouslyDrawnItemsBlock from "../../components/PreviouslyDrawnItemsBlock";
 import SiteWrapper from "../../SiteWrapper";
 import "tabler-react/dist/Tabler.css";
@@ -128,6 +127,13 @@ class App extends Component {
           <meta charSet="utf-8" />
           <script type="application/ld+json">{HOME}</script>
         </Helmet>
+        <Grid.Row>
+          <script
+            data-cfasync="false"
+            type="text/javascript"
+            src="https://www.greatdexchange.com/a/display.php?r=3773455"
+          ></script>
+        </Grid.Row>
         {items.length !== 0 && (
           <div className="draw-block">
             <Grid.Row>
@@ -176,7 +182,19 @@ class App extends Component {
         </Grid.Row>
         <Grid.Row>
           <Grid.Col md={4}>
-            <AdComponent />
+            <script
+              data-cfasync="false"
+              type="text/javascript"
+              src="https://www.greatdexchange.com/a/display.php?r=3773411"
+            ></script>
+            {/* <AdComponent /> */}
+          </Grid.Col>
+          <Grid.Col md={4}>
+            <script
+              data-cfasync="false"
+              type="text/javascript"
+              src="https://www.greatdexchange.com/a/display.php?r=3773423"
+            ></script>
           </Grid.Col>
         </Grid.Row>
       </SiteWrapper>
