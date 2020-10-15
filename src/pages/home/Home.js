@@ -127,13 +127,6 @@ class App extends Component {
           <meta charSet="utf-8" />
           <script type="application/ld+json">{HOME}</script>
         </Helmet>
-        <Grid.Row>
-          <script
-            data-cfasync="false"
-            type="text/javascript"
-            src="https://www.greatdexchange.com/a/display.php?r=3773455"
-          ></script>
-        </Grid.Row>
         {items.length !== 0 && (
           <div className="draw-block">
             <Grid.Row>
@@ -178,23 +171,6 @@ class App extends Component {
               placeholder={placeholder}
               style={style.drawForm}
             />
-          </Grid.Col>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Col md={4}>
-            <script
-              data-cfasync="false"
-              type="text/javascript"
-              src="https://www.greatdexchange.com/a/display.php?r=3773411"
-            ></script>
-            {/* <AdComponent /> */}
-          </Grid.Col>
-          <Grid.Col md={4}>
-            <script
-              data-cfasync="false"
-              type="text/javascript"
-              src="https://www.greatdexchange.com/a/display.php?r=3773423"
-            ></script>
           </Grid.Col>
         </Grid.Row>
       </SiteWrapper>

@@ -61,7 +61,13 @@ class SiteWrapper extends React.Component {
         }}
         navProps={{ itemsObjects: navBarItems }}
         footerProps={{
-          links: (<script data-cfasync="false" type="text/javascript" src="https://www.greatdexchange.com/a/display.php?r=3773459"></script>),
+          links: (
+            <script
+              data-cfasync="false"
+              type="text/javascript"
+              src="https://www.greatdexchange.com/a/display.php?r=3773459"
+            ></script>
+          ),
           note:
             "Raffle lucky draw online tool created to select random winners much easier. Randomizing a winner is now easier than ever! Random picker, raffle, draw, contest.",
           copyright: (
@@ -78,6 +84,16 @@ class SiteWrapper extends React.Component {
               </a>
               {". "}
               All rights reserved.
+              <br />
+              Proudly sponsored by{" "}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://ecembroid.com/"
+              >
+                ECEmbroid
+              </a>
+              .
             </React.Fragment>
           ),
           nav: (
@@ -107,10 +123,7 @@ class SiteWrapper extends React.Component {
           ),
         }}
       >
-        <div className="container main-section">
-        {this.props.children}
-        </div>
-        
+        <div className="container main-section">{this.props.children}</div>
       </Site.Wrapper>
     );
   }
