@@ -51,7 +51,7 @@ export let HOME = JSON.stringify({
     "@type": "AggregateRating",
     "ratingValue": "5",
     "bestRating": "5",
-    "ratingCount": "20"
+    "ratingCount": "5"
   },
   "offers": {
     "@type": "Offer",
