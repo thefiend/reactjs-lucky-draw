@@ -173,6 +173,12 @@ class App extends Component {
             />
           </Grid.Col>
         </Grid.Row>
+        <Grid.Row>
+          <Grid.Col xs={12} md={8}>
+          <h2>What Our Users Say</h2>
+            <div class="powr-reviews" id="83081483_1602856389"></div>
+          </Grid.Col>
+        </Grid.Row>
       </SiteWrapper>
     );
   }
