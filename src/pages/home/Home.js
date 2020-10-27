@@ -198,7 +198,7 @@ class App extends Component {
         <Grid.Row>
           <Grid.Col xs={12} md={3}>
             <a href="https://www.ecembroid.com">
-              <img src="images/ecembroid.png" alt="ECEmbroid" />
+              <img src="https://luckydraw.me/images/ecembroid.png" alt="ECEmbroid" />
             </a>
           </Grid.Col>
           <Grid.Col xs={12} md={3}></Grid.Col>
