@@ -173,9 +173,40 @@ class App extends Component {
             />
           </Grid.Col>
         </Grid.Row>
+        <hr />
         <Grid.Row>
           <Grid.Col xs={12} md={8}>
-          <h2>What Our Users Say</h2>
+            <h2>Sponsors</h2>
+            <p>Special thanks to the following companies.</p>
+            <h3>
+              Platinum Tier
+              <Button
+                href="https://www.buymeacoffee.com/jasonkam"
+                target="_blank"
+                outline
+                size="sm"
+                RootComponent="a"
+                color="primary"
+                className="contribute-button"
+              >
+                Contribute
+              </Button>
+            </h3>
+            <p>Contribute $300 or more to be featured.</p>
+          </Grid.Col>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Col xs={12} md={3}>
+            <a href="https://www.ecembroid.com">
+              <img src="images/ecembroid.png" alt="ECEmbroid" />
+            </a>
+          </Grid.Col>
+          <Grid.Col xs={12} md={3}></Grid.Col>
+        </Grid.Row>
+        <hr />
+        <Grid.Row>
+          <Grid.Col xs={12} md={8}>
+            <h2>What Our Users Say</h2>
             <div class="powr-reviews" id="83081483_1602856389"></div>
           </Grid.Col>
         </Grid.Row>

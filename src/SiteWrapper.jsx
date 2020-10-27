@@ -35,6 +35,20 @@ class SiteWrapper extends React.Component {
           navItems: (
             <Nav.Item type="div" className="d-none d-md-flex">
               <Button
+                color="primary"
+                icon="facebook"
+                href="https://www.facebook.com/luckydrawme/"
+                target="_blank"
+                RootComponent="a"
+              />
+              <Button
+                color="danger"
+                icon="instagram"
+                href="https://www.instagram.com/luckydrawme/"
+                target="_blank"
+                RootComponent="a"
+              />
+              <Button
                 href="https://github.com/thefiend/random-draw"
                 target="_blank"
                 outline
@@ -61,15 +75,29 @@ class SiteWrapper extends React.Component {
         }}
         navProps={{ itemsObjects: navBarItems }}
         footerProps={{
-          links: (
-            <script
-              data-cfasync="false"
-              type="text/javascript"
-              src="https://www.greatdexchange.com/a/display.php?r=3773459"
-            ></script>
+          // links: (
+          //   "HELLO WORLD"
+          // ),
+          note: (
+            <React.Fragment>
+              "Raffle lucky draw online tool created to select random winners
+              much easier. Randomizing a winner is now easier than ever! Random
+              picker, raffle, draw, contest.",
+              <Button.List>
+                <Button
+                  color="primary"
+                  icon="facebook"
+                  href="https://www.facebook.com/luckydrawme/"
+                />
+                <Button
+                  color="danger"
+                  icon="instagram"
+                  href="https://www.instagram.com/luckydrawme/"
+                />
+              </Button.List>
+            </React.Fragment>
           ),
-          note:
-            "Raffle lucky draw online tool created to select random winners much easier. Randomizing a winner is now easier than ever! Random picker, raffle, draw, contest.",
+
           copyright: (
             <React.Fragment>
               Copyright © 2019 - {new Date().getFullYear()}
