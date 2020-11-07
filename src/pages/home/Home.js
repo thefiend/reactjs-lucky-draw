@@ -199,9 +199,21 @@ class App extends Component {
           <Grid.Col xs={12} md={3}>
             <a href="https://www.ecembroid.com">
               <img src="https://luckydraw.me/images/ecembroid.png" alt="ECEmbroid" />
+              <h3>ECEmbroid</h3>
             </a>
           </Grid.Col>
-          <Grid.Col xs={12} md={3}></Grid.Col>
+          <Grid.Col xs={12} md={3}>
+            <a href="http://theroofingspecialist.sg/">
+              <img src="https://luckydraw.me/images/theroofingspecialist.png" alt="JKRoof" />
+              <h3>The Roofing Specialist</h3>
+            </a>
+          </Grid.Col>
+          <Grid.Col xs={12} md={3}>
+            <a href="https://www.jkroof.com.sg/">
+              <img src="https://luckydraw.me/images/JKRoof.png" alt="JKRoof" />
+              <h3>J&K Roof Contractors</h3>
+            </a>
+          </Grid.Col>
         </Grid.Row>
         <hr />
         <Grid.Row>
