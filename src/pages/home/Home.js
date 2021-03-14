@@ -198,13 +198,19 @@ class App extends Component {
         <Grid.Row>
           <Grid.Col xs={12} md={3}>
             <a href="https://www.ecembroid.com">
-              <img src="https://luckydraw.me/images/ecembroid.png" alt="ECEmbroid" />
+              <img
+                src="https://luckydraw.me/images/ecembroid.png"
+                alt="ECEmbroid"
+              />
               <h3>ECEmbroid</h3>
             </a>
           </Grid.Col>
           <Grid.Col xs={12} md={3}>
             <a href="http://theroofingspecialist.sg/">
-              <img src="https://luckydraw.me/images/theroofingspecialist.png" alt="JKRoof" />
+              <img
+                src="https://luckydraw.me/images/theroofingspecialist.png"
+                alt="JKRoof"
+              />
               <h3>The Roofing Specialist</h3>
             </a>
           </Grid.Col>
@@ -217,9 +223,31 @@ class App extends Component {
         </Grid.Row>
         <hr />
         <Grid.Row>
-          <Grid.Col xs={12} md={8}>
+          <Grid.Col xs={12} md={6}>
             <h2>What Our Users Say</h2>
             <div class="powr-reviews" id="83081483_1602856389"></div>
+          </Grid.Col>
+          <Grid.Col xs={12} md={6}>
+            <div
+              class="fb-page"
+              data-href="https://www.facebook.com/luckydraw.me/"
+              data-tabs="timeline"
+              data-width=""
+              data-height=""
+              data-small-header="true"
+              data-adapt-container-width="true"
+              data-hide-cover="false"
+              data-show-facepile="true"
+            >
+              <blockquote
+                cite="https://www.facebook.com/luckydraw.me/"
+                class="fb-xfbml-parse-ignore"
+              >
+                <a href="https://www.facebook.com/luckydraw.me/">
+                  LuckyDraw.me
+                </a>
+              </blockquote>
+            </div>
           </Grid.Col>
         </Grid.Row>
       </SiteWrapper>
