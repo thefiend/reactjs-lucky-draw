@@ -9,7 +9,7 @@ import DrawForm from "../../components/DrawForm";
 import PreviouslyDrawnItemsBlock from "../../components/PreviouslyDrawnItemsBlock";
 import SiteWrapper from "../../SiteWrapper";
 import "tabler-react/dist/Tabler.css";
-import { HOME } from "../Json-ld";
+import { REVIEW } from "../Json-ld";
 
 const style = {
   drawForm: {
@@ -125,7 +125,7 @@ class App extends Component {
       <SiteWrapper>
         <Helmet>
           <meta charSet="utf-8" />
-          <script type="application/ld+json">{HOME}</script>
+          <script type="application/ld+json">{REVIEW}</script>
         </Helmet>
         {items.length !== 0 && (
           <div className="draw-block">

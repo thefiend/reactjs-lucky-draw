@@ -41,7 +41,7 @@ export let FAQ = JSON.stringify({
   ],
 });
 
-export let HOME = JSON.stringify({
+export let REVIEW = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Lucky Draw Simulator",
@@ -51,7 +51,7 @@ export let HOME = JSON.stringify({
     "@type": "AggregateRating",
     "ratingValue": "5",
     "bestRating": "5",
-    "ratingCount": "5"
+    "ratingCount": "289"
   },
   "offers": {
     "@type": "Offer",
