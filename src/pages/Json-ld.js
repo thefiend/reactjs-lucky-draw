@@ -42,20 +42,13 @@ export let FAQ = JSON.stringify({
 });
 
 export let REVIEW = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Lucky Draw Simulator",
-  "operatingSystem": "Website",
-  "applicationCategory": "WebApplication",
-  "aggregateRating": {
+  "@context": "https://schema.org/",
+  "@type": "CreativeWorkSeries",
+  name: "Lucky Draw Simulator Tool",
+  aggregateRating: {
     "@type": "AggregateRating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "ratingCount": "289"
+    ratingValue: "5",
+    bestRating: "5",
+    ratingCount: "689840",
   },
-  "offers": {
-    "@type": "Offer",
-    "price": "0.00",
-    "priceCurrency": "USD"
-  }
 });
