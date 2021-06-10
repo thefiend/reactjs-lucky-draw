@@ -8,11 +8,13 @@ function FooterNote() {
       raffle, draw, contest.
       <Button.List>
         <Button
+          className="footer-social-button"
           color="primary"
           icon="facebook"
           href="https://www.facebook.com/luckydrawme/"
         />
         <Button
+          className="footer-social-button"
           color="danger"
           icon="instagram"
           href="https://www.instagram.com/luckydrawme/"
@@ -20,6 +22,6 @@ function FooterNote() {
       </Button.List>
     </>
   );
-};
+}
 
 export default FooterNote;

@@ -173,13 +173,13 @@ class App extends Component {
             <h3>
               Platinum Tier
               <Button
+                className="contribute-button"
                 href="https://www.buymeacoffee.com/jasonkam"
                 target="_blank"
                 outline
                 size="sm"
                 RootComponent="a"
                 color="primary"
-                className="contribute-button"
               >
                 Contribute
               </Button>

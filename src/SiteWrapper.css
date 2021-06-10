@@ -1,5 +1,5 @@
 .social-button {
-  margin: 0 2px;
+  margin: 0 4px;
 }
 
 .donate-button {
@@ -10,4 +10,9 @@
   min-height: 600px;
   padding-top: 32px;
   padding-bottom: 32px;
+}
+
+.footer-social-button {
+  margin-top: 8px;
+  margin-right: 8px;
 }

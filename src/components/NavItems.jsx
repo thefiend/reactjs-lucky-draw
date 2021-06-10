@@ -20,17 +20,18 @@ const NavItems = () => {
         RootComponent="a"
       />
       <Button
+      className="social-button"
         href="https://github.com/thefiend/random-draw"
         target="_blank"
         outline
-        size="sm"
+        size="md"
         RootComponent="a"
         color="primary"
       >
         Source code
       </Button>
       <Button
-        className="donate-button"
+        className="social-button"
         pill
         icon="heart"
         href="https://www.buymeacoffee.com/jasonkam"
