@@ -10,6 +10,7 @@ import React, { Component } from 'react';
 import SiteWrapper from '../../SiteWrapper';
 import TextLoop from 'react-text-loop';
 import FeaturedNFTSection from '../../components/FeaturedNFTSection';
+import SponsorsSection from '../../components/SponsorsSection';
 
 class App extends Component {
   constructor(props) {
@@ -169,53 +170,7 @@ class App extends Component {
         <hr />
         <FeaturedNFTSection />
         <hr />
-        <Grid.Row>
-          <Grid.Col xs={12} md={8}>
-            <h2>Sponsors</h2>
-            <p>Special thanks to the following companies.</p>
-            <h3>
-              Platinum Tier
-              <Button
-                className="contribute-button"
-                href="https://www.buymeacoffee.com/jasonkam"
-                target="_blank"
-                outline
-                size="sm"
-                RootComponent="a"
-                color="primary"
-              >
-                Contribute
-              </Button>
-            </h3>
-            <p>Contribute $300 or more to be featured.</p>
-          </Grid.Col>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Col xs={12} md={3}>
-            <a href="https://www.ecembroid.com">
-              <img
-                src="https://luckydraw.me/images/ecembroid.png"
-                alt="ECEmbroid"
-              />
-              <h3>ECEmbroid</h3>
-            </a>
-          </Grid.Col>
-          <Grid.Col xs={12} md={3}>
-            <a href="http://theroofingspecialist.sg/">
-              <img
-                src="https://luckydraw.me/images/theroofingspecialist.png"
-                alt="JKRoof"
-              />
-              <h3>The Roofing Specialist</h3>
-            </a>
-          </Grid.Col>
-          <Grid.Col xs={12} md={3}>
-            <a href="https://www.jkroof.com.sg/">
-              <img src="https://luckydraw.me/images/JKRoof.png" alt="JKRoof" />
-              <h3>J&K Roof Contractors</h3>
-            </a>
-          </Grid.Col>
-        </Grid.Row>
+        <SponsorsSection />
         <hr />
         <Grid.Row>
           <Grid.Col xs={12} md={6}>
