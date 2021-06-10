@@ -1,37 +1,18 @@
 // @flow
 
-import * as React from "react";
-import "./SiteWrapper.css";
-import { APP_NAME } from "./constants.js";
-import { Site, Nav, Grid, List, Button } from "tabler-react";
-
-const navBarItems = [
-  {
-    value: "Home",
-    to: "/",
-    icon: "home",
-    useExact: true,
-  },
-  {
-    value: "Lucky Draw",
-    icon: "box",
-    to: "/",
-  },
-  {
-    value: "FAQ",
-    icon: "list",
-    to: "/faq",
-  },
-];
+import * as React from 'react';
+import './SiteWrapper.css';
+import { APP_NAME, NAVBAR_ITEMS } from './constants.js';
+import { Site, Nav, Grid, List, Button } from 'tabler-react';
 
 class SiteWrapper extends React.Component {
   render() {
     return (
       <Site.Wrapper
         headerProps={{
-          href: "/",
+          href: '/',
           alt: APP_NAME,
-          imageURL: "images/luckydraw-logo.svg",
+          imageURL: 'images/luckydraw-logo.svg',
           navItems: (
             <Nav.Item type="div" className="d-none d-md-flex">
               <Button
@@ -73,16 +54,16 @@ class SiteWrapper extends React.Component {
             </Nav.Item>
           ),
         }}
-        navProps={{ itemsObjects: navBarItems }}
+        navProps={{ itemsObjects: NAVBAR_ITEMS }}
         footerProps={{
           // links: (
           //   "HELLO WORLD"
           // ),
           note: (
             <React.Fragment>
-              "Raffle lucky draw online tool created to select random winners
+              Raffle lucky draw online tool created to select random winners
               much easier. Randomizing a winner is now easier than ever! Random
-              picker, raffle, draw, contest.",
+              picker, raffle, draw, contest.
               <Button.List>
                 <Button
                   color="primary"
@@ -107,13 +88,13 @@ class SiteWrapper extends React.Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {" "}
+                {' '}
                 Jasys Technologies
               </a>
-              {". "}
+              {'. '}
               All rights reserved.
               <br />
-              Proudly sponsored by{" "}
+              Proudly sponsored by{' '}
               <a
                 target="_blank"
                 rel="noopener noreferrer"
