@@ -9,6 +9,7 @@ import PreviouslyDrawnItemsBlock from '../../components/PreviouslyDrawnItemsBloc
 import React, { Component } from 'react';
 import SiteWrapper from '../../SiteWrapper';
 import TextLoop from 'react-text-loop';
+import FeaturedNFTSection from '../../components/FeaturedNFTSection';
 
 class App extends Component {
   constructor(props) {
@@ -165,6 +166,8 @@ class App extends Component {
             />
           </Grid.Col>
         </Grid.Row>
+        <hr />
+        <FeaturedNFTSection />
         <hr />
         <Grid.Row>
           <Grid.Col xs={12} md={8}>
