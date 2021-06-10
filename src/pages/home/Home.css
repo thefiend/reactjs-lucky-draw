@@ -1,14 +1,13 @@
-.result-section {
-  text-align: center;
+.contribute-button {
+  margin-left: 18px;
 }
-/* 
-.draw-block {
-  padding-top: 32px;
-  padding-bottom: 32px;
-} */
 
 .draw-block {
   text-align: center;
+}
+
+.draw-form {
+  width: "100%";
 }
 
 .draw-section {
@@ -17,6 +16,6 @@
   padding-top: 40px;
 }
 
-.contribute-button {
-  margin-left: 18px,
+.result-section {
+  text-align: center;
 }

@@ -1,21 +1,14 @@
-import React, { Component } from "react";
-import Confetti from "react-dom-confetti";
-import TextLoop from "react-text-loop";
-import { Helmet } from "react-helmet";
-import { Button, Grid } from "tabler-react";
-
-import "./Home.css";
-import DrawForm from "../../components/DrawForm";
-import PreviouslyDrawnItemsBlock from "../../components/PreviouslyDrawnItemsBlock";
-import SiteWrapper from "../../SiteWrapper";
-import "tabler-react/dist/Tabler.css";
-import { REVIEW } from "../Json-ld";
-
-const style = {
-  drawForm: {
-    width: "100%",
-  },
-};
+import './Home.css';
+import 'tabler-react/dist/Tabler.css';
+import { Button, Grid } from 'tabler-react';
+import { Helmet } from 'react-helmet';
+import { REVIEW } from '../Json-ld';
+import Confetti from 'react-dom-confetti';
+import DrawForm from '../../components/DrawForm';
+import PreviouslyDrawnItemsBlock from '../../components/PreviouslyDrawnItemsBlock';
+import React, { Component } from 'react';
+import SiteWrapper from '../../SiteWrapper';
+import TextLoop from 'react-text-loop';
 
 class App extends Component {
   constructor(props) {
@@ -26,14 +19,14 @@ class App extends Component {
       drawItems: [],
       currentItems: [],
       pastDrawnItems: [],
-      result: "",
+      result: '',
       showTextAnimation: true,
       removeDrawnItem: false,
       animationInterval: 150,
       showResult: false,
       disableDrawButton: false,
-      value: "",
-      placeholder: "Please enter the draw items here. One item per line.",
+      value: '',
+      placeholder: 'Please enter the draw items here. One item per line.',
       valid: false,
       touched: false,
       validationRules: {
@@ -45,16 +38,15 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSkipAnimationChange = this.handleSkipAnimationChange.bind(this);
-    this.handleRemoveDrawnItemChange = this.handleRemoveDrawnItemChange.bind(
-      this
-    );
+    this.handleRemoveDrawnItemChange =
+      this.handleRemoveDrawnItemChange.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
     if (this.state.drawItems.length > 2) {
       let formInputItems = this.state.drawItems;
-      let itemList = formInputItems.split("\n");
+      let itemList = formInputItems.split('\n');
       this.setState({
         ...this.state,
         items: itemList,
@@ -151,7 +143,7 @@ class App extends Component {
                   onClick={this.randomDrawItem}
                   disabled={disableDrawButton || currentItems.length <= 1}
                 >
-                  {disableDrawButton ? "Drawing..." : "Draw"}
+                  {disableDrawButton ? 'Drawing...' : 'Draw'}
                 </Button>
               </Grid.Col>
               <Grid.Col md={4} sm={12}>
@@ -163,13 +155,13 @@ class App extends Component {
         <Grid.Row>
           <Grid.Col xs={12} md={8}>
             <DrawForm
+              className="draw-form"
               drawItems={drawItems}
               onSubmit={this.handleSubmit}
               handleSkipAnimationChange={this.handleSkipAnimationChange}
               handleRemoveDrawnItemChange={this.handleRemoveDrawnItemChange}
               onChange={this.handleChange}
               placeholder={placeholder}
-              style={style.drawForm}
             />
           </Grid.Col>
         </Grid.Row>
@@ -225,11 +217,11 @@ class App extends Component {
         <Grid.Row>
           <Grid.Col xs={12} md={6}>
             <h2>What Our Users Say</h2>
-            <div class="powr-reviews" id="83081483_1602856389"></div>
+            <div className="powr-reviews" id="83081483_1602856389"></div>
           </Grid.Col>
           <Grid.Col xs={12} md={6}>
             <div
-              class="fb-page"
+              className="fb-page"
               data-href="https://www.facebook.com/luckydraw.me/"
               data-tabs="timeline"
               data-width=""
@@ -241,7 +233,7 @@ class App extends Component {
             >
               <blockquote
                 cite="https://www.facebook.com/luckydraw.me/"
-                class="fb-xfbml-parse-ignore"
+                className="fb-xfbml-parse-ignore"
               >
                 <a href="https://www.facebook.com/luckydraw.me/">
                   LuckyDraw.me

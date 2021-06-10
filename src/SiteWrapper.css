@@ -1,9 +1,13 @@
+.social-button {
+  margin: 0 2px;
+}
+
 .donate-button {
-    margin-left: 8px;
+  margin-left: 8px;
 }
 
 .main-section {
-    min-height: 600px;
-    padding-top: 32px;
-    padding-bottom: 32px;
+  min-height: 600px;
+  padding-top: 32px;
+  padding-bottom: 32px;
 }
