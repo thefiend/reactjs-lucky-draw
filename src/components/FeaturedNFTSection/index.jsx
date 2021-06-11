@@ -16,10 +16,10 @@ const FeaturedNFTSection = () => {
           alt="Elohim AI"
           name={'Elohim AI'}
           address={{
-            line1: 'The AI created NFTs.',
+            line1: 'The AI created NFTs. 8K resolution NFT in distributed IPFS. Sick!',
           }}
           details={[
-            { title: 'OpenSea', content: <a href="https://opensea.io/collection/elohim-ai-abstracto/">https://opensea.io/collection/elohim-ai-abstracto/</a> },
+            { title: 'OpenSea', content: <a href="https://opensea.io/assets/elohim-ai-abstracto/">https://opensea.io/collection/elohim-ai-abstracto/</a> },
             { title: 'Instagram', content: <a href="https://www.instagram.com/elohim.ai.nft/">https://www.instagram.com/elohim.ai.nft/</a> },
             { title: 'Twitter', content: <a href="https://twitter.com/AiElohim/">https://twitter.com/AiElohim/</a> },
             { title: 'Facebook', content: <a href="https://www.facebook.com/elohim.ai.nft/">https://www.facebook.com/elohim.ai.nft/</a> },
