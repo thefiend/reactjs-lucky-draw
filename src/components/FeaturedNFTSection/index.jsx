@@ -33,7 +33,7 @@ const FeaturedNFTSection = () => {
       </Grid.Col>
       {NFTS.map(function (item, i) {
         return (
-          <Grid.Col xs={12} md={6}>
+          <Grid.Col key={i} xs={12} md={6}>
             <nft-card
               width="100%"
               tokenAddress={item.tokenAddress}

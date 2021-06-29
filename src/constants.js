@@ -77,6 +77,11 @@ export const NFTS = [
 
 export const SPONSORS = [
   {
+    name: 'Kitticon',
+    url: 'https://www.kitticon.com/',
+    img: './images/kitticon-logo.png',
+  },
+  {
     name: 'ECEmbroid',
     url: 'https://www.ecembroid.com',
     img: './images/ecembroid.png',
