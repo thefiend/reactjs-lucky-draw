@@ -1,16 +1,18 @@
 import './Home.css';
 import 'tabler-react/dist/Tabler.css';
+
 import { Button, Grid } from 'tabler-react';
-import { Helmet } from 'react-helmet';
-import { REVIEW } from '../Json-ld';
+import React, { Component } from 'react';
+
 import Confetti from 'react-dom-confetti';
 import DrawForm from '../../components/DrawForm';
-import PreviouslyDrawnItemsBlock from '../../components/PreviouslyDrawnItemsBlock';
-import React, { Component } from 'react';
-import SiteWrapper from '../../SiteWrapper';
-import TextLoop from 'react-text-loop';
 import FeaturedNFTSection from '../../components/FeaturedNFTSection';
+import { Helmet } from 'react-helmet';
+import PreviouslyDrawnItemsBlock from '../../components/PreviouslyDrawnItemsBlock';
+import { REVIEW } from '../Json-ld';
+import SiteWrapper from '../../SiteWrapper';
 import SponsorsSection from '../../components/SponsorsSection';
+import TextLoop from 'react-text-loop';
 
 class App extends Component {
   constructor(props) {
@@ -167,8 +169,6 @@ class App extends Component {
             />
           </Grid.Col>
         </Grid.Row>
-        <hr />
-        <FeaturedNFTSection />
         <hr />
         <SponsorsSection />
         <hr />
