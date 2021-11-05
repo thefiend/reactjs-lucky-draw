@@ -6,7 +6,6 @@ import React, { Component } from 'react';
 
 import Confetti from 'react-dom-confetti';
 import DrawForm from '../../components/DrawForm';
-import FeaturedNFTSection from '../../components/FeaturedNFTSection';
 import { Helmet } from 'react-helmet';
 import PreviouslyDrawnItemsBlock from '../../components/PreviouslyDrawnItemsBlock';
 import { REVIEW } from '../Json-ld';
