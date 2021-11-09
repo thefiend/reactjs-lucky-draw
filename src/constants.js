@@ -17,6 +17,11 @@ export const NAVBAR_ITEMS = [
     icon: 'list',
     to: '/faq',
   },
+  {
+    value: 'LIST',
+    icon: 'list',
+    to: '/list',
+  },
 ];
 
 const TOKEN_ADDRESS = {

@@ -1,4 +1,5 @@
 import { Button, Grid } from 'tabler-react';
+
 import { SPONSORS } from '../../constants';
 
 const SponsorsSection = () => {
@@ -12,14 +13,14 @@ const SponsorsSection = () => {
             Platinum Tier
             <Button
               className="contribute-button"
-              href="https://www.buymeacoffee.com/jasonkam"
+              href="./list"
               target="_blank"
               outline
               size="sm"
               RootComponent="a"
               color="primary"
             >
-              Contribute
+              Contribute to List
             </Button>
           </h3>
           <p>Contribute $300 or more to be featured.</p>

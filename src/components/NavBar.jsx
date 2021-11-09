@@ -1,4 +1,4 @@
-import { Grid, List, Button } from 'tabler-react';
+import { Button, Grid, List } from 'tabler-react';
 
 const NavBar = () => {
   return (
@@ -10,6 +10,9 @@ const NavBar = () => {
           </List.Item> */}
           <List.Item className="list-inline-item">
             <a href="./faq">FAQ</a>
+          </List.Item>
+          <List.Item className="list-inline-item">
+            <a href="./list">LIST</a>
           </List.Item>
         </List>
       </Grid.Col>
