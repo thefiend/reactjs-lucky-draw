@@ -1,3 +1,5 @@
+import React from "react";
+
 import { ContactCard, Grid } from 'tabler-react';
 import { NFTS } from '../../constants';
 

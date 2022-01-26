@@ -1,3 +1,4 @@
+import React from "react";
 import { Button, Grid } from 'tabler-react';
 
 import { SPONSORS } from '../../constants';

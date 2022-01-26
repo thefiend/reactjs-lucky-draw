@@ -1,3 +1,4 @@
+import React from "react";
 import { Button, Grid, List } from 'tabler-react';
 
 const NavBar = () => {

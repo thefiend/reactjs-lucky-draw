@@ -1,3 +1,4 @@
+import React from "react";
 import { Button } from 'tabler-react';
 
 function FooterNote() {

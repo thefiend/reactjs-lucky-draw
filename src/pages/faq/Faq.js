@@ -1,9 +1,11 @@
+import "tabler-react/dist/Tabler.css";
 import "./Faq.css";
+
 import React, { Component } from "react";
 import { APP_NAME } from "../../constants.js";
 import { Helmet } from "react-helmet";
 import SiteWrapper from "../../SiteWrapper";
-import "tabler-react/dist/Tabler.css";
+
 import { Card } from "tabler-react";
 import { FAQ, REVIEW } from "../Json-ld";
 
