@@ -2,14 +2,14 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
         <loc>https://luckydraw.me/</loc>
-        <lastmod>2020-10-01T01:32:15+00:00</lastmod>
+        <lastmod>2022-03-15T01:32:15+00:00</lastmod>
     </url>
     <url>
         <loc>https://luckydraw.me/faq</loc>
-        <lastmod>2020-10-01T01:32:15+00:00</lastmod>
+        <lastmod>2022-03-15T01:32:15+00:00</lastmod>
     </url>
     <url>
         <loc>https://luckydraw.me/list</loc>
-        <lastmod>2020-10-01T01:32:15+00:00</lastmod>
+        <lastmod>2022-03-15T01:32:15+00:00</lastmod>
     </url>
 </urlset>
