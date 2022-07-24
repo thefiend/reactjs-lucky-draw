@@ -19,3 +19,8 @@
 .result-section {
   text-align: center;
 }
+
+.review-section {
+  height: 500px;
+  overflow-y: scroll;
+}

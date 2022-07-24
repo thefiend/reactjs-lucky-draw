@@ -13,12 +13,14 @@ function FooterNote() {
           color="primary"
           icon="facebook"
           href="https://www.facebook.com/luckydrawme/"
+          RootComponent="a"
         />
         <Button
           className="footer-social-button"
           color="danger"
           icon="instagram"
           href="https://www.instagram.com/luckydrawme/"
+          RootComponent="a"
         />
       </Button.List>
     </>

@@ -172,7 +172,7 @@ class App extends Component {
         <SponsorsSection />
         <hr />
         <Grid.Row>
-          <Grid.Col xs={12} md={6}>
+          <Grid.Col xs={12} md={6} className="review-section">
             <h2>What Our Users Say</h2>
             <div className="powr-reviews" id="83081483_1602856389"></div>
           </Grid.Col>
