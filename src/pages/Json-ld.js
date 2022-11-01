@@ -44,7 +44,7 @@ export let FAQ = JSON.stringify({
 export let REVIEW = JSON.stringify({
   "@context": "https://schema.org/",
   "@type": "CreativeWorkSeries",
-  name: "Lucky Draw Simulator Tool",
+  name: "Lucky Draw Random Generator Tool",
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "5",
