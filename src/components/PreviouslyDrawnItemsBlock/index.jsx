@@ -4,8 +4,8 @@ import "./style.css";
 
 const PreviouslyDrawnItemsBlock = props => (
   <Card
-    title="Previously Drawn"
-    className="past-drawn-block"
+    title="Raffle Winners"
+    className="past-drawn-block text-center justify-content-center shadow-none"
     body={
       <Table>
         <Table.Body className="past-drawn-item">

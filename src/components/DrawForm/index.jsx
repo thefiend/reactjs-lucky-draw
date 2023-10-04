@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Form, Button, Header } from "tabler-react";
-import "./style.css";
+import React, { Component } from 'react';
+import { Form, Button, Header } from 'tabler-react';
+import './style.css';
 
 class DrawForm extends Component {
   constructor(props) {
@@ -21,18 +21,18 @@ class DrawForm extends Component {
       value,
       drawItems,
       handleSkipAnimationChange,
-      handleRemoveDrawnItemChange
+      handleRemoveDrawnItemChange,
     } = this.props;
 
     return (
       <div style={style} className={className}>
         <Header.H3>Configuration</Header.H3>
-        <div className="form">
+        <div className='form'>
           <Form onSubmit={onSubmit}>
             <Form.FieldSet>
-              <Form.Group label="List of Items" isRequired>
+              <Form.Group label='List of Names' isRequired>
                 <Form.Textarea
-                  name="drawItems"
+                  name='drawItems'
                   placeholder={placeholder}
                   value={value}
                   onChange={this.handleChange}
@@ -40,21 +40,21 @@ class DrawForm extends Component {
               </Form.Group>
               <Form.Group>
                 <Form.Checkbox
-                  name="skipAnimation"
-                  label="Skip Animation"
+                  name='skipAnimation'
+                  label='Skip Animation'
                   onChange={handleSkipAnimationChange}
                 />
               </Form.Group>
               <Form.Group>
                 <Form.Checkbox
-                  name="noRepeat"
-                  label="Remove Drawn Item"
+                  name='noRepeat'
+                  label='Remove Drawn Item'
                   onChange={handleRemoveDrawnItemChange}
                 />
               </Form.Group>
               <Button
-                color="primary"
-                type="submit"
+                color='primary'
+                type='submit'
                 disabled={drawItems.length < 2}
               >
                 Configure

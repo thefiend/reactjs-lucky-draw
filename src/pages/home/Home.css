@@ -1,9 +1,16 @@
+.draw-section {
+  font-family: "Oswald", "Source Sans 3", sans-serif !important;
+}
+
 .contribute-button {
   margin-left: 18px;
 }
 
 .draw-block {
   text-align: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 .draw-form {
@@ -22,4 +29,25 @@
 
 .review-section {
   overflow-y: scroll;
+}
+
+.btn {
+  margin-left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+.btn-primary {
+  background-color: #339443 !important;
+  border-color: #339443 !important;
+  border-radius: 1rem 0 !important;
+  padding: 4px 1.5rem;
+}
+
+.btn-block {
+  width: auto !important;
+}
+
+.x0.x3.x4.x5 {
+  left: 50%;
+  translate: -50% !important;
 }

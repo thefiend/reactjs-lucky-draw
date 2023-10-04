@@ -1,7 +1,24 @@
 .past-drawn-block {
-  height: 250px;
+  height: 380px;
   overflow-y: scroll;
+  background: none;
+  border: none;
 }
+
 .past-drawn-item {
   text-align: center;
+}
+
+.past-drawn-item td {
+  border: none;
+  padding: 0.5rem 0 0 0;
+}
+
+.card-header {
+  display: flex;
+  justify-content: center;
+}
+
+.card-body {
+  padding: 0.5rem 1rem;
 }

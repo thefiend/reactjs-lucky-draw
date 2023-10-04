@@ -1,4 +1,24 @@
 body {
   width: 100%;
   height: 100%;
+  background-color: #000;
+}
+
+.header {
+  display: none !important;
+}
+
+.page-main {
+  height: 100vh !important;
+}
+
+#text,
+.btn,
+h3 {
+  font-family: "Oswald", sans-serif !important;
+  font-weight: 600 !important;
+}
+
+p {
+  font-family: "Source Sans 3", sans-serif !important;
 }
