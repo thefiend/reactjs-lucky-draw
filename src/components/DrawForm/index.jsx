@@ -31,12 +31,12 @@ class DrawForm extends Component {
           <Form onSubmit={onSubmit}>
             <Form.FieldSet>
               <Form.Group label='List of Names' isRequired>
-                <Form.Textarea
+                {/* <Form.Textarea
                   name='drawItems'
                   placeholder={placeholder}
                   value={value}
                   onChange={this.handleChange}
-                />
+                /> */}
               </Form.Group>
               <Form.Group>
                 <Form.Checkbox
@@ -52,12 +52,8 @@ class DrawForm extends Component {
                   onChange={handleRemoveDrawnItemChange}
                 />
               </Form.Group>
-              <Button
-                color='primary'
-                type='submit'
-                disabled={drawItems.length < 2}
-              >
-                Configure
+              <Button color='primary' type='submit'>
+                Start
               </Button>
             </Form.FieldSet>
           </Form>
