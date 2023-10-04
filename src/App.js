@@ -12,13 +12,9 @@ function App() {
     <React.StrictMode>
       <Router>
         <Switch>
-          {/* <Route path="/list" element={<List />} />
+          <Route path="/list" element={<List />} />
           <Route path="/faq" element={<Faq />} />
-          <Route exact path="/" element={<Home />} /> */}
-
-          <Route path="/"><Home /></Route>
-          <Route path="/list"><List/></Route>
-          <Route path="/faq"><Faq/></Route>
+          <Route exact path="/" element={<Home />} />
         </Switch>
       </Router>
     </React.StrictMode>
