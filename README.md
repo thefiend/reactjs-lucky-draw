@@ -101,6 +101,12 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 * [React Text Loop](https://github.com/braposo/react-text-loop) - For the beautiful random effect.
 * [Confetti](https://github.com/daniel-lundin/react-dom-confetti) - For the awesome effects.
 
+## Sponsors
+* [Jasys Web Design](https://jasys.xyz) - For the awesome website.
+* [ECEmbroid - Best Embroidery Singapore](https://ecembroid.com)
+* [J&K Roof Contractors](https://jkroof.com.sg)
+* [The Roofing Specialists](https://theroofspecialist.com.sg/)
+
 ### Contributors
 
 This project exists thanks to all the people who contributed. [[Contribute](CONTRIBUTING.md)]. <a href="https://github.com/thefiend/reactjs-lucky-draw/graphs/contributors"><img src="https://opencollective.com/lucky-draw-simulator/contributors.svg?width=890&button=false"></a>
