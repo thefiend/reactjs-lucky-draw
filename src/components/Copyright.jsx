@@ -6,9 +6,9 @@ const Copyright = () => {
     <>
       Copyright © 2019 - {new Date().getFullYear()}
       <a href="/"> {APP_NAME}</a>. Powered by
-      <a href="https://jasys.xyz" target="_blank" rel="noopener noreferrer">
+      <a href="https://bestwebdesign.sg" target="_blank" rel="noopener noreferrer">
         {' '}
-        Jasys Technologies
+        Best Web Design
       </a>
       {'. '}
       All rights reserved.
