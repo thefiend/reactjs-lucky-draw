@@ -106,6 +106,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 * [ECEmbroid - Best Embroidery Singapore](https://ecembroid.com)
 * [J&K Roof Contractors](https://jkroof.com.sg)
 * [The Roofing Specialists](https://theroofspecialist.com.sg/)
+* [LS Home Renovation](https://lshomerenovation.sg/)
 
 ### Contributors
 

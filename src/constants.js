@@ -24,63 +24,12 @@ export const NAVBAR_ITEMS = [
   },
 ];
 
-const TOKEN_ADDRESS = {
-  abstracto: '0x495f947276749ce646f68ac8c248420045cb7b5e',
-};
-
-export const NFTS = [
-  {
-    id: 239,
-    tokenAddress: TOKEN_ADDRESS.abstracto,
-    tokenId:
-      '6892026032126658451935152639010948463078151507551751331963617976065418330113',
-  },
-  {
-    id: 240,
-    tokenAddress: TOKEN_ADDRESS.abstracto,
-    tokenId:
-      '6892026032126658451935152639010948463078151507551751331963617968368836935681',
-  },
-  {
-    id: 243,
-    tokenAddress: TOKEN_ADDRESS.abstracto,
-    tokenId:
-      '6892026032126658451935152639010948463078151507551751331963617974965906702337',
-  },
-  {
-    id: 244,
-    tokenAddress: TOKEN_ADDRESS.abstracto,
-    tokenId:
-      '6892026032126658451935152639010948463078151507551751331963617976065418330113',
-  },
-  // {
-  //   id: 116,
-  //   tokenAddress: TOKEN_ADDRESS.abstracto,
-  //   tokenId:"6892026032126658451935152639010948463078151507551751331963617826531836952577"
-  // },
-  // {
-  //   id: 117,
-  //   tokenAddress: TOKEN_ADDRESS.abstracto,
-  //   tokenId:"6892026032126658451935152639010948463078151507551751331963617827631348580353"
-  // },
-  // {
-  //   id: 118,
-  //   tokenAddress: TOKEN_ADDRESS.abstracto,
-  //   tokenId:"6892026032126658451935152639010948463078151507551751331963617828730860208129"
-  // },
-  // {
-  //   id: 119,
-  //   tokenAddress: TOKEN_ADDRESS.abstracto,
-  //   tokenId:"6892026032126658451935152639010948463078151507551751331963617829830371835905"
-  // },
-  // {
-  //   id: 121,
-  //   tokenAddress: TOKEN_ADDRESS.abstracto,
-  //   tokenId:"6892026032126658451935152639010948463078151507551751331963617832029395091457"
-  // },
-];
-
 export const SPONSORS = [
+  {
+    name: 'Best Web Design Singapore',
+    url: 'https://www.bestwebdesign.sg/',
+    img: './images/best-web-design-singapore-logo.png',
+  },
   {
     name: 'Kitticon',
     url: 'https://www.kitticon.com/',
@@ -100,5 +49,10 @@ export const SPONSORS = [
     name: 'J&K Roof Contractors',
     url: 'https://www.jkroof.com.sg/',
     img: './images/JKRoof.png',
+  },
+  {
+    name: 'LS Home Renovation',
+    url: 'https://www.lshomerenovation.sg/',
+    img: './images/ls-home-renovation-best-home-renovation-contractor-singapore-logo.png',
   },
 ];
