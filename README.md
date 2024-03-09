@@ -102,7 +102,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 * [Confetti](https://github.com/daniel-lundin/react-dom-confetti) - For the awesome effects.
 
 ## Sponsors
-* [Best Web Design](https://bestwebdesign.sg) - For the awesome website.
+* [Best Web Design Singapore](https://bestwebdesign.sg) - For the awesome website.
 * [ECEmbroid - Best Embroidery Singapore](https://ecembroid.com)
 * [J&K Roof Contractors](https://jkroof.com.sg)
 * [The Roofing Specialists](https://theroofspecialist.com.sg/)

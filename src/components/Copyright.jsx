@@ -8,7 +8,7 @@ const Copyright = () => {
       <a href="/"> {APP_NAME}</a>. Powered by
       <a href="https://bestwebdesign.sg" target="_blank" rel="noopener noreferrer">
         {' '}
-        Best Web Design
+        Best Web Design Singapore
       </a>
       {'. '}
       All rights reserved.
@@ -19,7 +19,7 @@ const Copyright = () => {
         rel="noopener noreferrer"
         href="https://ecembroid.com/"
       >
-        ECEmbroid
+        ECEmbroid - Best Embroidery Singapore
       </a>
       .
     </>
