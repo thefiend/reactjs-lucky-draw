@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Allow: /faq
 Allow: /list
 
 Sitemap: https://luckydraw.me/sitemap.xml

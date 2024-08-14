@@ -13,11 +13,6 @@ export const NAVBAR_ITEMS = [
     to: '/',
   },
   {
-    value: 'FAQ',
-    icon: 'list',
-    to: '/faq',
-  },
-  {
     value: 'LIST',
     icon: 'list',
     to: '/list',
