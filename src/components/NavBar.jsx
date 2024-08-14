@@ -7,9 +7,6 @@ const NavBar = () => {
       <Grid.Col auto={true}>
         <List className="list-inline list-inline-dots mb-0">
           <List.Item className="list-inline-item">
-            <a href="./faq">FAQ</a>
-          </List.Item>
-          <List.Item className="list-inline-item">
             <a href="./list">LIST</a>
           </List.Item>
         </List>
