@@ -1,17 +1,17 @@
-import './Home.css';
-import 'tabler-react/dist/Tabler.css';
+import "./Home.css";
+import "tabler-react/dist/Tabler.css";
 
-import { Button, Grid } from 'tabler-react';
-import React, { Component } from 'react';
+import { Button, Grid } from "tabler-react";
+import React, { Component } from "react";
 
-import Confetti from 'react-dom-confetti';
-import DrawForm from '../../components/DrawForm';
-import { Helmet } from 'react-helmet';
-import PreviouslyDrawnItemsBlock from '../../components/PreviouslyDrawnItemsBlock';
-import { REVIEW } from '../Json-ld';
-import SiteWrapper from '../../SiteWrapper';
-import SponsorsSection from '../../components/SponsorsSection';
-import TextLoop from 'react-text-loop';
+import Confetti from "react-dom-confetti";
+import DrawForm from "../../components/DrawForm";
+import { Helmet } from "react-helmet";
+import PreviouslyDrawnItemsBlock from "../../components/PreviouslyDrawnItemsBlock";
+import { REVIEW } from "../Json-ld";
+import SiteWrapper from "../../SiteWrapper";
+import SponsorsSection from "../../components/SponsorsSection";
+import TextLoop from "react-text-loop";
 
 class App extends Component {
   constructor(props) {
@@ -22,14 +22,14 @@ class App extends Component {
       drawItems: [],
       currentItems: [],
       pastDrawnItems: [],
-      result: '',
+      result: "",
       showTextAnimation: true,
       removeDrawnItem: false,
       animationInterval: 150,
       showResult: false,
       disableDrawButton: false,
-      value: '',
-      placeholder: 'Please enter the draw items here. One item per line.',
+      value: "",
+      placeholder: "Please enter the draw items here. One item per line.",
       valid: false,
       touched: false,
       validationRules: {
@@ -49,7 +49,7 @@ class App extends Component {
     e.preventDefault();
     if (this.state.drawItems.length > 2) {
       let formInputItems = this.state.drawItems;
-      let itemList = formInputItems.split('\n');
+      let itemList = formInputItems.split("\n");
       this.setState({
         ...this.state,
         items: itemList,
@@ -146,7 +146,7 @@ class App extends Component {
                   onClick={this.randomDrawItem}
                   disabled={disableDrawButton || currentItems.length <= 1}
                 >
-                  {disableDrawButton ? 'Drawing...' : 'Draw'}
+                  {disableDrawButton ? "Drawing..." : "Draw"}
                 </Button>
               </Grid.Col>
               <Grid.Col md={4} sm={12}>

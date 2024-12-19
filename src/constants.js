@@ -31,18 +31,13 @@ export const SPONSORS = [
     img: './images/best-web-design-singapore-logo.png',
   },
   {
-    name: 'Kitticon',
-    url: 'https://www.kitticon.com/',
-    img: './images/kitticon-logo.png',
-  },
-  {
     name: 'ECEmbroid',
     url: 'https://www.ecembroid.com',
     img: './images/ecembroid.png',
   },
   {
     name: 'The Roofing Specialist',
-    url: 'http://theroofingspecialist.sg/',
+    url: 'https://theroofspecialist.com.sg/',
     img: './images/theroofingspecialist.png',
   },
   {
