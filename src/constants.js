@@ -50,4 +50,9 @@ export const SPONSORS = [
     url: 'https://www.lshomerenovation.sg/',
     img: './images/ls-home-renovation-best-home-renovation-contractor-singapore-logo.png',
   },
+  {
+    name: 'SinHao - Structural Stainless Steel Works',
+    url: 'https://sinhaocontractor.sg/',
+    img: './images/sinhao-best-structural-stainless-steel-contractor-singapore.png',
+  },
 ];
