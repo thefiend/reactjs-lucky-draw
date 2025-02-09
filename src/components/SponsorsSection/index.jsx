@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Grid } from 'tabler-react';
 
 import { SPONSORS } from '../../constants';
+import "./style.css";
 
 const SponsorsSection = () => {
   return (
@@ -35,7 +36,7 @@ const SponsorsSection = () => {
           return (
             <Grid.Col key={i} xs={12} md={3}>
               <a className="margin-auto" href={sponsor.url}>
-                <img src={sponsor.img} alt={sponsor.name} />
+                <img className="sponsor-logo" src={sponsor.img} alt={sponsor.name} />
                 <h3>{sponsor.name}</h3>
               </a>
             </Grid.Col>
