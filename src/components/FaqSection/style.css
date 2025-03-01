@@ -1,0 +1,11 @@
+.sponsor-logo-container {
+  justify-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.sponsor-logo {
+  height: 84px !important;
+  margin: auto;
+  display: block;
+}

@@ -8,10 +8,11 @@ import Confetti from "react-dom-confetti";
 import DrawForm from "../../components/DrawForm";
 import { Helmet } from "react-helmet";
 import PreviouslyDrawnItemsBlock from "../../components/PreviouslyDrawnItemsBlock";
-import { REVIEW } from "../Json-ld";
+import { FAQ, REVIEW } from "../Json-ld";
 import SiteWrapper from "../../SiteWrapper";
 import SponsorsSection from "../../components/SponsorsSection";
 import TextLoop from "react-text-loop";
+import FaqSection from "../../components/FaqSection";
 
 class App extends Component {
   constructor(props) {
@@ -48,8 +49,8 @@ class App extends Component {
   handleSubmit(e) {
     e.preventDefault();
     if (this.state.drawItems.length > 2) {
-      let formInputItems = this.state.drawItems;
-      let itemList = formInputItems.split("\n");
+      const formInputItems = this.state.drawItems;
+      const itemList = formInputItems.split("\n");
       this.setState({
         ...this.state,
         items: itemList,
@@ -82,7 +83,7 @@ class App extends Component {
       disableDrawButton: true,
     });
 
-    let maxItemIndex = currentItems.length;
+    const maxItemIndex = currentItems.length;
     const randomIndex = Math.floor(Math.random() * maxItemIndex);
     this.sleep(showTextAnimation ? 3000 : 0).then(() => {
       this.setState({
@@ -120,6 +121,7 @@ class App extends Component {
       <SiteWrapper>
         <Helmet>
           <meta charSet="utf-8" />
+          <script type="application/ld+json">{FAQ}</script>
           <script type="application/ld+json">{REVIEW}</script>
         </Helmet>
         {items.length !== 0 && (
@@ -171,10 +173,12 @@ class App extends Component {
         <hr />
         <SponsorsSection />
         <hr />
+        <FaqSection />
+        <hr />
         <Grid.Row>
           <Grid.Col xs={12} md={6} className="review-section">
             <h2>What Our Users Say</h2>
-            <div className="powr-reviews" id="83081483_1602856389"></div>
+            <div className="powr-reviews" id="83081483_1602856389" />
           </Grid.Col>
           <Grid.Col xs={12} md={6}>
             <div

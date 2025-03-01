@@ -33,8 +33,7 @@ const FeaturedNFTSection = () => {
           `}
         />
       </Grid.Col>
-      {NFTS.map(function (item, i) {
-        return (
+      {NFTS.map((item, i) => (
           <Grid.Col key={i} xs={12} md={6}>
             <nft-card
               width="100%"
@@ -42,10 +41,9 @@ const FeaturedNFTSection = () => {
               tokenId={item.tokenId}
               network="mainnet"
               referrerAddress="0x0f3cbf9d7d9949f0da801633ae706a931fc70f57"
-            ></nft-card>
+            />
           </Grid.Col>
-        );
-      })}
+        ))}
     </Grid.Row>
   );
 };
