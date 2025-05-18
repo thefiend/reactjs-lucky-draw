@@ -55,4 +55,9 @@ export const SPONSORS = [
     url: 'https://sinhaocontractor.sg/',
     img: './images/sinhao-best-structural-stainless-steel-contractor-singapore.png',
   },
+  {
+    name: 'Bhutan Best Travel - Best Bhutan Tour Agency',
+    url: 'https://www.bhutanbesttravel.com/',
+    img: './images/bhutan-best-travel-best-bhutan-tour-agency.png',
+  },
 ];
