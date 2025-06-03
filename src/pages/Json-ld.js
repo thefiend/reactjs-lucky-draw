@@ -26,7 +26,7 @@ export const FAQ = JSON.stringify({
       acceptedAnswer: {
         "@type": "Answer",
         text:
-          "<strong><a href=http://luckydraw.me/>Lucky Draw Simulator</a></strong> is a great tool which many companies and individuals trust and use to ensure a fair and transparent drawing process. It is free and easy to use which requires only a few configurations to get started right away.",
+          "<strong><a href=https://luckydraw.me/>Lucky Draw Simulator</a></strong> is a great tool which many companies and individuals trust and use to ensure a fair and transparent drawing process. It is free and easy to use which requires only a few configurations to get started right away.",
       },
     },
     {
@@ -53,7 +53,7 @@ export const FAQ = JSON.stringify({
       acceptedAnswer: {
         "@type": "Answer",
         text:
-          "Yes, <strong><a href=http://luckydraw.me/>Lucky Draw Simulator</a></strong> allow selecting multiple winners per draw.",
+          "Yes, <strong><a href=https://luckydraw.me/>Lucky Draw Simulator</a></strong> allow selecting multiple winners per draw.",
       },
     },
     {
@@ -62,7 +62,7 @@ export const FAQ = JSON.stringify({
       acceptedAnswer: {
         "@type": "Answer",
         text:
-          "Any company or individuals can easily host a lucky draw online simply by setting a certain requirements and prepare rewards for the winners. Tools such as <strong><a href=http://luckydraw.me/>Lucky Draw Simulator</a></strong> is then used to select the winners, ensuring a fair and transparent drawing process.",
+          "Any company or individuals can easily host a lucky draw online simply by setting a certain requirements and prepare rewards for the winners. Tools such as <strong><a href=https://luckydraw.me/>Lucky Draw Simulator</a></strong> is then used to select the winners, ensuring a fair and transparent drawing process.",
       },
     },
     {
@@ -80,7 +80,7 @@ export const FAQ = JSON.stringify({
       acceptedAnswer: {
         "@type": "Answer",
         text:
-          "<strong><a href=http://luckydraw.me/>Lucky Draw Simulator</a></strong> uses a secure server and does not store any of the information used.",
+          "<strong><a href=https://luckydraw.me/>Lucky Draw Simulator</a></strong> uses a secure server and does not store any of the information used.",
       },
     },
     {
@@ -89,7 +89,7 @@ export const FAQ = JSON.stringify({
       acceptedAnswer: {
         "@type": "Answer",
         text:
-          "Popular options include <strong><a href=http://luckydraw.me/>LuckyDraw.me</a></strong>, RandomPicker, and Comment Picker.",
+          "Popular options include <strong><a href=https://luckydraw.me/>LuckyDraw.me</a></strong>, RandomPicker, and Comment Picker.",
       },
     },
   ],

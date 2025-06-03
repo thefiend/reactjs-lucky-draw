@@ -15,7 +15,7 @@ const FaqSection = () => {
             </Card.Header>
             <Card.Body>
               <b>
-                <a href="http://luckydraw.me/">Lucky Draw Simulator</a>
+                <a href="https://luckydraw.me/">Lucky Draw Simulator</a>
               </b>{" "}
               is a great tool which many companies and individuals trust and use
               to ensure a fair and transparent drawing process. It is free and
@@ -86,7 +86,7 @@ const FaqSection = () => {
               simply by setting a certain requirements and prepare rewards for
               the winners. Tools such as{" "}
               <b>
-                <a href="http://luckydraw.me/">Lucky Draw Simulator</a>
+                <a href="https://luckydraw.me/">Lucky Draw Simulator</a>
               </b>{" "}
               is then used to select the winners, ensuring a fair and
               transparent drawing process.
