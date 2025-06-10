@@ -60,4 +60,9 @@ export const SPONSORS = [
     url: 'https://www.bhutanbesttravel.com/',
     img: './images/bhutan-best-travel-best-bhutan-tour-agency.png',
   },
+  {
+    name: 'Elite Lux Limousine - Best Luxury Limousine Services Singapore',
+    url: 'https://eliteluxlimousine.com/',
+    img: './images/elite-lux-limousine-best-limousine-services.png',
+  },
 ];
