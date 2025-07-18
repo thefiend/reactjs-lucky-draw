@@ -65,4 +65,9 @@ export const SPONSORS = [
     url: 'https://eliteluxlimousine.com/',
     img: './images/elite-lux-limousine-best-limousine-services.png',
   },
+  {
+    name: 'Home Seller - Best Property Agency & Property Selling Platform in Singapore',
+    url: 'https://homeseller.sg/',
+    img: './images/home-seller.webp',
+  },
 ];
