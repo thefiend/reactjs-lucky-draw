@@ -1,5 +1,4 @@
 import { Component } from "react";
-import { APP_NAME } from "../../constants.js";
 import { Helmet } from "react-helmet";
 import SiteWrapper from "../../SiteWrapper";
 

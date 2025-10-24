@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { APP_NAME } from "../../constants.js";
 import { Helmet } from "react-helmet";
 import { REVIEW, ORGANIZATION } from "../Json-ld";
 import SiteWrapper from "../../SiteWrapper";
