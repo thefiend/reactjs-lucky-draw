@@ -70,4 +70,9 @@ export const SPONSORS = [
     url: 'https://homeseller.sg/',
     img: './images/home-seller.webp',
   },
+  {
+      name: 'The Roofing Man - Best Roofing & Roof Repair Specialist Singapore',
+      url: 'http://theroofingman.sg/',
+      img: './images/the-roofing-man.png',
+    },
 ];
