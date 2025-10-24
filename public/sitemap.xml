@@ -1,15 +1,29 @@
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.sitemaps.org/schemas/sitemap/0.9 https://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
         <loc>https://luckydraw.me/</loc>
-        <lastmod>2022-04-07T01:32:15+00:00</lastmod>
+        <lastmod>2025-10-24T07:09:33+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://luckydraw.me/images/luckydraw-share.png</image:loc>
+            <image:title>Lucky Draw Online Tool</image:title>
+            <image:caption>Free online lucky draw and random picker tool</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://luckydraw.me/faq</loc>
-        <lastmod>2022-04-07T01:32:15+00:00</lastmod>
+        <lastmod>2025-10-24T07:09:33+00:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
     </url>
     <url>
         <loc>https://luckydraw.me/list</loc>
-        <lastmod>2022-03-07T01:32:15+00:00</lastmod>
+        <lastmod>2025-10-24T07:09:33+00:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
 </urlset>

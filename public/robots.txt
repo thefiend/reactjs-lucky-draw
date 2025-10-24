@@ -1,6 +1,22 @@
+# Robots.txt for LuckyDraw.me - Lucky Draw & Random Picker Tool
 User-agent: *
 Allow: /
 Allow: /faq
 Allow: /list
+Allow: /images/
+Disallow: /static/
+Disallow: /*.json$
 
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# Crawl-delay for general bots
+Crawl-delay: 1
+
+# Sitemap
 Sitemap: https://luckydraw.me/sitemap.xml

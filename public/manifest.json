@@ -1,6 +1,7 @@
 {
-  "short_name": "Lucky Draw Simulator",
-  "name": "Lucky Draw Simulator - Raffle Random Draw Winner",
+  "short_name": "LuckyDraw.me",
+  "name": "Lucky Draw Online - Free Random Picker & Winner Selector",
+  "description": "Free online lucky draw tool and random picker for instant winner selection. Best random name picker, raffle generator, and contest draw tool.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,8 +9,13 @@
       "type": "image/x-icon"
     }
   ],
-  "start_url": ".",
+  "start_url": "/?utm_source=pwa",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#198BCA",
+  "background_color": "#ffffff",
+  "categories": ["utilities", "productivity", "business"],
+  "orientation": "any",
+  "scope": "/",
+  "lang": "en-US",
+  "dir": "ltr"
 }
