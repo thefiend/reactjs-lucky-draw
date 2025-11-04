@@ -19,4 +19,4 @@ Allow: /
 Crawl-delay: 1
 
 # Sitemap
-Sitemap: https://luckydraw.me/sitemap.xml
+Sitemap: https://www.luckydraw.me/sitemap.xml
