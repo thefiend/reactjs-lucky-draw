@@ -72,7 +72,12 @@ export const SPONSORS = [
   },
   {
       name: 'The Roofing Man - Best Roofing & Roof Repair Specialist Singapore',
-      url: 'http://theroofingman.sg/',
+      url: 'https://theroofingman.sg/',
       img: './images/the-roofing-man.png',
-    },
+  },
+  {
+      name: 'SJR Aircon - Best Aircon Specialist Singapore | Best Aircon Installation | Best Aircon Repair | Best Aircon Contractor',
+      url: 'https://sjraircon.sg/',
+      img: './images/sjr-aircon-best-aircon-specialist-singapore.png',
+  }
 ];
