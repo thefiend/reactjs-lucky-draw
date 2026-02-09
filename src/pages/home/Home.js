@@ -121,7 +121,7 @@ class App extends Component {
       <SiteWrapper>
         <Helmet>
           <meta charSet="utf-8" />
-          <title>Lucky Draw Online | Free Random Picker & Winner Selector Tool 2025</title>
+          <title>Lucky Draw Online | Free Random Picker & Winner Selector Tool</title>
           <meta name="description" content="Free lucky draw online tool & random picker for instant winner selection. Best random name picker, raffle generator, and contest draw tool. Fast, fair & transparent for events, giveaways & competitions." />
           <link rel="canonical" href="https://luckydraw.me" />
           <script type="application/ld+json">{FAQ}</script>
@@ -134,7 +134,7 @@ class App extends Component {
         {items.length === 0 && (
           <div className="hero-section" style={{ textAlign: 'center', padding: '40px 20px', marginBottom: '30px' }}>
             <h1 style={{ fontSize: '2.5rem', color: '#198BCA', marginBottom: '20px', fontWeight: 'bold' }}>
-              Free Lucky Draw Online Tool & Random Picker 2025
+              Free Lucky Draw Online Tool & Random Picker
             </h1>
             <h2 style={{ fontSize: '1.5rem', color: '#333', marginBottom: '20px', fontWeight: 'normal' }}>
               Best Random Name Picker, Raffle Generator & Winner Selector

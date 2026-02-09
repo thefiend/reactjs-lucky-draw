@@ -11,7 +11,7 @@ class Faq extends Component {
       <SiteWrapper>
         <Helmet>
           <meta charSet="utf-8" />
-          <title>Lucky Draw FAQ | Random Picker Questions & Answers 2025</title>
+          <title>Lucky Draw FAQ | Random Picker Questions & Answers</title>
           <meta name="description" content="Frequently asked questions about lucky draw tools, random pickers, and raffle generators. Learn how to use our free online lucky draw tool effectively." />
           <link rel="canonical" href="https://luckydraw.me/faq" />
           <meta property="og:title" content="Lucky Draw FAQ | Random Picker Questions & Answers" />
