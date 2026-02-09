@@ -178,4 +178,38 @@ describe('Home Component', () => {
     const configureButton = screen.getByRole('button', { name: /configure/i });
     expect(configureButton).toBeDisabled();
   });
+
+  it('does not configure items when form is submitted with insufficient data (drawItems.length <= 2)', () => {
+    render(<Home />);
+    const textarea = screen.getByPlaceholderText(/Please enter the draw items here/i);
+    fireEvent.change(textarea, { 
+      target: { name: 'drawItems', value: 'AB' } 
+    });
+    
+    const configureButton = screen.getByRole('button', { name: /configure/i });
+    fireEvent.click(configureButton);
+    
+    expect(screen.queryByRole('button', { name: /draw/i })).not.toBeInTheDocument();
+  });
+
+  it('performs draw with animation enabled (showTextAnimation = true)', async () => {
+    jest.useFakeTimers();
+    render(<Home />);
+    
+    const textarea = screen.getByPlaceholderText(/Please enter the draw items here/i);
+    fireEvent.change(textarea, { 
+      target: { name: 'drawItems', value: 'Item 1\nItem 2\nItem 3' } 
+    });
+    
+    const configureButton = screen.getByRole('button', { name: /configure/i });
+    fireEvent.click(configureButton);
+    
+    const drawButton = screen.getByRole('button', { name: /draw/i });
+    fireEvent.click(drawButton);
+    
+    expect(screen.getByRole('button', { name: /drawing/i })).toBeInTheDocument();
+    
+    jest.runAllTimers();
+    jest.useRealTimers();
+  });
 });
