@@ -33,7 +33,7 @@ jobs:
       
     - name: Upload coverage reports
       if: matrix.node-version == '20.x'
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v4
       with:
         files: ./coverage/lcov.info
         flags: unittests
@@ -85,7 +85,7 @@ jobs:
         CI: true
         
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: build
         path: build/
@@ -116,7 +116,7 @@ jobs:
         CI: true
         
     - name: Deploy to Netlify
-      uses: nwtgck/actions-netlify@v2
+      uses: nwtgck/actions-netlify@v3
       with:
         publish-dir: './build'
         production-branch: main
