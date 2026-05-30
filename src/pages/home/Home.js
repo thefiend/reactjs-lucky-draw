@@ -8,7 +8,7 @@ import Confetti from "react-dom-confetti";
 import DrawForm from "../../components/DrawForm";
 import { Helmet } from "react-helmet";
 import PreviouslyDrawnItemsBlock from "../../components/PreviouslyDrawnItemsBlock";
-import { FAQ, REVIEW, WEB_APPLICATION, ORGANIZATION, BREADCRUMB_HOME, SOFTWARE_APP } from "../Json-ld";
+import { FAQ, SOFTWARE_APPLICATION, ORGANIZATION, BREADCRUMB_HOME, HOW_TO, WEBSITE } from "../Json-ld";
 import SiteWrapper from "../../SiteWrapper";
 import SponsorsSection from "../../components/SponsorsSection";
 import TextLoop from "react-text-loop";
@@ -121,28 +121,28 @@ class App extends Component {
       <SiteWrapper>
         <Helmet>
           <meta charSet="utf-8" />
-          <title>Lucky Draw Online | Free Random Picker & Winner Selector Tool</title>
-          <meta name="description" content="Free lucky draw online tool & random picker for instant winner selection. Best random name picker, raffle generator, and contest draw tool. Fast, fair & transparent for events, giveaways & competitions." />
+          <title>Lucky Draw Online Generator | Free Random Winner Picker Tool</title>
+          <meta name="description" content="Use our free lucky draw online generator to pick random winners instantly. Best random name picker, raffle generator &amp; contest draw tool. Fast, fair &amp; transparent for events, giveaways &amp; competitions." />
           <link rel="canonical" href="https://luckydraw.me" />
           <script type="application/ld+json">{FAQ}</script>
-          <script type="application/ld+json">{REVIEW}</script>
-          <script type="application/ld+json">{WEB_APPLICATION}</script>
+          <script type="application/ld+json">{SOFTWARE_APPLICATION}</script>
           <script type="application/ld+json">{ORGANIZATION}</script>
           <script type="application/ld+json">{BREADCRUMB_HOME}</script>
-          <script type="application/ld+json">{SOFTWARE_APP}</script>
+          <script type="application/ld+json">{HOW_TO}</script>
+          <script type="application/ld+json">{WEBSITE}</script>
         </Helmet>
         {items.length === 0 && (
           <div className="hero-section" style={{ textAlign: 'center', padding: '40px 20px', marginBottom: '30px' }}>
             <h1 style={{ fontSize: '2.5rem', color: '#198BCA', marginBottom: '20px', fontWeight: 'bold' }}>
-              Free Lucky Draw Online Tool & Random Picker
+              Lucky Draw Online Generator — Free Random Winner Picker
             </h1>
             <h2 style={{ fontSize: '1.5rem', color: '#333', marginBottom: '20px', fontWeight: 'normal' }}>
-              Best Random Name Picker, Raffle Generator & Winner Selector
+              The Best Raffle Generator, Random Name Picker &amp; Contest Draw Tool
             </h2>
             <p style={{ fontSize: '1.1rem', color: '#666', maxWidth: '800px', margin: '0 auto 20px', lineHeight: '1.6' }}>
-              The world's most trusted <strong>lucky draw tool</strong> and <strong>random picker</strong> for selecting winners instantly. 
-              Perfect for <strong>raffles</strong>, <strong>giveaways</strong>, <strong>contests</strong>, and <strong>events</strong>. 
-              Fast, fair, transparent, and completely <strong>free to use</strong>. Trusted by over 689,840 users worldwide!
+              LuckyDraw.me is the world's most trusted <strong>lucky draw online generator</strong> for selecting winners instantly.
+              Whether you need a <strong>random winner picker</strong> for raffles, giveaways, social media contests, or corporate events — our free <strong>lucky draw generator</strong> delivers fast, fair, and transparent results.
+              Trusted by over 689,840 users worldwide. No registration. No downloads. 100% free.
             </p>
             <div style={{ marginTop: '25px' }}>
               <span style={{ fontSize: '1rem', color: '#888', fontStyle: 'italic' }}>
@@ -213,7 +213,7 @@ class App extends Component {
         <Grid.Row style={{ marginTop: '40px', marginBottom: '40px' }}>
           <Grid.Col xs={12}>
             <div style={{ padding: '30px', background: '#fff', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
-              <h2 style={{ color: '#198BCA', marginBottom: '20px' }}>How to Use Our Random Picker Tool</h2>
+              <h2 style={{ color: '#198BCA', marginBottom: '20px' }}>How to Use Our Lucky Draw Online Generator</h2>
               <Grid.Row>
                 <Grid.Col xs={12} md={3}>
                   <div style={{ textAlign: 'center', padding: '20px' }}>
@@ -255,9 +255,9 @@ class App extends Component {
         <Grid.Row>
           <Grid.Col xs={12}>
             <article style={{ padding: '30px', background: '#fff', borderRadius: '8px', marginBottom: '40px' }}>
-              <h2 style={{ color: '#198BCA', marginBottom: '20px' }}>About Our Lucky Draw & Random Picker Tool</h2>
+              <h2 style={{ color: '#198BCA', marginBottom: '20px' }}>About LuckyDraw.me — Your Free Lucky Draw Generator</h2>
               <p style={{ lineHeight: '1.8', marginBottom: '15px' }}>
-                <strong>LuckyDraw.me</strong> is the world's leading <strong>online lucky draw tool</strong> and <strong>random picker</strong> designed to help you select winners fairly and transparently. Whether you're organizing a <strong>raffle</strong>, <strong>giveaway</strong>, <strong>contest</strong>, or any <strong>random selection event</strong>, our tool provides instant, unbiased results that everyone can trust.
+                <strong>LuckyDraw.me</strong> is the world's leading <strong>lucky draw online generator</strong> and <strong>random picker</strong>, designed to help you select winners fairly and transparently. Whether you're organizing a <strong>raffle</strong>, <strong>giveaway</strong>, <strong>contest</strong>, or any <strong>random selection event</strong>, our <strong>lucky draw generator</strong> provides instant, unbiased results that everyone can trust.
               </p>
               <h3 style={{ color: '#198BCA', marginTop: '25px', marginBottom: '15px' }}>Perfect for Every Occasion</h3>
               <p style={{ lineHeight: '1.8', marginBottom: '15px' }}>
@@ -273,7 +273,7 @@ class App extends Component {
               </ul>
               <h3 style={{ color: '#198BCA', marginTop: '25px', marginBottom: '15px' }}>Advanced Features</h3>
               <p style={{ lineHeight: '1.8', marginBottom: '15px' }}>
-                Unlike basic <strong>random picker wheels</strong> or simple name generators, LuckyDraw.me offers professional-grade features including multiple winner selection, animation controls, and the option to remove drawn items for truly unique results. Our <strong>random winner picker</strong> algorithm ensures complete fairness in every draw.
+                Unlike basic <strong>random picker wheels</strong> or simple name generators, our <strong>lucky draw online generator</strong> offers professional-grade features including multiple winner selection, animation controls, and the option to remove drawn items for truly unique results. LuckyDraw.me's <strong>random winner picker</strong> algorithm ensures complete fairness in every lucky draw.
               </p>
               <h3 style={{ color: '#198BCA', marginTop: '25px', marginBottom: '15px' }}>Trusted Worldwide</h3>
               <p style={{ lineHeight: '1.8', marginBottom: '15px' }}>

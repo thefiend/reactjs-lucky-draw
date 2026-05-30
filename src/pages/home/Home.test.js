@@ -32,7 +32,7 @@ describe('Home Component', () => {
 
   it('displays hero section when no items configured', () => {
     render(<Home />);
-    expect(screen.getByText(/Free Lucky Draw Online Tool/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: /Lucky Draw Online Generator/i })).toBeInTheDocument();
   });
 
   it('displays configuration form', () => {

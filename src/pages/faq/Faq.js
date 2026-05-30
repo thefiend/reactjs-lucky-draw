@@ -2,7 +2,7 @@ import { Component } from "react";
 import { Helmet } from "react-helmet";
 import SiteWrapper from "../../SiteWrapper";
 
-import { FAQ, REVIEW, ORGANIZATION, BREADCRUMB_HOME } from "../Json-ld";
+import { FAQ, ORGANIZATION, BREADCRUMB_HOME } from "../Json-ld";
 import FaqSection from "../../components/FaqSection/index.jsx";
 
 class Faq extends Component {
@@ -18,7 +18,6 @@ class Faq extends Component {
           <meta property="og:description" content="Get answers to common questions about our lucky draw tool and random picker." />
           <meta property="og:url" content="https://luckydraw.me/faq" />
           <script type="application/ld+json">{FAQ}</script>
-          <script type="application/ld+json">{REVIEW}</script>
           <script type="application/ld+json">{ORGANIZATION}</script>
           <script type="application/ld+json">{BREADCRUMB_HOME}</script>
         </Helmet>
