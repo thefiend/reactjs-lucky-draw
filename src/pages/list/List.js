@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
-import { REVIEW, ORGANIZATION } from "../Json-ld";
+import { ORGANIZATION } from "../Json-ld";
 import SiteWrapper from "../../SiteWrapper";
 
 class Faq extends Component {
@@ -15,7 +15,6 @@ class Faq extends Component {
           <meta property="og:title" content="List Your Business on LuckyDraw.me" />
           <meta property="og:description" content="Premium SEO backlinks from a high-traffic lucky draw website." />
           <meta property="og:url" content="https://luckydraw.me/list" />
-          <script type="application/ld+json">{REVIEW}</script>
           <script type="application/ld+json">{ORGANIZATION}</script>
         </Helmet>
         <div style={{ marginBottom: '30px' }}>
