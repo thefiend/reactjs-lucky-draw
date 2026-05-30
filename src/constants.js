@@ -79,5 +79,10 @@ export const SPONSORS = [
       name: 'SJR Aircon - Best Aircon Specialist Singapore | Best Aircon Installation | Best Aircon Repair | Best Aircon Contractor',
       url: 'https://sjraircon.sg/',
       img: './images/sjr-aircon-best-aircon-specialist-singapore.png',
+  },
+  {
+      name: 'Best Thing Review',
+      url: 'https://bestthingreview.com/',
+      img: './images/best-thing-review.png',
   }
 ];
