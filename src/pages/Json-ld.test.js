@@ -82,9 +82,6 @@ describe('Json-ld schemas', () => {
 
     it('is valid JSON', () => { expect(schema).toBeDefined(); });
     it('has @type WebSite', () => { expect(schema['@type']).toBe('WebSite'); });
-    it('has potentialAction SearchAction', () => {
-      expect(schema.potentialAction['@type']).toBe('SearchAction');
-    });
     it('url is luckydraw.me', () => { expect(schema.url).toBe('https://luckydraw.me'); });
   });
 });

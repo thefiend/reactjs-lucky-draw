@@ -9,7 +9,7 @@ describe('FaqSection', () => {
     expect(heading.tagName).toBe('H2');
   });
 
-  it('renders 12 FAQ question titles', () => {
+  it('renders 13 FAQ question titles', () => {
     render(<FaqSection />);
     const questionTitles = [
       'What tools can I use to do a lucky draw?',
@@ -24,6 +24,7 @@ describe('FaqSection', () => {
       'What are popular lucky draw tools?',
       'What is a lucky draw online generator?',
       'Can I use the lucky draw generator for Instagram giveaways?',
+      'Is the lucky draw generator suitable for corporate events and team building?',
     ];
     questionTitles.forEach(title => {
       expect(screen.getByText(title)).toBeInTheDocument();

@@ -47,7 +47,7 @@ export const FAQ = JSON.stringify({
       name: "How can I ensure that the tool is fair and random?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "LuckyDraw.me uses JavaScript's Math.random() function seeded with system entropy, which provides statistically uniform random selection. Every participant has an equal probability of being drawn. The drawing process is displayed visually in real time, so all participants can witness the selection. No data is stored or manipulated on any server.",
+        text: "LuckyDraw.me uses a cryptographically-seeded random number generator built into your browser, providing statistically uniform random selection. Every participant has an equal probability of being drawn. The drawing process is displayed visually in real time, so all participants can witness the selection. No data is stored or manipulated on any server.",
       },
     },
     {
@@ -63,7 +63,7 @@ export const FAQ = JSON.stringify({
       name: "How do you hold a lucky draw?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "To hold a lucky draw online, collect your participants names or entries, then paste them into LuckyDraw.me one per line. Configure whether to show animation and whether to remove drawn names. Click Draw to randomly select winners instantly. The process is fully transparent and can be screen-recorded or livestreamed for added credibility.",
+        text: "To hold a lucky draw online, collect your participants' names or entries, then paste them into LuckyDraw.me one per line. Configure whether to show animation and whether to remove drawn names. Click Draw to randomly select winners instantly. The process is fully transparent and can be screen-recorded or livestreamed for added credibility.",
       },
     },
     {
@@ -100,10 +100,10 @@ export const FAQ = JSON.stringify({
     },
     {
       "@type": "Question",
-      name: "Can I use the random picker for social media giveaways?",
+      name: "Is the lucky draw generator suitable for corporate events and team building?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, our lucky draw generator is perfect for social media giveaways. Collect comments or participant names from Instagram, Facebook, Twitter, or TikTok, paste them into LuckyDraw.me, and draw your winners instantly. The transparent, real-time selection makes it ideal for livestreaming your giveaway draw.",
+        text: "Yes, our lucky draw online generator is widely used at corporate events, team-building activities, office parties, and company raffles. It works for any size of event — from small team gatherings of 10 people to large company-wide draws with hundreds of participants. Simply import your employee or attendee list and run the lucky draw generator on a projected screen for everyone to see.",
       },
     },
     {
@@ -242,12 +242,4 @@ export const WEBSITE = JSON.stringify({
   name: "LuckyDraw.me",
   url: "https://luckydraw.me",
   description: "Free lucky draw online generator and random winner picker tool.",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: "https://luckydraw.me/?q={search_term_string}",
-    },
-    "query-input": "required name=search_term_string",
-  },
 });

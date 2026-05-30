@@ -76,12 +76,12 @@ const FaqSection = () => {
               </Card.Title>
             </Card.Header>
             <Card.Body>
-              LuckyDraw.me uses JavaScript's Math.random() function seeded with
-              system entropy, which provides statistically uniform random
-              selection. Every participant has an equal probability of being
-              drawn. The drawing process is displayed visually in real time, so
-              all participants can witness the selection. No data is stored or
-              manipulated on any server.
+              LuckyDraw.me uses a cryptographically-seeded random number
+              generator built into your browser, providing statistically uniform
+              random selection. Every participant has an equal probability of
+              being drawn. The drawing process is displayed visually in real
+              time, so all participants can witness the selection. No data is
+              stored or manipulated on any server.
             </Card.Body>
           </Card>
           <Card>
@@ -195,6 +195,24 @@ const FaqSection = () => {
               line, and click Draw to pick a winner instantly. Many creators
               screen-record the draw to share with followers as proof of a fair
               and transparent selection.
+            </Card.Body>
+          </Card>
+          <Card>
+            <Card.Status color="blue" />
+            <Card.Header>
+              <Card.Title>
+                Is the lucky draw generator suitable for corporate events and
+                team building?
+              </Card.Title>
+            </Card.Header>
+            <Card.Body>
+              Yes, our lucky draw online generator is widely used at corporate
+              events, team-building activities, office parties, and company
+              raffles. It works for any size of event — from small team
+              gatherings of 10 people to large company-wide draws with hundreds
+              of participants. Simply import your employee or attendee list and
+              run the lucky draw generator on a projected screen for everyone to
+              see.
             </Card.Body>
           </Card>
         </Card.Body>
