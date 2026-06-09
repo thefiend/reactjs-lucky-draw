@@ -8,31 +8,27 @@ jest.mock('../../SiteWrapper', () => {
   };
 });
 
-describe('List Component', () => {
-  it('renders without crashing', () => {
+describe('List page', () => {
+  it('shows Gold tier button', () => {
     render(<List />);
-    expect(screen.getByTestId('site-wrapper')).toBeInTheDocument();
+    expect(screen.getAllByText(/Gold/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/\$99/)).toBeInTheDocument();
   });
 
-  it('displays the main heading', () => {
+  it('shows Platinum tier button', () => {
     render(<List />);
-    expect(screen.getByText(/Get Your Company Listed on LuckyDraw.me/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Platinum/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/\$299/)).toBeInTheDocument();
   });
 
-  it('displays SEO backlinks subheading', () => {
+  it('shows Featured tier button', () => {
     render(<List />);
-    expect(screen.getByText(/Boost Your SEO with High-Quality Backlinks/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Featured/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/\$599/)).toBeInTheDocument();
   });
 
-  it('renders the Google Form iframe', () => {
+  it('does not render the old Google Form iframe', () => {
     const { container } = render(<List />);
-    const iframe = container.querySelector('iframe');
-    expect(iframe).toBeInTheDocument();
-    expect(iframe).toHaveAttribute('title', 'List on LuckyDraw.me');
-  });
-
-  it('mentions user count in description', () => {
-    render(<List />);
-    expect(screen.getByText(/689,840 satisfied users/i)).toBeInTheDocument();
+    expect(container.querySelector('iframe')).not.toBeInTheDocument();
   });
 });
