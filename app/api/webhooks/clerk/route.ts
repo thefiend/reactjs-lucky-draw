@@ -31,8 +31,12 @@ export async function POST(req: Request) {
 
   if (event.type === 'user.created') {
     const { id, email_addresses } = event.data;
-    const email = email_addresses[0]?.email_address ?? '';
-    await supabaseAdmin.from('users').upsert({ id, email, plan: 'free' });
+    if (!email_addresses || email_addresses.length === 0) {
+      return new Response('No email address', { status: 400 });
+    }
+    const email = email_addresses[0].email_address;
+    const { error } = await supabaseAdmin.from('users').upsert({ id, email, plan: 'free' });
+    if (error) return new Response('Database error', { status: 500 });
   }
 
   return Response.json({ ok: true });
