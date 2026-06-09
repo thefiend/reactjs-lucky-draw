@@ -8,26 +8,30 @@ import Copyright from './components/Copyright';
 import FooterNote from './components/FooterNote';
 import NavBar from './components/NavBar';
 import NavItems from './components/NavItems';
+import StickyAd from './components/StickyAd';
 
 class SiteWrapper extends React.Component {
   render() {
     return (
-      <Site.Wrapper
-        headerProps={{
-          href: '/',
-          alt: APP_NAME,
-          imageURL: '/images/luckydraw-app-tool-logo.svg',
-          navItems: <NavItems />,
-        }}
-        navProps={{ itemsObjects: NAVBAR_ITEMS }}
-        footerProps={{
-          note: <FooterNote />,
-          copyright: <Copyright />,
-          nav: <NavBar />,
-        }}
-      >
-        <div className="container main-section">{this.props.children}</div>
-      </Site.Wrapper>
+      <>
+        <Site.Wrapper
+          headerProps={{
+            href: '/',
+            alt: APP_NAME,
+            imageURL: '/images/luckydraw-app-tool-logo.svg',
+            navItems: <NavItems />,
+          }}
+          navProps={{ itemsObjects: NAVBAR_ITEMS }}
+          footerProps={{
+            note: <FooterNote />,
+            copyright: <Copyright />,
+            nav: <NavBar />,
+          }}
+        >
+          <div className="container main-section">{this.props.children}</div>
+        </Site.Wrapper>
+        <StickyAd />
+      </>
     );
   }
 }
