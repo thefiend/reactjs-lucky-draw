@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import confetti from 'canvas-confetti';
 import { canUse } from '@/lib/plan';
 import UpgradePrompt from '@/components/UpgradePrompt';
 import type { Feature } from '@/lib/plan';
@@ -20,6 +21,9 @@ export default function DrawTool({ plan, userId, onDrawComplete }: DrawToolProps
   const [previousWinners, setPreviousWinners] = useState<string[]>([]);
   const [showUpgrade, setShowUpgrade] = useState(false);
   const [upgradeFeature, setUpgradeFeature] = useState<Feature>('unlimited');
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [displayName, setDisplayName] = useState<string | null>(null);
+  const animationRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const entries = entriesText
     .split('\n')
@@ -37,13 +41,42 @@ export default function DrawTool({ plan, userId, onDrawComplete }: DrawToolProps
     if (available.length === 0) return;
 
     const drawn = available[Math.floor(Math.random() * available.length)];
-    setWinner(drawn);
-    const newWinners = [...previousWinners, drawn];
-    setPreviousWinners(newWinners);
-    onDrawComplete?.(entries, newWinners);
-    if (canUse('history', plan) && userId) {
-      saveDrawAction({ userId, entries, winners: newWinners, title: 'Untitled Draw' });
+
+    setIsAnimating(true);
+    setWinner(null);
+
+    const intervals = [60, 80, 110, 150, 200, 260, 300];
+    const totalDuration = 2000;
+    let elapsed = 0;
+    let intervalIndex = 0;
+
+    function tick() {
+      const randomName = available[Math.floor(Math.random() * available.length)];
+      setDisplayName(randomName);
+
+      if (elapsed >= totalDuration) {
+        setDisplayName(null);
+        setIsAnimating(false);
+        setWinner(drawn);
+        const newWinners = [...previousWinners, drawn];
+        setPreviousWinners(newWinners);
+        confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
+        onDrawComplete?.(entries, newWinners);
+        if (canUse('history', plan) && userId) {
+          saveDrawAction({ userId, entries, winners: newWinners, title: 'Untitled Draw' });
+        }
+        return;
+      }
+
+      const currentInterval = intervals[Math.min(intervalIndex, intervals.length - 1)];
+      elapsed += currentInterval;
+      const nextIntervalThreshold = (intervalIndex + 1) * (totalDuration / intervals.length);
+      if (elapsed >= nextIntervalThreshold) intervalIndex++;
+
+      animationRef.current = setTimeout(tick, currentInterval);
     }
+
+    animationRef.current = setTimeout(tick, intervals[0]);
   }
 
   function handleExport() {
@@ -61,7 +94,7 @@ export default function DrawTool({ plan, userId, onDrawComplete }: DrawToolProps
       <p className="text-gray-500 mb-6">Enter names below, one per line, then click Draw.</p>
 
       <textarea
-        className="w-full h-40 border border-gray-300 rounded-xl p-4 text-sm font-mono resize-none focus:outline-none focus:ring-2 focus:ring-indigo-400"
+        className={`w-full h-40 border border-gray-300 rounded-xl p-4 text-sm font-mono resize-none focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-opacity${isAnimating ? ' opacity-50' : ''}`}
         placeholder="Enter names, one per line..."
         value={entriesText}
         onChange={(e) => setEntriesText(e.target.value)}
@@ -76,20 +109,39 @@ export default function DrawTool({ plan, userId, onDrawComplete }: DrawToolProps
       <div className="flex gap-3 mt-4">
         <button
           onClick={handleDraw}
-          aria-label="Draw Winner"
-          className="flex-1 bg-indigo-600 text-white py-3 rounded-xl font-semibold hover:bg-indigo-700 transition"
+          disabled={isAnimating}
+          aria-label={isAnimating ? 'Drawing...' : 'Draw Winner'}
+          className="flex-1 bg-indigo-600 text-white py-3 rounded-xl font-semibold hover:bg-indigo-700 transition disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          Draw Winner
+          {isAnimating ? 'Drawing...' : 'Draw Winner'}
         </button>
         <button
           onClick={handleExport}
-          className="px-4 py-3 border border-gray-200 rounded-xl text-gray-600 hover:bg-gray-50 text-sm"
+          disabled={isAnimating}
+          className="px-4 py-3 border border-gray-200 rounded-xl text-gray-600 hover:bg-gray-50 text-sm disabled:opacity-40 disabled:cursor-not-allowed"
         >
           Export
         </button>
       </div>
 
-      {winner && (
+      {isAnimating && displayName && (
+        <div className="mt-8 text-center">
+          <p className="text-sm text-gray-500 mb-1">Drawing...</p>
+          <div className="inline-block bg-indigo-50 text-indigo-600 text-4xl font-bold px-6 py-2 rounded-xl min-w-[180px]">
+            {displayName}
+          </div>
+          <div className="mt-3 w-40 h-1 bg-gray-200 rounded-full mx-auto overflow-hidden">
+            <div
+              className="h-full bg-indigo-500 rounded-full"
+              style={{
+                animation: 'progress-fill 2s linear forwards',
+              }}
+            />
+          </div>
+        </div>
+      )}
+
+      {!isAnimating && winner && (
         <div className="mt-8 text-center">
           <p className="text-sm text-gray-500 mb-1">Winner</p>
           <p
