@@ -54,4 +54,9 @@ describe('SiteWrapper Component', () => {
     expect(mainSection).toBeInTheDocument();
     expect(mainSection.classList.contains('container')).toBeTruthy();
   });
+
+  it('renders StickyAd sticky footer placeholder', () => {
+    render(<SiteWrapper><div /></SiteWrapper>);
+    expect(document.getElementById('ezoic-pub-ad-placeholder-sticky-footer')).toBeInTheDocument();
+  });
 });
