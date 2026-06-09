@@ -60,7 +60,7 @@ class List extends Component {
         <p style={{ fontSize: "1.1rem", lineHeight: "1.8", marginBottom: "30px" }}>
           LuckyDraw.me is one of the world's most visited <strong>lucky draw websites</strong> with over{" "}
           <strong>689,840 satisfied users</strong>. We help companies improve their{" "}
-          <strong>Search Engine Optimization (SEO)</strong> through high-quality, do-follow backlinks.
+          <strong>Search Engine Optimization (SEO)</strong> through high-quality backlinks. Platinum and Featured listings include do-follow links.
           <br /><br />
           <strong>List your website today</strong> to benefit from our massive organic traffic and authority
           in the random picker and lucky draw niche.
