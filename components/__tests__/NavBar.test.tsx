@@ -5,8 +5,7 @@ import NavBar from '@/components/NavBar';
 jest.mock('@clerk/nextjs', () => ({
   SignInButton: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
   UserButton: () => <div data-testid="user-button" />,
-  SignedIn: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
-  SignedOut: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  Show: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
 }));
 
 describe('NavBar', () => {
