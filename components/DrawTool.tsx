@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { canUse } from '@/lib/plan';
 import UpgradePrompt from '@/components/UpgradePrompt';
 import type { Feature } from '@/lib/plan';
+import { saveDrawAction } from '@/app/actions';
 
 const FREE_ENTRY_LIMIT = 50;
 
@@ -40,6 +41,9 @@ export default function DrawTool({ plan, userId, onDrawComplete }: DrawToolProps
     const newWinners = [...previousWinners, drawn];
     setPreviousWinners(newWinners);
     onDrawComplete?.(entries, newWinners);
+    if (canUse('history', plan) && userId) {
+      saveDrawAction({ userId, entries, winners: newWinners, title: 'Untitled Draw' });
+    }
   }
 
   function handleExport() {

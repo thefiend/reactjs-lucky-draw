@@ -1,6 +1,10 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import DrawTool from '@/components/DrawTool';
 
+jest.mock('@/app/actions', () => ({
+  saveDrawAction: jest.fn(),
+}));
+
 describe('DrawTool', () => {
   it('renders the entry textarea', () => {
     render(<DrawTool plan="free" />);
