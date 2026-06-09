@@ -48,7 +48,7 @@ describe('DrawTool', () => {
     expect(container.querySelector('[data-ad]')).not.toBeInTheDocument();
   });
 
-  it('disables draw button while animating', () => {
+  it('disables draw button while animating', async () => {
     jest.useFakeTimers();
     render(<DrawTool plan="pro" />);
     const textarea = screen.getByPlaceholderText(/enter names/i);
@@ -57,10 +57,15 @@ describe('DrawTool', () => {
     fireEvent.click(drawButton);
 
     expect(drawButton).toBeDisabled();
-    jest.useRealTimers();
+
+    await act(async () => {
+      jest.advanceTimersByTime(3000);
+    });
+
+    expect(drawButton).not.toBeDisabled();
   });
 
-  it('does not show winner-display during animation', () => {
+  it('does not show winner-display during animation', async () => {
     jest.useFakeTimers();
     render(<DrawTool plan="pro" />);
     const textarea = screen.getByPlaceholderText(/enter names/i);
@@ -68,7 +73,12 @@ describe('DrawTool', () => {
     fireEvent.click(screen.getByRole('button', { name: /draw winner/i }));
 
     expect(screen.queryByTestId('winner-display')).not.toBeInTheDocument();
-    jest.useRealTimers();
+
+    await act(async () => {
+      jest.advanceTimersByTime(3000);
+    });
+
+    expect(screen.getByTestId('winner-display')).toBeInTheDocument();
   });
 
   it('fires confetti when winner is revealed', async () => {

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { canUse } from '@/lib/plan';
 import UpgradePrompt from '@/components/UpgradePrompt';
@@ -24,6 +24,14 @@ export default function DrawTool({ plan, userId, onDrawComplete }: DrawToolProps
   const [isAnimating, setIsAnimating] = useState(false);
   const [displayName, setDisplayName] = useState<string | null>(null);
   const animationRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (animationRef.current) {
+        clearTimeout(animationRef.current);
+      }
+    };
+  }, []);
 
   const entries = entriesText
     .split('\n')
