@@ -1,7 +1,8 @@
 {
-  "name": "nextjs-scaffold",
+  "name": "luckydraw-me",
   "version": "0.1.0",
   "private": true,
+  "engines": { "node": ">=18.18.0" },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -32,7 +33,6 @@
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
     "tailwindcss": "^4",
-    "ts-jest": "^29.4.11",
     "typescript": "^5"
   }
 }
