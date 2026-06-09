@@ -7,6 +7,10 @@ jest.mock('@/app/actions', () => ({
 
 jest.mock('canvas-confetti', () => jest.fn());
 
+afterEach(() => {
+  jest.useRealTimers();
+});
+
 describe('DrawTool', () => {
   it('renders the entry textarea', () => {
     render(<DrawTool plan="free" />);
@@ -27,7 +31,7 @@ describe('DrawTool', () => {
     render(<DrawTool plan="pro" />);
     const textarea = screen.getByPlaceholderText(/enter names/i);
     fireEvent.change(textarea, { target: { value: 'Alice\nBob\nCharlie' } });
-    fireEvent.click(screen.getByRole('button', { name: /draw/i }));
+    fireEvent.click(screen.getByRole('button', { name: /draw winner/i }));
 
     // advance past full 2s animation
     await act(async () => {
@@ -61,7 +65,7 @@ describe('DrawTool', () => {
     render(<DrawTool plan="pro" />);
     const textarea = screen.getByPlaceholderText(/enter names/i);
     fireEvent.change(textarea, { target: { value: 'Alice\nBob\nCharlie' } });
-    fireEvent.click(screen.getByRole('button', { name: /draw/i }));
+    fireEvent.click(screen.getByRole('button', { name: /draw winner/i }));
 
     expect(screen.queryByTestId('winner-display')).not.toBeInTheDocument();
     jest.useRealTimers();
@@ -75,7 +79,7 @@ describe('DrawTool', () => {
     render(<DrawTool plan="pro" />);
     const textarea = screen.getByPlaceholderText(/enter names/i);
     fireEvent.change(textarea, { target: { value: 'Alice\nBob\nCharlie' } });
-    fireEvent.click(screen.getByRole('button', { name: /draw/i }));
+    fireEvent.click(screen.getByRole('button', { name: /draw winner/i }));
 
     await act(async () => {
       jest.advanceTimersByTime(3000);
