@@ -30,4 +30,16 @@ describe('canUse', () => {
     expect(canUse('whitelabel', 'business')).toBe(true);
     expect(canUse('api', 'business')).toBe(true);
   });
+
+  it('free plan cannot use multi-winner', () => {
+    expect(canUse('multi-winner', 'free')).toBe(false);
+  });
+
+  it('pro plan can use multi-winner', () => {
+    expect(canUse('multi-winner', 'pro')).toBe(true);
+  });
+
+  it('business plan can use multi-winner', () => {
+    expect(canUse('multi-winner', 'business')).toBe(true);
+  });
 });
