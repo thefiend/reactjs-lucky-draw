@@ -64,6 +64,7 @@ export function useDrawEngine(
   const availablePool = expandedPool.filter((name) => !previousWinners.includes(name));
 
   function handleDraw() {
+    if (isAnimating) return;
     if (winnerCount > 1 && !canUse('multi-winner', plan)) {
       setUpgradeFeature('multi-winner');
       setShowUpgrade(true);
@@ -97,12 +98,12 @@ export function useDrawEngine(
         const newPreviousWinners = [...previousWinners, ...drawn];
         setPreviousWinners(newPreviousWinners);
         confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
-        options.onDrawComplete?.(parsedEntries.map((e) => e.name), newPreviousWinners);
+        options.onDrawComplete?.(parsedEntries.map((e) => e.name), drawn);
         if (canUse('history', plan) && userId) {
           saveDrawAction({
             userId,
             entries: parsedEntries.map((e) => e.name),
-            winners: newPreviousWinners,
+            winners: drawn,
             title: 'Untitled Draw',
           });
         }
