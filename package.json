@@ -18,6 +18,7 @@
     "@clerk/nextjs": "^7.4.3",
     "@supabase/supabase-js": "^2.108.0",
     "canvas-confetti": "^1.9.4",
+    "html2canvas": "^1.4.1",
     "next": "16.2.7",
     "next-sitemap": "^4.2.3",
     "react": "19.2.4",
