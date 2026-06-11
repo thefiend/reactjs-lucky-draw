@@ -3,6 +3,7 @@ import { Feature } from '@/lib/plan';
 
 const MESSAGES: Record<Feature, string> = {
   unlimited: "You've reached the 50-entry limit. Go Pro for unlimited entries.",
+  'multi-winner': 'Draw multiple winners at once — available on Pro and above.',
   export: 'Export results as PDF or CSV — available on Pro and above.',
   history: 'Save and revisit your draw history — available on Pro and above.',
   noad: 'Enjoy an ad-free experience — available on Pro and above.',
