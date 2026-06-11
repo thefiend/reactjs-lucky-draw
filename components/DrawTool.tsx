@@ -123,7 +123,14 @@ export default function DrawTool({ plan, userId, onDrawComplete }: DrawToolProps
           />
 
           <button
-            onClick={() => { window.location.href = '/api/export?format=csv'; }}
+            onClick={() => {
+              if (!canUse('export', plan)) {
+                setUpgradeFeature('export');
+                setShowUpgrade(true);
+                return;
+              }
+              window.location.href = '/api/export?format=csv';
+            }}
             disabled={isAnimating}
             className="px-4 py-3.5 rounded-xl text-sm font-medium text-[#198BCA] border border-[#9CD6EF]/60 hover:bg-[#EBF7FD] hover:border-[#66C6EB] transition-all disabled:opacity-40 disabled:cursor-not-allowed"
           >
@@ -200,9 +207,9 @@ export default function DrawTool({ plan, userId, onDrawComplete }: DrawToolProps
             Previously drawn
           </p>
           <ul className="flex flex-wrap gap-2">
-            {previousWinners.map((w) => (
+            {previousWinners.map((w, i) => (
               <li
-                key={w}
+                key={`${w}-${i}`}
                 className="text-sm px-3 py-1 rounded-full text-[#0D6394] border border-[#9CD6EF]/50 line-through opacity-50"
                 style={{ background: 'rgba(235,247,253,0.8)' }}
               >
