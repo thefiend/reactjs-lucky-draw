@@ -14,7 +14,7 @@ export function parseEntries(text: string): ParsedEntry[] {
       const match = line.match(WEIGHT_REGEX);
       if (match) {
         const weight = parseInt(match[2], 10);
-        return { name: match[1].trim(), weight: weight > 0 ? weight : 1 };
+        return { name: match[1].trim(), weight: Math.min(weight > 0 ? weight : 1, 100) };
       }
       return { name: line, weight: 1 };
     });

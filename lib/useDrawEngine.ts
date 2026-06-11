@@ -79,7 +79,7 @@ export function useDrawEngine(
 
     const count = Math.min(winnerCount, availablePool.length);
     const shuffled = [...availablePool].sort(() => Math.random() - 0.5);
-    const drawn = shuffled.slice(0, count);
+    const drawn = [...new Set(shuffled)].slice(0, count);
 
     setIsAnimating(true);
     setWinners([]);

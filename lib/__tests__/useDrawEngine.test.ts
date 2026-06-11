@@ -53,6 +53,18 @@ describe('useDrawEngine — handleDraw', () => {
     expect(new Set(result.current.winners).size).toBe(3);
   });
 
+  it('never draws the same person twice even with weighted entries', async () => {
+    jest.useFakeTimers();
+    const { result } = renderHook(() => useDrawEngine('pro'));
+    // Alice has weight 3, but should only win once
+    act(() => { result.current.setEntriesText('Alice x3\nBob\nCarol'); });
+    act(() => { result.current.setWinnerCount(2); });
+    act(() => { result.current.handleDraw(); });
+    await act(async () => { jest.advanceTimersByTime(3000); });
+    expect(result.current.winners.length).toBe(2);
+    expect(new Set(result.current.winners).size).toBe(2);
+  });
+
   it('shows upgrade prompt for multi-winner on free plan', () => {
     const { result } = renderHook(() => useDrawEngine('free'));
     act(() => { result.current.setEntriesText('Alice\nBob\nCarol'); });

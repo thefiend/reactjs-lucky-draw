@@ -34,6 +34,10 @@ describe('parseEntries', () => {
     expect(parseEntries('Alice x0')).toEqual([{ name: 'Alice', weight: 1 }]);
   });
 
+  it('caps weight at 100', () => {
+    expect(parseEntries('Alice x999')).toEqual([{ name: 'Alice', weight: 100 }]);
+  });
+
   it('returns empty array for empty string', () => {
     expect(parseEntries('')).toEqual([]);
   });
