@@ -1,181 +1,226 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import confetti from 'canvas-confetti';
+import { useRef } from 'react';
+import { useDrawEngine, FREE_ENTRY_LIMIT } from '@/lib/useDrawEngine';
 import { canUse } from '@/lib/plan';
 import UpgradePrompt from '@/components/UpgradePrompt';
-import type { Feature } from '@/lib/plan';
-import { saveDrawAction } from '@/app/actions';
-
-const FREE_ENTRY_LIMIT = 50;
+import type { Plan } from '@/lib/plan';
 
 interface DrawToolProps {
-  plan: 'free' | 'pro' | 'business';
+  plan: Plan;
   userId?: string;
   onDrawComplete?: (entries: string[], winners: string[]) => void;
 }
 
 export default function DrawTool({ plan, userId, onDrawComplete }: DrawToolProps) {
-  const [entriesText, setEntriesText] = useState('');
-  const [winner, setWinner] = useState<string | null>(null);
-  const [previousWinners, setPreviousWinners] = useState<string[]>([]);
-  const [showUpgrade, setShowUpgrade] = useState(false);
-  const [upgradeFeature, setUpgradeFeature] = useState<Feature>('unlimited');
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [displayName, setDisplayName] = useState<string | null>(null);
-  const animationRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const {
+    entriesText, setEntriesText,
+    winnerCount, setWinnerCount,
+    winners, previousWinners,
+    isAnimating, displayName,
+    showUpgrade, setShowUpgrade,
+    upgradeFeature, setUpgradeFeature,
+    entryCount,
+    handleDraw, handleCSVImport, handleReset,
+  } = useDrawEngine(plan, userId, { onDrawComplete });
 
-  useEffect(() => {
-    return () => {
-      if (animationRef.current) {
-        clearTimeout(animationRef.current);
-      }
-    };
-  }, []);
-
-  const entries = entriesText
-    .split('\n')
-    .map((e) => e.trim())
-    .filter(Boolean);
-
-  function handleDraw() {
-    if (!canUse('unlimited', plan) && entries.length > FREE_ENTRY_LIMIT) {
-      setUpgradeFeature('unlimited');
+  function handleWinnerCountChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const val = Math.max(1, parseInt(e.target.value, 10) || 1);
+    setWinnerCount(val);
+    if (val > 1 && !canUse('multi-winner', plan)) {
+      setUpgradeFeature('multi-winner');
       setShowUpgrade(true);
-      return;
     }
-
-    const available = entries.filter((e) => !previousWinners.includes(e));
-    if (available.length === 0) return;
-
-    const drawn = available[Math.floor(Math.random() * available.length)];
-
-    setIsAnimating(true);
-    setWinner(null);
-
-    const intervals = [60, 80, 110, 150, 200, 260, 300];
-    const totalDuration = 2000;
-    let elapsed = 0;
-    let intervalIndex = 0;
-
-    function tick() {
-      const randomName = available[Math.floor(Math.random() * available.length)];
-      setDisplayName(randomName);
-
-      if (elapsed >= totalDuration) {
-        setDisplayName(null);
-        setIsAnimating(false);
-        setWinner(drawn);
-        const newWinners = [...previousWinners, drawn];
-        setPreviousWinners(newWinners);
-        confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
-        onDrawComplete?.(entries, newWinners);
-        if (canUse('history', plan) && userId) {
-          saveDrawAction({ userId, entries, winners: newWinners, title: 'Untitled Draw' });
-        }
-        return;
-      }
-
-      const currentInterval = intervals[Math.min(intervalIndex, intervals.length - 1)];
-      elapsed += currentInterval;
-      const nextIntervalThreshold = (intervalIndex + 1) * (totalDuration / intervals.length);
-      if (elapsed >= nextIntervalThreshold) intervalIndex++;
-
-      animationRef.current = setTimeout(tick, currentInterval);
-    }
-
-    animationRef.current = setTimeout(tick, intervals[0]);
-  }
-
-  function handleExport() {
-    if (!canUse('export', plan)) {
-      setUpgradeFeature('export');
-      setShowUpgrade(true);
-      return;
-    }
-    window.location.href = '/api/export?format=csv';
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Lucky Draw Online Generator</h1>
-      <p className="text-gray-500 mb-6">Enter names below, one per line, then click Draw.</p>
+    <div className="max-w-xl mx-auto px-4">
 
-      <textarea
-        className={`w-full h-40 border border-gray-300 rounded-xl p-4 text-sm font-mono resize-none focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-opacity${isAnimating ? ' opacity-50' : ''}`}
-        placeholder="Enter names, one per line..."
-        value={entriesText}
-        onChange={(e) => setEntriesText(e.target.value)}
-      />
-
-      {!canUse('unlimited', plan) && (
-        <p className="text-xs text-gray-400 mt-1">
-          {entries.length}/{FREE_ENTRY_LIMIT} entries (free tier limit)
+      {/* Header */}
+      <div className="text-center mb-8" style={{ animation: 'fade-up 0.5s ease both' }}>
+        <h1
+          className="text-4xl font-bold tracking-tight text-[#0D4972] mb-2"
+          style={{ fontFamily: 'var(--font-jost)' }}
+        >
+          Lucky Draw Online Generator
+        </h1>
+        <p className="text-sm text-[#4A4A4A]/50">
+          Enter names below, one per line, then click Draw.
         </p>
-      )}
-
-      <div className="flex gap-3 mt-4">
-        <button
-          onClick={handleDraw}
-          disabled={isAnimating}
-          aria-label={isAnimating ? 'Drawing...' : 'Draw Winner'}
-          className="flex-1 bg-indigo-600 text-white py-3 rounded-xl font-semibold hover:bg-indigo-700 transition disabled:opacity-60 disabled:cursor-not-allowed"
-        >
-          {isAnimating ? 'Drawing...' : 'Draw Winner'}
-        </button>
-        <button
-          onClick={handleExport}
-          disabled={isAnimating}
-          className="px-4 py-3 border border-gray-200 rounded-xl text-gray-600 hover:bg-gray-50 text-sm disabled:opacity-40 disabled:cursor-not-allowed"
-        >
-          Export
-        </button>
       </div>
 
-      {isAnimating && displayName && (
-        <div className="mt-8 text-center">
-          <p className="text-sm text-gray-500 mb-1">Drawing...</p>
-          <div className="inline-block bg-indigo-50 text-indigo-600 text-4xl font-bold px-6 py-2 rounded-xl min-w-[180px]">
-            {displayName}
-          </div>
-          <div className="mt-3 w-40 h-1 bg-gray-200 rounded-full mx-auto overflow-hidden">
-            <div
-              className="h-full bg-indigo-500 rounded-full"
-              style={{
-                animation: 'progress-fill 2s linear forwards',
-              }}
-            />
-          </div>
-        </div>
-      )}
+      {/* Card */}
+      <div
+        className="bg-white rounded-2xl p-7"
+        style={{ boxShadow: 'var(--shadow-card)', animation: 'fade-up 0.5s 0.1s ease both', opacity: 0 }}
+      >
+        <textarea
+          className={`w-full h-44 border border-[#9CD6EF]/50 rounded-xl p-4 text-sm font-mono resize-none focus:outline-none focus:ring-2 focus:ring-[#139DD9]/40 focus:border-[#139DD9]/60 placeholder:text-[#9CD6EF] transition-all${isAnimating ? ' opacity-40 pointer-events-none' : ''}`}
+          style={{ boxShadow: 'inset 0 2px 6px rgba(13,73,114,0.04)' }}
+          placeholder="Enter names, one per line..."
+          value={entriesText}
+          onChange={(e) => setEntriesText(e.target.value)}
+        />
 
-      {!isAnimating && winner && (
-        <div className="mt-8 text-center">
-          <p className="text-sm text-gray-500 mb-1">Winner</p>
-          <p
-            data-testid="winner-display"
-            className="text-4xl font-bold text-indigo-600"
-          >
-            {winner}
+        {!canUse('unlimited', plan) && (
+          <p className="text-xs text-[#9CD6EF] mt-1.5">
+            {entryCount}/{FREE_ENTRY_LIMIT} entries (free tier)
           </p>
-        </div>
-      )}
+        )}
 
-      {previousWinners.length > 1 && (
-        <div className="mt-6">
-          <p className="text-sm font-medium text-gray-500 mb-2">Previously drawn</p>
+        {/* Winner count */}
+        <div className="flex items-center gap-2 mt-4 text-sm text-[#4A4A4A]/70">
+          <span>Draw</span>
+          <input
+            type="number"
+            min={1}
+            value={winnerCount}
+            onChange={handleWinnerCountChange}
+            disabled={isAnimating}
+            className="w-16 border border-[#9CD6EF]/50 rounded-lg px-2 py-1 text-center text-sm font-medium text-[#0D4972] focus:outline-none focus:ring-2 focus:ring-[#139DD9]/40 disabled:opacity-40"
+          />
+          <span>winner{winnerCount !== 1 ? 's' : ''}</span>
+        </div>
+
+        {/* Buttons */}
+        <div className="flex gap-3 mt-5">
+          <button
+            onClick={handleDraw}
+            disabled={isAnimating}
+            aria-label={isAnimating ? 'Drawing...' : 'Draw Winner'}
+            className="flex-1 text-white py-3.5 rounded-xl font-semibold text-sm tracking-wide transition-all disabled:cursor-not-allowed"
+            style={{
+              background: isAnimating
+                ? 'linear-gradient(135deg, #9CD6EF, #66C6EB)'
+                : 'linear-gradient(135deg, #198BCA 0%, #1565C0 100%)',
+              boxShadow: isAnimating ? 'none' : 'var(--shadow-btn)',
+              fontFamily: 'var(--font-jost)',
+            }}
+            onMouseEnter={(e) => { if (!isAnimating) (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-2px)'; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(0)'; }}
+          >
+            {isAnimating ? 'Drawing...' : 'Draw Winner'}
+          </button>
+
+          <button
+            onClick={() => fileInputRef.current?.click()}
+            disabled={isAnimating}
+            className="px-4 py-3.5 rounded-xl text-sm font-medium text-[#198BCA] border border-[#9CD6EF]/60 hover:bg-[#EBF7FD] hover:border-[#66C6EB] transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            Import CSV
+          </button>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".csv"
+            className="hidden"
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) handleCSVImport(file);
+              e.target.value = '';
+            }}
+          />
+
+          <button
+            onClick={() => { window.location.href = '/api/export?format=csv'; }}
+            disabled={isAnimating}
+            className="px-4 py-3.5 rounded-xl text-sm font-medium text-[#198BCA] border border-[#9CD6EF]/60 hover:bg-[#EBF7FD] hover:border-[#66C6EB] transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            Export
+          </button>
+        </div>
+
+        {/* Slot machine animation */}
+        {isAnimating && displayName && (
+          <div className="mt-8 text-center">
+            <p className="text-xs font-semibold uppercase tracking-widest text-[#9CD6EF] mb-3">
+              Drawing...
+            </p>
+            <div
+              className="inline-block text-4xl font-bold px-8 py-3 rounded-2xl min-w-[200px]"
+              style={{
+                fontFamily: 'var(--font-jost)',
+                background: 'linear-gradient(135deg, #EBF7FD, #ddf0fa)',
+                color: '#198BCA',
+                boxShadow: '0 0 0 1px rgba(156,214,239,0.4), inset 0 1px 0 rgba(255,255,255,0.8)',
+              }}
+            >
+              {displayName}
+            </div>
+            <div className="mt-4 w-48 h-0.5 bg-[#9CD6EF]/20 rounded-full mx-auto overflow-hidden">
+              <div
+                className="h-full rounded-full"
+                style={{
+                  background: 'linear-gradient(90deg, #139DD9, #1D72FF)',
+                  animation: 'progress-fill 2s linear forwards',
+                }}
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Winner reveal */}
+        {!isAnimating && winners.length > 0 && (
+          <div
+            className="mt-8 text-center py-6 rounded-xl"
+            style={{
+              background: 'linear-gradient(160deg, #f0f8fd 0%, #e6f4fb 100%)',
+              animation: 'winner-appear 0.55s cubic-bezier(0.34,1.56,0.64,1) both',
+            }}
+          >
+            <p className="text-xs font-semibold uppercase tracking-widest text-[#139DD9] mb-3">
+              🎉 {winners.length === 1 ? 'Winner' : 'Winners'}
+            </p>
+            {winners.map((w, i) => (
+              <p
+                key={`${w}-${i}`}
+                data-testid={`winner-display-${i}`}
+                className="text-5xl font-bold text-[#0D4972]"
+                style={{
+                  fontFamily: 'var(--font-jost)',
+                  filter: 'drop-shadow(0 2px 16px rgba(19,157,217,0.22))',
+                  animationDelay: `${i * 80}ms`,
+                }}
+              >
+                {winners.length > 1 && (
+                  <span className="text-2xl mr-2 text-[#139DD9]">{i + 1}.</span>
+                )}
+                {w}
+              </p>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Previously drawn */}
+      {previousWinners.length > 0 && (
+        <div className="mt-5 px-1" style={{ animation: 'fade-up 0.4s ease both' }}>
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#9CD6EF] mb-2.5">
+            Previously drawn
+          </p>
           <ul className="flex flex-wrap gap-2">
-            {previousWinners.slice(0, -1).map((w) => (
-              <li key={w} className="bg-gray-100 text-gray-600 text-sm px-3 py-1 rounded-full">
+            {previousWinners.map((w) => (
+              <li
+                key={w}
+                className="text-sm px-3 py-1 rounded-full text-[#0D6394] border border-[#9CD6EF]/50 line-through opacity-50"
+                style={{ background: 'rgba(235,247,253,0.8)' }}
+              >
                 {w}
               </li>
             ))}
           </ul>
+          <button
+            onClick={handleReset}
+            className="mt-3 text-xs text-[#9CD6EF] hover:text-[#198BCA] transition-colors"
+          >
+            Reset draw
+          </button>
         </div>
       )}
 
       {!canUse('noad', plan) && (
-        <div data-ad className="mt-8 text-center text-gray-400 text-xs border border-dashed border-gray-200 rounded-xl p-4">
+        <div data-ad className="mt-6 text-center text-[#9CD6EF]/60 text-xs border border-dashed border-[#9CD6EF]/30 rounded-xl p-4">
           <div id="ezoic-pub-ad-placeholder-draw-tool"></div>
         </div>
       )}
