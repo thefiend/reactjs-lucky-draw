@@ -5,7 +5,7 @@ interface WinnerCardProps {
   title: string;
   date: string;
   plan: Plan;
-  cardRef: React.RefObject<HTMLDivElement>;
+  cardRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export default function WinnerCard({ winners, title, date, plan, cardRef }: WinnerCardProps) {

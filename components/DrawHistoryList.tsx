@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react';
 import React from 'react';
+import Link from 'next/link';
 import confetti from 'canvas-confetti';
 import { useSlotMachine } from '@/lib/useSlotMachine';
 import WinnerCard from '@/components/WinnerCard';
@@ -23,14 +24,14 @@ export default function DrawHistoryList({ draws }: DrawHistoryListProps) {
   const [replayingId, setReplayingId] = useState<string | null>(null);
   const [downloadingIds, setDownloadingIds] = useState<Set<string>>(new Set());
   const { displayName, isAnimating, run } = useSlotMachine();
-  const cardRefs = useRef<Map<string, React.RefObject<HTMLDivElement>>>(new Map());
+  const cardRefs = useRef<Record<string, React.RefObject<HTMLDivElement | null>>>({});
   const pendingDownload = useRef<string | null>(null);
 
-  function getCardRef(id: string): React.RefObject<HTMLDivElement> {
-    if (!cardRefs.current.has(id)) {
-      cardRefs.current.set(id, React.createRef<HTMLDivElement>());
+  function getOrCreateRef(id: string): React.RefObject<HTMLDivElement | null> {
+    if (!cardRefs.current[id]) {
+      cardRefs.current[id] = React.createRef<HTMLDivElement>();
     }
-    return cardRefs.current.get(id)!;
+    return cardRefs.current[id];
   }
 
   function handleReplay(draw: Draw) {
@@ -47,7 +48,7 @@ export default function DrawHistoryList({ draws }: DrawHistoryListProps) {
       pendingDownload.current = draw.id;
       setDownloadingIds((prev) => new Set([...prev, draw.id]));
     } else {
-      const ref = getCardRef(draw.id);
+      const ref = getOrCreateRef(draw.id);
       downloadCertificate(ref, `luckydraw-${draw.id}.png`);
     }
   }
@@ -58,7 +59,7 @@ export default function DrawHistoryList({ draws }: DrawHistoryListProps) {
     pendingDownload.current = null;
     const draw = draws.find((d) => d.id === id);
     if (!draw) return;
-    const ref = getCardRef(id);
+    const ref = getOrCreateRef(id);
     downloadCertificate(ref, `luckydraw-${id}.png`).then(() => {
       setDownloadingIds((prev) => {
         const next = new Set(prev);
@@ -72,9 +73,9 @@ export default function DrawHistoryList({ draws }: DrawHistoryListProps) {
     return (
       <p className="text-gray-500">
         No draws yet.{' '}
-        <a href="/" className="text-indigo-600">
+        <Link href="/" className="text-indigo-600">
           Run your first draw →
-        </a>
+        </Link>
       </p>
     );
   }
@@ -145,7 +146,7 @@ export default function DrawHistoryList({ draws }: DrawHistoryListProps) {
                 title={draw.title}
                 date={date}
                 plan="pro"
-                cardRef={getCardRef(draw.id)}
+                cardRef={getOrCreateRef(draw.id)}
               />
             )}
           </div>
