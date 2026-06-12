@@ -1,15 +1,13 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import confetti from 'canvas-confetti';
 import { parseEntries, expandPool, type ParsedEntry } from '@/lib/parseEntries';
 import { canUse, type Feature, type Plan } from '@/lib/plan';
 import { saveDrawAction } from '@/app/actions';
+import { useSlotMachine } from '@/lib/useSlotMachine';
 
 export const FREE_ENTRY_LIMIT = 50;
-
-const ANIMATION_INTERVALS = [60, 80, 110, 150, 200, 260, 300];
-const ANIMATION_DURATION = 2000;
 
 interface UseDrawEngineOptions {
   onDrawComplete?: (entries: string[], winners: string[]) => void;
@@ -46,17 +44,10 @@ export function useDrawEngine(
   const [winnerCount, setWinnerCount] = useState(1);
   const [winners, setWinners] = useState<string[]>([]);
   const [previousWinners, setPreviousWinners] = useState<string[]>([]);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [displayName, setDisplayName] = useState<string | null>(null);
   const [showUpgrade, setShowUpgrade] = useState(false);
   const [upgradeFeature, setUpgradeFeature] = useState<Feature>('unlimited');
-  const animationRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => {
-    return () => {
-      if (animationRef.current) clearTimeout(animationRef.current);
-    };
-  }, []);
+  const { displayName, isAnimating, run } = useSlotMachine();
 
   const parsedEntries = parseEntries(entriesText);
   const expandedPool = expandPool(parsedEntries);
@@ -81,43 +72,23 @@ export function useDrawEngine(
     const shuffled = [...availablePool].sort(() => Math.random() - 0.5);
     const drawn = [...new Set(shuffled)].slice(0, count);
 
-    setIsAnimating(true);
     setWinners([]);
 
-    let elapsed = 0;
-    let intervalIndex = 0;
-
-    function tick() {
-      const randomName = availablePool[Math.floor(Math.random() * availablePool.length)];
-      setDisplayName(randomName);
-
-      if (elapsed >= ANIMATION_DURATION) {
-        setDisplayName(null);
-        setIsAnimating(false);
-        setWinners(drawn);
-        const newPreviousWinners = [...previousWinners, ...drawn];
-        setPreviousWinners(newPreviousWinners);
-        confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
-        options.onDrawComplete?.(parsedEntries.map((e) => e.name), drawn);
-        if (canUse('history', plan) && userId) {
-          saveDrawAction({
-            userId,
-            entries: parsedEntries.map((e) => e.name),
-            winners: drawn,
-            title: 'Untitled Draw',
-          });
-        }
-        return;
+    run(availablePool, () => {
+      setWinners(drawn);
+      const newPreviousWinners = [...previousWinners, ...drawn];
+      setPreviousWinners(newPreviousWinners);
+      confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
+      options.onDrawComplete?.(parsedEntries.map((e) => e.name), drawn);
+      if (canUse('history', plan) && userId) {
+        saveDrawAction({
+          userId,
+          entries: parsedEntries.map((e) => e.name),
+          winners: drawn,
+          title: 'Untitled Draw',
+        });
       }
-
-      const currentInterval = ANIMATION_INTERVALS[Math.min(intervalIndex, ANIMATION_INTERVALS.length - 1)];
-      elapsed += currentInterval;
-      const nextThreshold = (intervalIndex + 1) * (ANIMATION_DURATION / ANIMATION_INTERVALS.length);
-      if (elapsed >= nextThreshold) intervalIndex++;
-      animationRef.current = setTimeout(tick, currentInterval);
-    }
-
-    animationRef.current = setTimeout(tick, ANIMATION_INTERVALS[0]);
+    });
   }
 
   function handleCSVImport(file: File) {
