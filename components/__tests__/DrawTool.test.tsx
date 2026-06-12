@@ -3,6 +3,8 @@ import DrawTool from '@/components/DrawTool';
 
 jest.mock('@/app/actions', () => ({ saveDrawAction: jest.fn() }));
 jest.mock('canvas-confetti', () => jest.fn());
+jest.mock('@/lib/downloadCertificate', () => ({ downloadCertificate: jest.fn() }));
+jest.mock('html2canvas', () => jest.fn());
 
 afterEach(() => {
   jest.useRealTimers();
@@ -119,5 +121,21 @@ describe('DrawTool', () => {
     expect(resetBtn).toBeInTheDocument();
     fireEvent.click(resetBtn);
     expect(screen.queryByTestId('winner-display-0')).not.toBeInTheDocument();
+  });
+
+  it('shows Download Certificate button after a draw', async () => {
+    jest.useFakeTimers();
+    render(<DrawTool plan="pro" />);
+    fireEvent.change(screen.getByPlaceholderText(/enter names/i), {
+      target: { value: 'Alice\nBob\nCarol' },
+    });
+    fireEvent.click(screen.getByRole('button', { name: /draw winner/i }));
+    await act(async () => { jest.advanceTimersByTime(3000); });
+    expect(screen.getByRole('button', { name: /download certificate/i })).toBeInTheDocument();
+  });
+
+  it('does not show Download Certificate button before a draw', () => {
+    render(<DrawTool plan="pro" />);
+    expect(screen.queryByRole('button', { name: /download certificate/i })).not.toBeInTheDocument();
   });
 });

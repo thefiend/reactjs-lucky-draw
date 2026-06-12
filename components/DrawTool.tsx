@@ -5,6 +5,8 @@ import { useDrawEngine, FREE_ENTRY_LIMIT } from '@/lib/useDrawEngine';
 import { canUse } from '@/lib/plan';
 import UpgradePrompt from '@/components/UpgradePrompt';
 import type { Plan } from '@/lib/plan';
+import WinnerCard from '@/components/WinnerCard';
+import { downloadCertificate } from '@/lib/downloadCertificate';
 
 interface DrawToolProps {
   plan: Plan;
@@ -14,6 +16,7 @@ interface DrawToolProps {
 
 export default function DrawTool({ plan, userId, onDrawComplete }: DrawToolProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const {
     entriesText, setEntriesText,
     winnerCount, setWinnerCount,
@@ -197,6 +200,27 @@ export default function DrawTool({ plan, userId, onDrawComplete }: DrawToolProps
               </p>
             ))}
           </div>
+        )}
+
+        {/* Certificate download */}
+        {!isAnimating && winners.length > 0 && (
+          <>
+            <WinnerCard
+              winners={winners}
+              title="Lucky Draw"
+              date={new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+              plan={plan}
+              cardRef={cardRef}
+            />
+            <div className="mt-4 text-center">
+              <button
+                onClick={() => downloadCertificate(cardRef, 'luckydraw-winner.png')}
+                className="text-sm text-[#198BCA] border border-[#9CD6EF]/60 hover:bg-[#EBF7FD] rounded-xl px-4 py-2 transition-all"
+              >
+                Download Certificate
+              </button>
+            </div>
+          </>
         )}
       </div>
 
