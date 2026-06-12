@@ -59,8 +59,14 @@ export default function DrawHistoryList({ draws }: DrawHistoryListProps) {
     const draw = draws.find((d) => d.id === id);
     if (!draw) return;
     const ref = getCardRef(id);
-    downloadCertificate(ref, `luckydraw-${id}.png`);
-  }, [downloadingIds]);
+    downloadCertificate(ref, `luckydraw-${id}.png`).then(() => {
+      setDownloadingIds((prev) => {
+        const next = new Set(prev);
+        next.delete(id);
+        return next;
+      });
+    });
+  }, [downloadingIds, draws]);
 
   if (draws.length === 0) {
     return (

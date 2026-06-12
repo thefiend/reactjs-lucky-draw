@@ -78,6 +78,7 @@ describe('DrawHistoryList', () => {
   it('calls downloadCertificate when Download Certificate is clicked', async () => {
     const { downloadCertificate } = require('@/lib/downloadCertificate') as { downloadCertificate: jest.Mock };
     downloadCertificate.mockClear();
+    downloadCertificate.mockResolvedValue(undefined);
     render(<DrawHistoryList draws={DRAWS} />);
     const [downloadBtn] = screen.getAllByRole('button', { name: /download certificate/i });
     fireEvent.click(downloadBtn);
