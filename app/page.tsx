@@ -28,7 +28,7 @@ export default async function HomePage() {
   return (
     <>
       <NavBar />
-      <main className="min-h-screen bg-gray-50 py-12">
+      <main className="min-h-screen py-14" style={{ background: 'radial-gradient(ellipse 100% 55% at 50% -5%, rgba(19,157,217,0.09) 0%, transparent 65%), linear-gradient(175deg, #f8fcff 0%, #eef7fd 55%, #f4faff 100%)' }}>
         <DrawTool plan={plan} userId={userId ?? undefined} />
       </main>
     </>

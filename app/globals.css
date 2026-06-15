@@ -2,30 +2,59 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #4A4A4A;
+
+  /* Brand blues — direct from logo facets */
+  --brand-900: #0D4972;
+  --brand-800: #0D6394;
+  --brand-700: #0B79B7;
+  --brand-600: #198BCA;
+  --brand-500: #139DD9;
+  --brand-400: #2AA9E1;
+  --brand-300: #26B2E3;
+  --brand-200: #66C6EB;
+  --brand-100: #9CD6EF;
+  --brand-50: #EBF7FD;
+  --accent: #1D72FF;
+
+  /* Premium shadows */
+  --shadow-card: 0 1px 3px rgba(13,73,114,0.04), 0 10px 48px rgba(13,73,114,0.10), 0 0 0 1px rgba(156,214,239,0.20);
+  --shadow-btn: 0 4px 14px rgba(19,157,217,0.35);
+  --shadow-btn-hover: 0 6px 20px rgba(19,157,217,0.45);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-dm-sans);
+  --font-display: var(--font-jost);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dm-sans, 'DM Sans', sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @keyframes progress-fill {
   from { width: 0%; }
   to { width: 100%; }
+}
+
+@keyframes winner-appear {
+  0%   { opacity: 0; transform: scale(0.82) translateY(10px); }
+  70%  { transform: scale(1.04) translateY(-2px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  100% { transform: scale(1.6); opacity: 0; }
 }
