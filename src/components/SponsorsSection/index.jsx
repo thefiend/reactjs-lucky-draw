@@ -35,7 +35,7 @@ const SponsorsSection = () => {
         {SPONSORS.map((sponsor, i) => (
             <Grid.Col key={i} xs={12} md={4}>
               <a className="margin-auto sponsor-logo-container" href={sponsor.url}>
-                <img className="sponsor-logo" src={sponsor.img} alt={sponsor.name} />
+                <img className="sponsor-logo" src={sponsor.img} alt={sponsor.name} loading="lazy" />
                 <h3>{sponsor.name}</h3>
               </a>
             </Grid.Col>
