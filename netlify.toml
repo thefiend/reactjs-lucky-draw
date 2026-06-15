@@ -13,7 +13,7 @@
   force = false
 
 [[redirects]]
-  from = "https://luckydraw.me/*"
-  to = "https://www.luckydraw.me/:splat"
+  from = "https://www.luckydraw.me/*"
+  to = "https://luckydraw.me/:splat"
   status = 301
   force = true

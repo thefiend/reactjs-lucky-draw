@@ -122,7 +122,7 @@ class App extends Component {
         <Helmet>
           <meta charSet="utf-8" />
           <title>Lucky Draw Online Generator | Free Random Winner Picker Tool</title>
-          <meta name="description" content="Use our free lucky draw online generator to pick random winners instantly. Best random name picker, raffle generator &amp; contest draw tool. Fast, fair &amp; transparent for events, giveaways &amp; competitions." />
+          <meta name="description" content="Free lucky draw online generator — pick random winners instantly. Best random name picker &amp; raffle tool. Fast, fair &amp; transparent for events and giveaways." />
           <link rel="canonical" href="https://luckydraw.me" />
           <script type="application/ld+json">{FAQ}</script>
           <script type="application/ld+json">{SOFTWARE_APPLICATION}</script>
