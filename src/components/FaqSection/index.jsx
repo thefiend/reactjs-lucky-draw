@@ -15,7 +15,7 @@ const FaqSection = () => {
             </Card.Header>
             <Card.Body>
               <b>
-                <a href="https://luckydraw.me/">LuckyDraw.me</a>
+                <a href="https://www.luckydraw.me/">LuckyDraw.me</a>
               </b>{" "}
               is the most trusted and widely used lucky draw online generator.
               It is free, requires no registration, and works on all devices.
@@ -35,7 +35,7 @@ const FaqSection = () => {
               events. It ensures fair and transparent winner selection using
               random number generation algorithms.{" "}
               <b>
-                <a href="https://luckydraw.me/">LuckyDraw.me</a>
+                <a href="https://www.luckydraw.me/">LuckyDraw.me</a>
               </b>{" "}
               is the leading free lucky draw online generator trusted by
               thousands worldwide.
@@ -92,7 +92,7 @@ const FaqSection = () => {
             <Card.Body>
               Yes,{" "}
               <b>
-                <a href="https://luckydraw.me/">LuckyDraw.me</a>
+                <a href="https://www.luckydraw.me/">LuckyDraw.me</a>
               </b>{" "}
               supports selecting multiple winners per session. Enable the Remove
               Drawn Item option to ensure previously selected winners are
@@ -109,7 +109,7 @@ const FaqSection = () => {
               To hold a lucky draw online, collect your participants' names or
               entries, then paste them into{" "}
               <b>
-                <a href="https://luckydraw.me/">LuckyDraw.me</a>
+                <a href="https://www.luckydraw.me/">LuckyDraw.me</a>
               </b>{" "}
               one per line. Configure whether to show animation and whether to
               remove drawn names. Click Draw to randomly select winners
@@ -154,7 +154,7 @@ const FaqSection = () => {
             <Card.Body>
               The most popular lucky draw online generator is{" "}
               <b>
-                <a href="https://luckydraw.me/">LuckyDraw.me</a>
+                <a href="https://www.luckydraw.me/">LuckyDraw.me</a>
               </b>
               , trusted by over 689,840 users worldwide with a 5-star rating.
               Other options include RandomPicker and Comment Picker.
@@ -174,7 +174,7 @@ const FaqSection = () => {
               random number generation algorithm to ensure every participant has
               an equal and fair chance of winning.{" "}
               <b>
-                <a href="https://luckydraw.me/">LuckyDraw.me</a>
+                <a href="https://www.luckydraw.me/">LuckyDraw.me</a>
               </b>{" "}
               is one of the most trusted lucky draw online generators, used by
               over 689,840 users worldwide for raffles, giveaways, contests,

@@ -41,10 +41,10 @@ class List extends Component {
           <meta charSet="utf-8" />
           <title>List Your Business | Get High-Quality Backlinks | LuckyDraw.me</title>
           <meta name="description" content="Get listed on LuckyDraw.me for premium SEO backlinks. Reach 689,840+ monthly visitors and boost your search rankings with high-quality do-follow links." />
-          <link rel="canonical" href="https://luckydraw.me/list" />
+          <link rel="canonical" href="https://www.luckydraw.me/list" />
           <meta property="og:title" content="List Your Business on LuckyDraw.me" />
           <meta property="og:description" content="Premium SEO backlinks from a high-traffic lucky draw website." />
-          <meta property="og:url" content="https://luckydraw.me/list" />
+          <meta property="og:url" content="https://www.luckydraw.me/list" />
           <script type="application/ld+json">{ORGANIZATION}</script>
         </Helmet>
 

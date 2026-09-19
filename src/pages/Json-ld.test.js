@@ -49,7 +49,7 @@ describe('Json-ld schemas', () => {
 
     it('is valid JSON', () => { expect(schema).toBeDefined(); });
     it('has @type Organization', () => { expect(schema['@type']).toBe('Organization'); });
-    it('has url', () => { expect(schema.url).toBe('https://luckydraw.me'); });
+    it('has url', () => { expect(schema.url).toBe('https://www.luckydraw.me'); });
   });
 
   describe('BREADCRUMB_HOME', () => {
@@ -82,6 +82,6 @@ describe('Json-ld schemas', () => {
 
     it('is valid JSON', () => { expect(schema).toBeDefined(); });
     it('has @type WebSite', () => { expect(schema['@type']).toBe('WebSite'); });
-    it('url is luckydraw.me', () => { expect(schema.url).toBe('https://luckydraw.me'); });
+    it('url is www.luckydraw.me', () => { expect(schema.url).toBe('https://www.luckydraw.me'); });
   });
 });

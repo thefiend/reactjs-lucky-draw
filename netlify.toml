@@ -12,8 +12,6 @@
   status = 200
   force = false
 
-[[redirects]]
-  from = "https://www.luckydraw.me/*"
-  to = "https://luckydraw.me/:splat"
-  status = 301
-  force = true
+# The apex domain -> www 301 is handled by Netlify's primary-domain setting
+# (www.luckydraw.me). Do not add a www -> apex rule here: it would fight the
+# canonical host and make every canonical URL point at a redirect.

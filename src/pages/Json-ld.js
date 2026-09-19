@@ -136,7 +136,7 @@ export const SOFTWARE_APPLICATION = JSON.stringify({
     "Lucky Draw Generator",
     "LuckyDraw.me",
   ],
-  url: "https://luckydraw.me",
+  url: "https://www.luckydraw.me",
   description:
     "Free lucky draw online generator for instant winner selection. Best random name picker, raffle generator, and contest draw tool for events, giveaways, and competitions worldwide.",
   applicationCategory: "UtilityApplication",
@@ -161,7 +161,7 @@ export const SOFTWARE_APPLICATION = JSON.stringify({
   inLanguage: "en",
   browserRequirements: "Requires JavaScript. Requires HTML5.",
   softwareVersion: "2.0",
-  screenshot: "https://luckydraw.me/images/luckydraw-share.png",
+  screenshot: "https://www.luckydraw.me/images/luckydraw-share.png",
   featureList:
     "Lucky draw online generator, Random winner selection, Random name picker, Raffle generator, Multiple winner support, Fair and transparent drawing, No registration required, Free to use",
   sameAs: ["https://www.facebook.com/luckydraw.me/"],
@@ -171,8 +171,8 @@ export const ORGANIZATION = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "LuckyDraw.me",
-  url: "https://luckydraw.me",
-  logo: "https://luckydraw.me/images/luckydraw-app-tool-logo.svg",
+  url: "https://www.luckydraw.me",
+  logo: "https://www.luckydraw.me/images/luckydraw-app-tool-logo.svg",
   description:
     "Free lucky draw online generator and random picker tool trusted by thousands worldwide for fair and transparent winner selection.",
   foundingDate: "2018",
@@ -180,7 +180,7 @@ export const ORGANIZATION = JSON.stringify({
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "Customer Support",
-    url: "https://luckydraw.me/faq",
+    url: "https://www.luckydraw.me/faq",
   },
 });
 
@@ -192,7 +192,7 @@ export const BREADCRUMB_HOME = JSON.stringify({
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://luckydraw.me",
+      item: "https://www.luckydraw.me",
     },
   ],
 });
@@ -240,6 +240,6 @@ export const WEBSITE = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "LuckyDraw.me",
-  url: "https://luckydraw.me",
+  url: "https://www.luckydraw.me",
   description: "Free lucky draw online generator and random winner picker tool.",
 });

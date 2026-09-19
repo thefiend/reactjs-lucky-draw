@@ -13,10 +13,10 @@ class Faq extends Component {
           <meta charSet="utf-8" />
           <title>Lucky Draw FAQ | Random Picker Questions & Answers</title>
           <meta name="description" content="Frequently asked questions about lucky draw tools, random pickers, and raffle generators. Learn how to use our free online lucky draw tool effectively." />
-          <link rel="canonical" href="https://luckydraw.me/faq" />
+          <link rel="canonical" href="https://www.luckydraw.me/faq" />
           <meta property="og:title" content="Lucky Draw FAQ | Random Picker Questions & Answers" />
           <meta property="og:description" content="Get answers to common questions about our lucky draw tool and random picker." />
-          <meta property="og:url" content="https://luckydraw.me/faq" />
+          <meta property="og:url" content="https://www.luckydraw.me/faq" />
           <script type="application/ld+json">{FAQ}</script>
           <script type="application/ld+json">{ORGANIZATION}</script>
           <script type="application/ld+json">{BREADCRUMB_HOME}</script>
