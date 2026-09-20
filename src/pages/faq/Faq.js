@@ -10,7 +10,6 @@ class Faq extends Component {
     return (
       <SiteWrapper>
         <Helmet>
-          <meta charSet="utf-8" />
           <title>Lucky Draw FAQ | Random Picker Questions & Answers</title>
           <meta name="description" content="Frequently asked questions about lucky draw tools, random pickers, and raffle generators. Learn how to use our free online lucky draw tool effectively." />
           <link rel="canonical" href="https://www.luckydraw.me/faq" />

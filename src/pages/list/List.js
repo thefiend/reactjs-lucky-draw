@@ -38,7 +38,6 @@ class List extends Component {
     return (
       <SiteWrapper>
         <Helmet>
-          <meta charSet="utf-8" />
           <title>List Your Business | Get High-Quality Backlinks | LuckyDraw.me</title>
           <meta name="description" content="Get listed on LuckyDraw.me for premium SEO backlinks. Reach 689,840+ monthly visitors and boost your search rankings with high-quality do-follow links." />
           <link rel="canonical" href="https://www.luckydraw.me/list" />
@@ -123,10 +122,72 @@ class List extends Component {
           ))}
         </div>
 
-        <p style={{ color: "#64748b", fontSize: "0.9rem" }}>
+        <p style={{ color: "#64748b", fontSize: "0.9rem", marginBottom: "40px" }}>
           After payment, email <strong>hello@luckydraw.me</strong> with your company details
           (name, URL, logo, description) and we'll add your listing within 48 hours.
         </p>
+
+        <article style={{ lineHeight: "1.8" }}>
+          <h2 style={{ color: "#198BCA", marginBottom: "15px" }}>What a LuckyDraw.me Listing Includes</h2>
+          <p style={{ marginBottom: "20px" }}>
+            Every paid listing is a permanent, hand-placed entry in the sponsors section that appears on
+            the homepage of our <strong>lucky draw online generator</strong> — the page visitors land on
+            before they run a draw. Listings are not rotated out of an ad slot and do not expire, so the
+            link keeps accruing value long after the one-time payment. <strong>Gold</strong> listings
+            carry a <code>nofollow</code> link, while <strong>Platinum</strong> and{" "}
+            <strong>Featured</strong> listings include a do-follow link, your logo, and a short company
+            description you write yourself.
+          </p>
+
+          <h3 style={{ color: "#198BCA", marginTop: "25px", marginBottom: "15px" }}>Who Lists With Us</h3>
+          <p style={{ marginBottom: "15px" }}>
+            Our audience is made up of event organisers, marketing teams, community managers, teachers,
+            and social media creators — people actively running raffles, giveaways, and contests. That
+            makes a listing especially relevant for:
+          </p>
+          <ul style={{ lineHeight: "2", paddingLeft: "40px", marginBottom: "20px" }}>
+            <li><strong>Giveaway and contest platforms</strong> — reach organisers at the moment they pick winners</li>
+            <li><strong>Event management and ticketing tools</strong> — audience overlap is close to total</li>
+            <li><strong>Marketing agencies</strong> — buyers looking for campaign and promotion services</li>
+            <li><strong>SaaS and productivity tools</strong> — teams already comfortable adopting web tools</li>
+            <li><strong>Print, prize, and merchandise suppliers</strong> — the people fulfilling the prizes</li>
+          </ul>
+
+          <h3 style={{ color: "#198BCA", marginTop: "25px", marginBottom: "15px" }}>How the Process Works</h3>
+          <ol style={{ lineHeight: "2", paddingLeft: "40px", marginBottom: "20px" }}>
+            <li>Pick the tier that matches the link and placement you want and complete checkout.</li>
+            <li>Email us your company name, destination URL, logo, and a one- to two-sentence description.</li>
+            <li>We review the site, place the listing, and confirm the live URL — usually within 48 hours.</li>
+          </ol>
+
+          <h3 style={{ color: "#198BCA", marginTop: "25px", marginBottom: "15px" }}>Editorial Guidelines</h3>
+          <p style={{ marginBottom: "15px" }}>
+            We review every submission before it goes live, because a sponsors section full of low-quality
+            links helps nobody — least of all the companies already listed. We decline gambling and real-money
+            casino sites, adult content, pharmaceutical and supplement offers, link farms and private blog
+            networks, and any site serving malware or deceptive downloads. If we decline your submission we
+            refund the payment in full.
+          </p>
+
+          <h3 style={{ color: "#198BCA", marginTop: "25px", marginBottom: "15px" }}>Common Questions</h3>
+          <p style={{ marginBottom: "15px" }}>
+            <strong>Is the payment recurring?</strong> No. Every tier is a single one-time payment and the
+            listing stays up.
+          </p>
+          <p style={{ marginBottom: "15px" }}>
+            <strong>Can I change the destination URL later?</strong> Yes — email us and we'll update it at
+            no cost.
+          </p>
+          <p style={{ marginBottom: "15px" }}>
+            <strong>Can I upgrade tiers?</strong> Yes. Pay the difference between what you paid and the
+            higher tier, and we'll move the listing.
+          </p>
+          <p style={{ marginBottom: "15px" }}>
+            <strong>Do you guarantee rankings?</strong> No, and nobody honestly can. What we can state
+            plainly is what you get: a do-follow link on Platinum and Featured tiers from a live, indexed
+            page in the random picker and lucky draw niche.
+          </p>
+        </article>
       </SiteWrapper>
     );
   }

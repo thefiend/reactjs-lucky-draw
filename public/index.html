@@ -2,15 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <!-- data-react-helmet lets react-helmet replace these with the per-route
+         values on mount instead of leaving two conflicting tags in the head.
+         Every tag a page overrides via <Helmet> needs the attribute. -->
     <meta
       name="description"
+      data-react-helmet="true"
       content="Free lucky draw online generator — pick random winners instantly. Random name picker, raffle &amp; contest tool. Fair, fast &amp; transparent. No signup needed."
     />
     <meta name="keywords" content="lucky draw online generator,lucky draw generator,lucky draw,random picker,lucky draw online,random name picker,lucky draw simulator,random draw,raffle generator,random winner picker,lucky draw tool,online lucky draw,random selector,name picker wheel,winner picker,random raffle,contest picker,giveaway picker,free lucky draw,random chooser,lucky draw generator,online raffle,lucky draw app,random picker wheel,name randomizer,lucky draw website,free random picker" />
     <meta name="author" content="Jason Kam" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <!-- data-react-helmet lets react-helmet replace these with the per-route
-         values on mount instead of leaving two conflicting tags in the head. -->
     <link rel="canonical" data-react-helmet="true" href="https://www.luckydraw.me" />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="preconnect" href="https://contextual.media.net" />
@@ -28,9 +30,10 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="LuckyDraw.me" />
-    <meta property="og:title" content="Lucky Draw Online Generator — Free Random Winner Picker" />
+    <meta property="og:title" data-react-helmet="true" content="Lucky Draw Online Generator — Free Random Winner Picker" />
     <meta
       property="og:description"
+      data-react-helmet="true"
       content="Use our free lucky draw online generator to instantly select random winners for raffles, giveaways, contests &amp; events. Trusted by thousands worldwide. Fair, transparent &amp; easy to use!"
     />
     <meta
@@ -69,7 +72,11 @@
   <body>
 
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"><h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">Lucky Draw Online Generator — Free Random Winner Picker</h1></div>
+    <!-- Left empty on purpose. scripts/prerender.js fills this with each route's
+         real markup at build time, and src/index.js hydrates whatever it finds
+         here — a placeholder heading would both duplicate the page's own H1 and
+         break hydration. -->
+    <div id="root"></div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
