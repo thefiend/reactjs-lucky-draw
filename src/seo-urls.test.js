@@ -63,4 +63,14 @@ describe('site URLs use the canonical www host', () => {
   it('netlify.toml has no www-to-apex redirect fighting the canonical host', () => {
     expect(read('netlify.toml')).not.toMatch(APEX_URL);
   });
+
+  it('prerender writes flat .html files, not directory indexes', () => {
+    // `build/faq/index.html` makes Netlify 301 `/faq` -> `/faq/`, so the
+    // canonical `/faq` would point at a redirect. `build/faq.html` answers 200.
+    const routes = read('scripts/prerender.js').match(/const ROUTES = \{[^}]+\}/)[0];
+    ['faq', 'list'].forEach((route) => {
+      expect(routes).toContain(`"/${route}": "${route}.html"`);
+    });
+    expect(routes).not.toMatch(/path\.join/);
+  });
 });

@@ -31,10 +31,15 @@ const BUILD_DIR = path.resolve(__dirname, "..", "build");
 const ORIGIN = "http://prerender.luckydraw.local";
 
 // Route -> path of the HTML file to write, relative to BUILD_DIR.
+//
+// Flat `<route>.html` files, never `<route>/index.html`: Netlify serves a
+// directory index only after a 301 to the trailing-slash URL, so `/faq` would
+// redirect to `/faq/` while the page's canonical says `/faq` — a canonical
+// pointing at a redirect. A flat file answers `/faq` with 200 directly.
 const ROUTES = {
   "/": "index.html",
-  "/faq": path.join("faq", "index.html"),
-  "/list": path.join("list", "index.html"),
+  "/faq": "faq.html",
+  "/list": "list.html",
 };
 
 const MIME_TYPES = {
