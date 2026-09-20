@@ -13,6 +13,7 @@ LuckyDraw.me is a single-purpose web tool, online since 2018 and maintained by J
 - **Weighting** is written as `Ada x5` after the name, or done by repeating the name on five lines. Both give five of the slots in the draw, and each name's odds are shown as a percentage before drawing. The shorthand can be switched off for lists whose names legitimately end that way.
 - **Messy pastes are accepted.** Numbered and bulleted lists, a column copied out of Google Sheets or Excel, a single line of comma-separated names, and quoted names are all read correctly. A pasted Instagram or TikTok comment thread can be reduced to one @handle per line, first mention of each, with a single button. Repeated names can optionally be counted once.
 - **Reusable lists without an account.** A list can be saved under a name in the browser and loaded again next time — a class register, a monthly giveaway — or shared as a link that carries the list in its fragment, so it moves between devices and people with no sign-up and no server copy.
+- **Spinning wheel, slot reel, or neither.** The reveal is selectable: a wheel of names, a slot-machine reel, or straight to the result with no animation. Reduced-motion settings are honoured. Unlike other wheel sites, the animation does not choose the winner: the seed fixes the result first and the wheel is rotated backwards to land on that name, so the spin displays a pre-committed outcome that a third party can recompute. Slice widths follow each name's chances; lists over 60 names use the reel, which stays legible.
 - **Requires JavaScript** and a modern browser. Works on desktop and mobile; no app to install.
 - **Not a regulated lottery tool.** It is suitable for giveaways, raffles, classrooms, and events. It makes no claim to meet gaming-regulator requirements for legally binding lotteries.
 
@@ -27,8 +28,9 @@ LuckyDraw.me is a single-purpose web tool, online since 2018 and maintained by J
 
 1. Paste participant names or items into the entries box, one per line. Numbering, bullets, spreadsheet columns and comment threads are tidied up automatically; blank lines and stray spaces are ignored. Repeated names and `x3`-style weights both keep their extra chances.
 2. Set how many winners you need.
-3. Press "Draw a winner". The tool takes a fresh seed, shuffles the list with it, and shows the winners on a stub with the seed, the list fingerprint, and a serial number.
-4. Copy the result and proof, copy a link that rechecks itself, or remove the winners from the list to run another round.
+3. Optionally choose the reveal: a spinning wheel, a slot reel, or straight to the result.
+4. Press "Draw a winner". The tool takes a fresh seed, shuffles the list with it, plays the chosen reveal over the already-decided result, and shows the winners on a stub with the seed, the list fingerprint, and a serial number.
+5. Copy the result and proof, copy a link that rechecks itself, or remove the winners from the list to run another round.
 
 Sharing the seed and serial is stronger proof than a screen recording, because a recording can be made repeatedly until a preferred name appears, whereas a published seed commits to one outcome that anyone can recompute.
 
@@ -40,6 +42,7 @@ Sharing the seed and serial is stronger proof than a screen recording, because a
 - [Is it really free?](https://www.luckydraw.me/faq#is-it-free): Yes — unlimited draws, no registration, no fees. The site is funded by sponsor listings.
 - [Is my participant data stored?](https://www.luckydraw.me/faq#data-privacy): No. All processing is local to the browser; no entries or results reach a server. Saved lists and shared links keep the data on the user's device or inside the URL fragment.
 - [Can I keep a list to use again?](https://www.luckydraw.me/faq#saved-lists): Yes, saved by name in your own browser with no account, or moved between devices as a link.
+- [Is there a spinning wheel or slot machine animation?](https://www.luckydraw.me/faq#spinning-wheel): Yes — wheel, slot reel, or no animation. The winner is fixed by the seed before the wheel moves, so the spin shows a committed result rather than deciding it.
 - [Can it pick more than one winner?](https://www.luckydraw.me/faq#multiple-winners): Yes. Set the number before drawing and they come back in order, with no entry winning twice.
 - [Can one entry get better odds?](https://www.luckydraw.me/faq#weighted-entries): Yes — write `Ada x5` or add the name on five lines, and the odds for every name are shown as a percentage.
 - [Can I use it for Instagram or Facebook giveaways?](https://www.luckydraw.me/faq#instagram-giveaways): Yes. Paste the comment thread in whole, press "Keep only the @handles" to reduce it to one username per line, and draw.

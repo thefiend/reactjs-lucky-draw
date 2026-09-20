@@ -107,6 +107,12 @@ export default function HomePage() {
           right name comes up, and a recording can be made again. This draw hands the
           audience the working, in three steps anyone can repeat.
         </p>
+        <p className="mt-3 max-w-[68ch] text-slate">
+          There is still a wheel, and a slot reel, because a room wants something to
+          watch. The order is what differs: the seed fixes the winner first, and the
+          wheel is then turned backwards to land on that name. The spin shows a result
+          that was already committed, so it has nothing left to decide.
+        </p>
         <ol className="mt-6 grid gap-6 sm:grid-cols-3">
           <li>
             <p className="font-mono text-sm text-slate">Step 1</p>

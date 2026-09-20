@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import DrawMachine from "./DrawMachine";
@@ -7,18 +7,21 @@ import { verifyDraw } from "../lib/draw";
 import { listUrl } from "../lib/lists";
 import { SITE_URL } from "../lib/site";
 
-// The riffle would hold the result back for over a second. Asking for reduced
-// motion is the same code path a visitor with that setting takes, and it skips
-// straight to the stub.
-const reduceMotion = () => {
+// A reveal holds the result back for seconds. Asking for reduced motion is the
+// same code path a visitor with that setting takes, and it skips straight to the
+// stub — so most tests here run that way and the reveals get their own block.
+const setMotion = (reduced) => {
   window.matchMedia = (query) => ({
-    matches: query.includes("prefers-reduced-motion"),
+    matches: reduced && query.includes("prefers-reduced-motion"),
     media: query,
     addEventListener: () => {},
     removeEventListener: () => {},
     dispatchEvent: () => false,
   });
 };
+
+const reduceMotion = () => setMotion(true);
+const allowMotion = () => setMotion(false);
 
 const type = async (user, names) => {
   await user.type(screen.getByLabelText("Your entries"), names.join("\n"));
@@ -129,6 +132,96 @@ describe("a shared list link", () => {
 
     expect(screen.getByText("No entries yet")).toBeInTheDocument();
     expect(screen.queryByText(/Filled in from the link/)).not.toBeInTheDocument();
+  });
+});
+
+describe("the reveal", () => {
+  // The reveal is a reading of a result that already exists: the draw has
+  // committed to a winner before the reel or the wheel moves. These tests check
+  // that the stage plays and then hands over the same stub as a quick draw.
+  beforeEach(() => {
+    allowMotion();
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
+  const setup = () => userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+
+  const finish = () => act(() => jest.advanceTimersByTime(5000));
+
+  it("runs the reel and then shows the stub it was holding", async () => {
+    const user = setup();
+    render(<DrawMachine />);
+    await type(user, NAMES);
+
+    await user.click(screen.getByRole("button", { name: "Draw a winner" }));
+
+    const reel = await screen.findByTestId("reel");
+    expect(reel).toBeInTheDocument();
+    expect(screen.getByText("Drawing")).toBeInTheDocument();
+    // The reel is built to land on the name the draw already committed to, so its
+    // last row is the name the stub goes on to show.
+    const rows = reel.querySelectorAll("[data-testid='reel'] > div > div");
+    const landed = rows[rows.length - 1].textContent;
+    expect(NAMES).toContain(landed);
+
+    finish();
+
+    expect(screen.getByRole("list").textContent).toBe(landed);
+    expect(screen.queryByTestId("reel")).not.toBeInTheDocument();
+  });
+
+  it("runs the wheel instead when the wheel is picked", async () => {
+    const user = setup();
+    render(<DrawMachine />);
+    await type(user, NAMES);
+
+    await user.click(screen.getByLabelText("Wheel"));
+    await user.click(screen.getByRole("button", { name: "Draw a winner" }));
+
+    const wheel = await screen.findByTestId("wheel");
+    // One slice per name, sized by its chances.
+    expect(wheel.querySelectorAll("path")).toHaveLength(NAMES.length);
+    expect(screen.queryByTestId("reel")).not.toBeInTheDocument();
+
+    finish();
+    expect(NAMES).toContain(screen.getByRole("list").textContent);
+  });
+
+  it("goes straight to the stub when that is what was asked for", async () => {
+    const user = setup();
+    render(<DrawMachine />);
+    await type(user, NAMES);
+
+    await user.click(screen.getByLabelText("Straight to the stub"));
+    await user.click(screen.getByRole("button", { name: "Draw a winner" }));
+
+    await waitFor(() => expect(screen.getByRole("list")).toBeInTheDocument());
+    expect(screen.queryByTestId("reel")).not.toBeInTheDocument();
+  });
+
+  it("says so when a list is too long to read on a wheel, and uses the reel", async () => {
+    const user = setup();
+    render(<DrawMachine />);
+
+    await user.click(screen.getByLabelText("Your entries"));
+    await user.paste(
+      Array.from({ length: 61 }, (_, index) => `Entrant ${index + 1}`).join("\n")
+    );
+    await user.click(screen.getByLabelText("Wheel"));
+
+    expect(
+      screen.getByText(/61 names is too many to read on a wheel/)
+    ).toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "Draw a winner" }));
+
+    expect(await screen.findByTestId("reel")).toBeInTheDocument();
+    finish();
+    expect(screen.getByRole("list").textContent).toMatch(/^Entrant \d+$/);
   });
 });
 

@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
+import Reel from "./Reel";
 import SavedLists from "./SavedLists";
 import TicketStub from "./TicketStub";
+import Wheel, { MAX_SLICES } from "./Wheel";
 import { certificateUrl } from "../lib/certificate";
 import { decodeListLink } from "../lib/lists";
 import { runDraw } from "../lib/draw";
@@ -17,8 +19,14 @@ import {
   removeNames,
 } from "../lib/entries";
 
-const RIFFLE_MS = 90;
-const RIFFLE_DURATION = 1150;
+// Which reveal the stage runs. Whichever is picked, the winner is already fixed
+// by the seed before anything moves: these are readings of a committed result,
+// not the thing that chooses it.
+const REVEALS = [
+  { id: "reel", label: "Reel" },
+  { id: "wheel", label: "Wheel" },
+  { id: "quick", label: "Straight to the stub" },
+];
 
 // The placeholder doubles as the only documentation anyone reads: the weight on
 // the second line is how people find out the syntax exists.
@@ -42,7 +50,9 @@ export default function DrawMachine() {
   const [result, setResult] = useState(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [error, setError] = useState(null);
-  const [riffleIndex, setRiffleIndex] = useState(0);
+  // A result that has been drawn and is waiting for its reveal to finish playing.
+  const [pending, setPending] = useState(null);
+  const [reveal, setReveal] = useState("reel");
   const [animate, setAnimate] = useState(true);
   const [copied, setCopied] = useState(null);
   const [weights, setWeights] = useState(true);
@@ -77,16 +87,10 @@ export default function DrawMachine() {
     Math.max(entries.length, 1)
   );
 
-  // Riffle the real list past the stage while the draw resolves. This is
-  // decoration over a result that is already decided by the seed — it never
-  // touches which name comes out.
-  useEffect(() => {
-    if (!isDrawing || entries.length === 0) return undefined;
-    const timer = window.setInterval(() => {
-      setRiffleIndex((index) => (index + 1) % entries.length);
-    }, RIFFLE_MS);
-    return () => window.clearInterval(timer);
-  }, [isDrawing, entries.length]);
+  // A wheel of a hundred names is a barcode, so a list that big gets the reel
+  // whatever is selected, and the pad says so rather than silently substituting.
+  const tooManyForWheel = reveal === "wheel" && list.names.length > MAX_SLICES;
+  const playing = tooManyForWheel ? "reel" : reveal;
 
   const handleDraw = useCallback(
     async (event) => {
@@ -101,23 +105,32 @@ export default function DrawMachine() {
       setError(null);
       setCopied(null);
       setResult(null);
+      setPending(null);
       setIsDrawing(true);
 
-      const drawing = runDraw({ entries, count: picks });
-      if (withMotion) {
-        await new Promise((resolve) => window.setTimeout(resolve, RIFFLE_DURATION));
-      }
-
       try {
-        setResult(await drawing);
+        const drawn = await runDraw({ entries, count: picks });
+        // The reveal plays over a result that already exists. Anyone who asked for
+        // less motion, or for no reveal at all, goes straight to the stub.
+        if (withMotion && playing !== "quick") {
+          setPending(drawn);
+        } else {
+          setResult(drawn);
+          setIsDrawing(false);
+        }
       } catch (cause) {
         setError(cause.message);
-      } finally {
         setIsDrawing(false);
       }
     },
-    [entries, picks]
+    [entries, picks, playing]
   );
+
+  const finishReveal = useCallback(() => {
+    setResult(pending);
+    setPending(null);
+    setIsDrawing(false);
+  }, [pending]);
 
   const removeWinners = useCallback(() => {
     if (!result) return;
@@ -308,6 +321,31 @@ export default function DrawMachine() {
       </div>
 
       <div className={result ? "order-1 lg:order-2" : ""}>
+        <fieldset className="mb-4">
+          <legend className="text-sm text-slate">Reveal</legend>
+          <div className="mt-1 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+            {REVEALS.map((option) => (
+              <label key={option.id} className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="reveal"
+                  value={option.id}
+                  checked={reveal === option.id}
+                  onChange={() => setReveal(option.id)}
+                  className="accent-marigold"
+                />
+                {option.label}
+              </label>
+            ))}
+          </div>
+          {tooManyForWheel && (
+            <p className="mt-2 text-sm text-slate">
+              {list.names.length} names is too many to read on a wheel, so this draw
+              will use the reel.
+            </p>
+          )}
+        </fieldset>
+
         <div
           ref={stageRef}
           aria-live="polite"
@@ -316,20 +354,30 @@ export default function DrawMachine() {
         >
           {result ? (
             <TicketStub result={result} animate={animate} />
+          ) : pending ? (
+            <>
+              {playing === "wheel" ? (
+                <Wheel
+                  segments={list.names}
+                  winner={pending.winners[0].name}
+                  onDone={finishReveal}
+                />
+              ) : (
+                <Reel
+                  entries={entries}
+                  winner={pending.winners[0].name}
+                  onDone={finishReveal}
+                />
+              )}
+              <p className="sr-only">Drawing</p>
+            </>
           ) : (
             <div className="paper flex min-h-56 items-center justify-center p-6 text-center">
-              {isDrawing ? (
-                <span
-                  key={riffleIndex}
-                  className="animate-riffle font-display text-xl"
-                >
-                  {entries[riffleIndex]}
-                </span>
-              ) : (
-                <p className="max-w-[24ch] text-sm text-slate">
-                  The winner appears here on a stub, with the seed it was drawn from.
-                </p>
-              )}
+              <p className="max-w-[24ch] text-sm text-slate">
+                {isDrawing
+                  ? "Drawing…"
+                  : "The winner appears here on a stub, with the seed it was drawn from."}
+              </p>
             </div>
           )}
         </div>

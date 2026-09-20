@@ -112,18 +112,9 @@
   }
 }
 
-/* The draw moment: names riffle past, then the stub drops and the stamp lands. */
-@keyframes riffle {
-  from {
-    transform: translateY(0.35em);
-    opacity: 0.25;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
+/* The draw moment: the stub drops and the stamp lands. The reel and the wheel
+   animate their own transforms inline, because both need a distance computed
+   from the result. */
 @keyframes tear-off {
   from {
     transform: translateY(-1.25rem) rotate(-1.2deg);
@@ -150,10 +141,6 @@
   }
 }
 
-.animate-riffle {
-  animation: riffle 90ms ease-out;
-}
-
 .animate-tear-off {
   animation: tear-off 340ms cubic-bezier(0.2, 0.9, 0.3, 1) both;
 }
@@ -163,7 +150,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-riffle,
   .animate-tear-off,
   .animate-stamp-down {
     animation: none;
