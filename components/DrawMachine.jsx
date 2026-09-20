@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
+import SavedLists from "./SavedLists";
 import TicketStub from "./TicketStub";
 import { certificateUrl } from "../lib/certificate";
+import { decodeListLink } from "../lib/lists";
 import { runDraw } from "../lib/draw";
 import {
   MAX_ENTRIES,
@@ -45,7 +47,25 @@ export default function DrawMachine() {
   const [copied, setCopied] = useState(null);
   const [weights, setWeights] = useState(true);
   const [dedupe, setDedupe] = useState(false);
+  const [sharedName, setSharedName] = useState("");
+  const [fromLink, setFromLink] = useState(false);
   const stageRef = useRef(null);
+  const openedLink = useRef(false);
+
+  // Someone may arrive on a link that carries a list in its fragment. Filling
+  // the pad from it is the whole point of that link; nothing was sent to a server
+  // to make it happen.
+  useEffect(() => {
+    if (openedLink.current) return;
+    openedLink.current = true;
+
+    const shared = decodeListLink(window.location.hash);
+    if (!shared) return;
+
+    setText(shared.text);
+    setSharedName(shared.name);
+    setFromLink(true);
+  }, []);
 
   const list = useMemo(() => parseEntries(text, { weights, dedupe }), [dedupe, text, weights]);
   const entries = list.entries;
@@ -145,6 +165,13 @@ export default function DrawMachine() {
           follows the task, but first on a phone once there is a result to show
           the room. */}
       <div className={result ? "order-2 lg:order-1" : ""}>
+        {fromLink && (
+          <p className="mb-3 border-l-2 border-marigold pl-3 text-sm text-slate">
+            Filled in from the link you opened{sharedName ? `: ${sharedName}` : ""}. Save
+            it below to keep it on this device.
+          </p>
+        )}
+
         <label htmlFor="entries" className="font-display text-xl">
           Your entries
         </label>
@@ -268,6 +295,16 @@ export default function DrawMachine() {
             {error}
           </p>
         )}
+
+        <SavedLists
+          text={text}
+          suggestedName={sharedName}
+          onLoad={(saved) => {
+            setText(saved);
+            setResult(null);
+            setError(null);
+          }}
+        />
       </div>
 
       <div className={result ? "order-1 lg:order-2" : ""}>

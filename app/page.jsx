@@ -184,9 +184,11 @@ export default function HomePage() {
             how many draws you run, and no limit on how long your list is.
           </p>
           <p>
-            The draw happens in your browser. Your list is never uploaded, never logged,
-            and is gone when you close the tab — so it is safe to paste customer emails,
-            employee names, or entrant handles into it.
+            The draw happens in your browser. Your list is never uploaded and never
+            logged, so it is safe to paste customer emails, employee names, or entrant
+            handles into it. By default the list goes when you close the tab; if you want
+            it next time, saving keeps it in your own browser on that device and a Forget
+            button removes it again.
           </p>
           <p>
             Where it differs from a random picker wheel is the record it leaves behind.

@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 import DrawMachine from "./DrawMachine";
 import { decodeCertificate } from "../lib/certificate";
 import { verifyDraw } from "../lib/draw";
+import { listUrl } from "../lib/lists";
 import { SITE_URL } from "../lib/site";
 
 // The riffle would hold the result back for over a second. Asking for reduced
@@ -105,6 +106,29 @@ describe("the list people actually paste", () => {
     const lines = screen.getByLabelText("Your entries").value.split("\n");
     expect(lines).toHaveLength(2);
     lines.forEach((line) => expect(line).toMatch(/ x2$/));
+  });
+});
+
+describe("a shared list link", () => {
+  afterEach(() => {
+    window.location.hash = "";
+  });
+
+  it("fills the pad from the fragment and says where it came from", async () => {
+    window.location.hash = listUrl("Form 4B", NAMES.join("\n")).split("#")[1];
+    render(<DrawMachine />);
+
+    expect(await screen.findByLabelText("Your entries")).toHaveValue(NAMES.join("\n"));
+    expect(screen.getByText(/Filled in from the link you opened: Form 4B/)).toBeInTheDocument();
+    expect(screen.getByLabelText("Name for this list")).toHaveValue("Form 4B");
+  });
+
+  it("stays quiet about an ordinary anchor", async () => {
+    window.location.hash = "draw";
+    render(<DrawMachine />);
+
+    expect(screen.getByText("No entries yet")).toBeInTheDocument();
+    expect(screen.queryByText(/Filled in from the link/)).not.toBeInTheDocument();
   });
 });
 
