@@ -2,6 +2,9 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import DrawMachine from "./DrawMachine";
+import { decodeCertificate } from "../lib/certificate";
+import { verifyDraw } from "../lib/draw";
+import { SITE_URL } from "../lib/site";
 
 // The riffle would hold the result back for over a second. Asking for reduced
 // motion is the same code path a visitor with that setting takes, and it skips
@@ -109,4 +112,29 @@ it("copies the winner together with the values needed to recheck the draw", asyn
   expect(copied).toMatch(/^Seed: [0-9a-f]{32}$/m);
   expect(copied).toMatch(/^List SHA-256: [0-9a-f]{64}$/m);
   expect(await screen.findByRole("button", { name: "Copied" })).toBeInTheDocument();
+});
+
+it("copies a link that carries the whole draw, so the other side can recheck it", async () => {
+  const writeText = jest.fn().mockResolvedValue();
+  const user = userEvent.setup();
+  Object.defineProperty(navigator, "clipboard", {
+    value: { writeText },
+    configurable: true,
+  });
+
+  render(<DrawMachine />);
+  await type(user, NAMES);
+  await user.click(screen.getByRole("button", { name: "Draw a winner" }));
+  await screen.findByRole("list");
+  await user.click(screen.getByRole("button", { name: "Copy a link that checks itself" }));
+
+  const link = writeText.mock.calls[0][0];
+  expect(link.startsWith(`${SITE_URL}/verify#`)).toBe(true);
+
+  // The recipient's side of the bargain: the link alone is enough to recompute
+  // the draw and disagree with it.
+  const certificate = decodeCertificate(link);
+  expect(certificate.entries).toEqual(NAMES);
+  expect(await verifyDraw(certificate)).toBe(true);
+  expect(await screen.findByRole("button", { name: "Link copied" })).toBeInTheDocument();
 });

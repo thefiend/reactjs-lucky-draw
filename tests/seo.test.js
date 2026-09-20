@@ -6,8 +6,9 @@ import sitemap from "../app/sitemap";
 import { metadata as faqMeta } from "../app/faq/page";
 import { metadata as homeMeta } from "../app/page";
 import { metadata as listMeta } from "../app/list/page";
+import { metadata as verifyMeta } from "../app/verify/page";
 import { FAQS } from "../lib/faq";
-import { faqSchema, softwareApplicationSchema } from "../lib/schema";
+import { faqSchema, softwareApplicationSchema, verifyHowToSchema } from "../lib/schema";
 import { ROUTES, SITE_URL } from "../lib/site";
 
 const ROOT = path.resolve(__dirname, "..");
@@ -33,7 +34,10 @@ const FILES_WITH_SITE_URLS = [
   "app/page.jsx",
   "app/faq/page.jsx",
   "app/list/page.jsx",
+  "app/verify/page.jsx",
   "components/DrawMachine.jsx",
+  "components/Verifier.jsx",
+  "lib/certificate.js",
   "netlify.toml",
   "public/llms.txt",
 ];
@@ -53,6 +57,7 @@ describe("canonical host", () => {
 describe("canonicals", () => {
   const pages = [
     ["/", homeMeta],
+    ["/verify", verifyMeta],
     ["/faq", faqMeta],
     ["/list", listMeta],
   ];
@@ -95,14 +100,20 @@ describe("static export shape", () => {
 
   afterBuild("the built export", () => {
     it("writes one flat file per route, plus the metadata files", () => {
-      ["index.html", "faq.html", "list.html", "404.html", "sitemap.xml", "robots.txt"].forEach(
-        (file) => expect(fs.existsSync(path.join(ROOT, "out", file))).toBe(true)
-      );
+      [
+        "index.html",
+        "verify.html",
+        "faq.html",
+        "list.html",
+        "404.html",
+        "sitemap.xml",
+        "robots.txt",
+      ].forEach((file) => expect(fs.existsSync(path.join(ROOT, "out", file))).toBe(true));
     });
 
     // A directory index next to faq.html is what makes a host 301 /faq to /faq/.
     it("leaves no directory index that would redirect a canonical URL", () => {
-      ["faq", "list"].forEach((route) =>
+      ["verify", "faq", "list"].forEach((route) =>
         expect(fs.existsSync(path.join(ROOT, "out", route, "index.html"))).toBe(false)
       );
     });
@@ -110,6 +121,7 @@ describe("static export shape", () => {
     it("declares each page its own canonical in the shipped HTML", () => {
       [
         ["index.html", SITE_URL],
+        ["verify.html", `${SITE_URL}/verify`],
         ["faq.html", `${SITE_URL}/faq`],
         ["list.html", `${SITE_URL}/list`],
       ].forEach(([file, canonical]) => {
@@ -169,6 +181,18 @@ describe("structured data", () => {
       answer: entity.acceptedAnswer.text,
     }));
     expect(marked).toEqual(FAQS.map(({ question, answer }) => ({ question, answer })));
+  });
+
+  it("describes verification as numbered steps on the canonical host", () => {
+    const howTo = verifyHowToSchema();
+
+    expect(howTo["@type"]).toBe("HowTo");
+    expect(howTo.step.map((step) => step.position)).toEqual([1, 2, 3, 4]);
+    howTo.step.forEach((step) => {
+      expect(step["@type"]).toBe("HowToStep");
+      expect(step.url.startsWith(SITE_URL)).toBe(true);
+      expect(step.text.length).toBeGreaterThan(40);
+    });
   });
 
   // The old markup claimed 5/5 from 689,840 ratings with no review system behind

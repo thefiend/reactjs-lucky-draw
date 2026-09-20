@@ -40,47 +40,22 @@ export default function FaqPage() {
         <FaqList items={FAQS} />
       </div>
 
-      <section
-        aria-labelledby="verify-method"
-        className="paper mt-12 scroll-mt-24 p-6"
-        id="verify-method"
-      >
-        <h2 id="verify-method-heading" className="text-xl">
-          The method, in full
+      {/* The step-by-step method lives on /verify, next to the tool that carries
+          it out. Repeating it here would put the same content on two indexable
+          URLs and split the links pointing at it. */}
+      <section aria-labelledby="check-a-draw" className="paper mt-12 p-6">
+        <h2 id="check-a-draw" className="text-xl">
+          Rather check a draw than read about one?
         </h2>
-        <p className="mt-3 text-slate">
-          If you want to reproduce a draw yourself rather than take the result on trust:
+        <p className="mt-3 max-w-[60ch] text-slate">
+          Paste the entry list, the seed and the announced winners into the verifier, and
+          it recomputes the draw in your browser. The full method is written out below
+          it, step by step, if you would rather reproduce it in your own code.
         </p>
-        <ol className="mt-4 list-decimal space-y-2 ps-6 text-slate">
-          <li>
-            Take the entry list exactly as it was drawn: each line trimmed, blank lines
-            dropped, order preserved.
-          </li>
-          <li>
-            Confirm the list is the right one by joining those lines with a newline and
-            checking that its SHA-256 matches the list hash on the stub.
-          </li>
-          <li>
-            Generate the keystream as <code className="font-mono">SHA-256("seed:0")</code>
-            , <code className="font-mono">SHA-256("seed:1")</code>, and so on, reading it
-            as big-endian 32-bit integers.
-          </li>
-          <li>
-            Run a partial Fisher-Yates shuffle: for position <em>i</em> starting at 0,
-            take the next integer, reject any value at or above the largest exact
-            multiple of the remaining count (so the pick stays uniform), reduce it modulo
-            the remaining count, and swap that entry into position <em>i</em>.
-          </li>
-          <li>
-            The first N entries are the winners, in order. The serial number is the first
-            eight hex characters of{" "}
-            <code className="font-mono">SHA-256("seed/listHash")</code>, uppercased.
-          </li>
-        </ol>
-        <p className="mt-4 text-sm text-slate">
-          The implementation is <code className="font-mono">lib/draw.js</code> in this
-          site's source, and a copy runs in your browser — nothing about the draw happens
-          anywhere you cannot inspect.
+        <p className="mt-4">
+          <Link href="/verify" className="underline">
+            Verify a draw
+          </Link>
         </p>
       </section>
 

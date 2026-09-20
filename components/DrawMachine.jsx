@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import TicketStub from "./TicketStub";
+import { certificateUrl } from "../lib/certificate";
 import { normaliseEntries, runDraw } from "../lib/draw";
-import { SITE_URL } from "../lib/site";
 
 const RIFFLE_MS = 90;
 const RIFFLE_DURATION = 1150;
@@ -27,7 +27,7 @@ export default function DrawMachine() {
   const [error, setError] = useState(null);
   const [riffleIndex, setRiffleIndex] = useState(0);
   const [animate, setAnimate] = useState(true);
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState(null);
   const stageRef = useRef(null);
 
   const entries = useMemo(() => normaliseEntries(text), [text]);
@@ -58,7 +58,7 @@ export default function DrawMachine() {
       const withMotion = !prefersReducedMotion();
       setAnimate(withMotion);
       setError(null);
-      setCopied(false);
+      setCopied(null);
       setResult(null);
       setIsDrawing(true);
 
@@ -95,11 +95,20 @@ export default function DrawMachine() {
       `Entries: ${result.entryCount}`,
       `Seed: ${result.seed}`,
       `List SHA-256: ${result.listHash}`,
-      `Anyone can recompute this draw: ${SITE_URL}/faq#is-it-fair`,
+      `Check this draw: ${certificateUrl(result, entries)}`,
     ];
     await navigator.clipboard.writeText(lines.join("\n"));
-    setCopied(true);
-  }, [result]);
+    setCopied("result");
+  }, [entries, result]);
+
+  // The link carries the whole draw in its fragment, so whoever opens it can
+  // recheck the result without us storing anything. It does carry the entry list,
+  // which is the point and also worth saying out loud.
+  const copyLink = useCallback(async () => {
+    if (!result) return;
+    await navigator.clipboard.writeText(certificateUrl(result, entries));
+    setCopied("link");
+  }, [entries, result]);
 
   return (
     <form onSubmit={handleDraw} className="grid gap-8 lg:grid-cols-[1fr_22rem]">
@@ -203,7 +212,14 @@ export default function DrawMachine() {
               onClick={copyResult}
               className="border border-rule px-3 py-1.5 hover:border-marigold"
             >
-              {copied ? "Copied" : "Copy result and proof"}
+              {copied === "result" ? "Copied" : "Copy result and proof"}
+            </button>
+            <button
+              type="button"
+              onClick={copyLink}
+              className="border border-rule px-3 py-1.5 hover:border-marigold"
+            >
+              {copied === "link" ? "Link copied" : "Copy a link that checks itself"}
             </button>
             {entries.length > result.winners.length && (
               <button
@@ -214,7 +230,7 @@ export default function DrawMachine() {
                 Remove winners from the list
               </button>
             )}
-            <Link href="/faq#is-it-fair" className="self-center underline">
+            <Link href="/verify" className="self-center underline">
               How to check this draw
             </Link>
           </div>

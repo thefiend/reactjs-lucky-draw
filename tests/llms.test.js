@@ -73,6 +73,7 @@ describe("llms.txt links resolve", () => {
   it("only deep-links to anchors the pages actually render", () => {
     const pages = {
       "/": read("app/page.jsx"),
+      "/verify": read("app/verify/page.jsx"),
       "/faq": read("app/faq/page.jsx") + read("components/FaqList.jsx") + read("lib/faq.js"),
       "/list": read("app/list/page.jsx"),
     };

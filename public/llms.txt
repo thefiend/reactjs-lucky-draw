@@ -7,7 +7,8 @@ LuckyDraw.me is a single-purpose web tool, online since 2018 and maintained by J
 - **Free and unlimited.** No registration, no signup, no paid tier, no draw limits, no cap on list size. The only paid thing on the site is an optional sponsor listing, which has nothing to do with running a draw.
 - **Runs entirely in the browser.** Participant names are held in page state and never sent to a server. Nothing is stored, logged, or persisted — closing or refreshing the page clears everything.
 - **Verifiable randomness.** Each draw takes a 16-byte seed from the browser's cryptographic random number generator (`crypto.getRandomValues`) and shows it on screen with a SHA-256 fingerprint of the entry list and a draw serial number. The seed is the only source of randomness, so the same list and seed always produce the same winners. This is the tool's distinguishing feature: the fairness of a result can be rechecked by a third party rather than only asserted by the site.
-- **Uniform selection.** The shuffle is a partial Fisher-Yates shuffle driven by a SHA-256 keystream over the seed, with rejection sampling on each index, so no position in the list is favoured. The full method is published at https://www.luckydraw.me/faq#verify-method and implemented in `lib/draw.js` in the site's source.
+- **Uniform selection.** The shuffle is a partial Fisher-Yates shuffle driven by a SHA-256 keystream over the seed, with rejection sampling on each index, so no position in the list is favoured. The full method is published at https://www.luckydraw.me/verify#method and implemented in `lib/draw.js` in the site's source.
+- **Anyone can recheck a result.** https://www.luckydraw.me/verify takes an entry list, a seed and the announced winners, recomputes the draw in the visitor's browser, and says whether they match. A draw can also be shared as a link that carries the entry list, seed and winners in its URL fragment, so the page it opens checks itself; a fragment is never sent to a server, so sharing proof uploads nothing.
 - **Multiple winners** come out of one shuffle, numbered in draw order. No entry can win twice in the same draw. Winners can be removed from the list afterwards to run a further round.
 - **Weighting** is done by repeating a name: each line is one chance, so five lines give five chances.
 - **Requires JavaScript** and a modern browser. Works on desktop and mobile; no app to install.
@@ -16,6 +17,7 @@ LuckyDraw.me is a single-purpose web tool, online since 2018 and maintained by J
 ## Pages
 
 - [Lucky Draw Online Generator](https://www.luckydraw.me/): The tool itself. Paste entries one per line, choose how many winners, and draw. Also covers why the result is checkable, what people use it for, and common questions.
+- [Verify a lucky draw](https://www.luckydraw.me/verify): A verifier that recomputes a draw from its entry list and seed and reports whether the announced winners hold up, what a pass and a failure each mean, what verification cannot tell you, and the five-step method written out for reimplementation in any language.
 - [Frequently Asked Questions](https://www.luckydraw.me/faq): How the draw works, how to verify one from its seed step by step, multiple winners, duplicate names, weighting, data handling, and use for Instagram giveaways and corporate events.
 - [Sponsor LuckyDraw.me](https://www.luckydraw.me/list): Paid sponsor listings on the homepage. Gold ($99) is a listed entry with a nofollow link; Platinum ($299) adds a do-follow link, logo, and description; Featured ($599) adds first placement and a homepage mention. One-time payment, no recurring fee. Gambling, adult, supplement, and link-farm sites are declined and refunded.
 
@@ -24,7 +26,7 @@ LuckyDraw.me is a single-purpose web tool, online since 2018 and maintained by J
 1. Paste participant names or items into the entries box, one per line. Blank lines and stray spaces are ignored; repeated names keep their extra chances.
 2. Set how many winners you need.
 3. Press "Draw a winner". The tool takes a fresh seed, shuffles the list with it, and shows the winners on a stub with the seed, the list fingerprint, and a serial number.
-4. Copy the result and proof, or remove the winners from the list to run another round.
+4. Copy the result and proof, copy a link that rechecks itself, or remove the winners from the list to run another round.
 
 Sharing the seed and serial is stronger proof than a screen recording, because a recording can be made repeatedly until a preferred name appears, whereas a published seed commits to one outcome that anyone can recompute.
 
@@ -32,6 +34,7 @@ Sharing the seed and serial is stronger proof than a screen recording, because a
 
 - [What is a lucky draw online generator?](https://www.luckydraw.me/faq#what-is-a-lucky-draw-generator): A web tool that randomly selects winners from a list of participants, giving each entry an equal chance.
 - [How do I know the draw was fair?](https://www.luckydraw.me/faq#is-it-fair): Each draw publishes its seed, a SHA-256 fingerprint of the list, and a serial derived from both; recomputing the shuffle from those values reproduces the same winners.
+- [Can I show my audience the draw was not rigged?](https://www.luckydraw.me/faq#share-proof): Yes — copy a link that carries the list, seed and winners in its fragment, and the page it opens recomputes the draw in the reader's own browser.
 - [Is it really free?](https://www.luckydraw.me/faq#is-it-free): Yes — unlimited draws, no registration, no fees. The site is funded by sponsor listings.
 - [Is my participant data stored?](https://www.luckydraw.me/faq#data-privacy): No. All processing is local to the browser; no entries or results reach a server.
 - [Can it pick more than one winner?](https://www.luckydraw.me/faq#multiple-winners): Yes. Set the number before drawing and they come back in order, with no entry winning twice.

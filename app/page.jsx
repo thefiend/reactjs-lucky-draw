@@ -112,8 +112,8 @@ export default function HomePage() {
             <p className="mt-1 text-sm text-slate">
               The shuffle is a plain Fisher-Yates draw driven by SHA-256 of the seed.
               Same list and same seed, same winners, every time —{" "}
-              <Link href="/faq#is-it-fair" className="underline">
-                here is the method
+              <Link href="/verify" className="underline">
+                check a draw yourself
               </Link>
               .
             </p>
