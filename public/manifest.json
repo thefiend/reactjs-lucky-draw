@@ -1,7 +1,7 @@
 {
   "short_name": "LuckyDraw.me",
-  "name": "Lucky Draw Online - Free Random Picker & Winner Selector",
-  "description": "Free online lucky draw tool and random picker for instant winner selection. Best random name picker, raffle generator, and contest draw tool.",
+  "name": "Lucky Draw Online Generator — Free Random Winner Picker",
+  "description": "Free lucky draw generator and random name picker. Paste your names, draw winners, and keep the seed so anyone can check the draw was fair.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -9,10 +9,10 @@
       "type": "image/x-icon"
     }
   ],
-  "start_url": "/?utm_source=pwa",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#198BCA",
-  "background_color": "#ffffff",
+  "theme_color": "#e9a425",
+  "background_color": "#fcfaf4",
   "categories": ["utilities", "productivity", "business"],
   "orientation": "any",
   "scope": "/",

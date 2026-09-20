@@ -1,16 +1,14 @@
 [build]
   command = "npm ci && npm run build"
-  publish = "build"
+  # `next build` with output: 'export' writes static files here.
+  publish = "out"
 
 [build.environment]
-  # Puppeteer (used by scripts/prerender.js) requires Node >= 22.12.
   NODE_VERSION = "22.12.0"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = false
+# No SPA catch-all. The export writes a real file per route (index.html,
+# faq.html, list.html, 404.html), so Netlify answers /faq with 200 directly and
+# unknown URLs get a genuine 404 instead of a soft 404 serving the home page.
 
 # The apex domain -> www 301 is handled by Netlify's primary-domain setting
 # (www.luckydraw.me). Do not add a www -> apex rule here: it would fight the

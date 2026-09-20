@@ -7,72 +7,27 @@
     "npm": ">=8.0.0"
   },
   "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-dom-confetti": "^0.2.0",
-    "react-helmet": "^6.1.0",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "^5.0.1",
-    "react-text-loop": "^2.3.0",
-    "tabler-react": "^1.30.1"
+    "next": "^16.3.5",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && npm run prerender",
-    "prerender": "node scripts/prerender.js",
-    "test": "react-scripts test",
-    "test:ci": "react-scripts test --ci --coverage --watchAll=false --maxWorkers=2",
-    "test:coverage": "react-scripts test --coverage --watchAll=false",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}",
-      "!src/index.js",
-      "!src/serviceWorker.js",
-      "!src/**/*.test.{js,jsx}",
-      "!src/**/*.spec.{js,jsx}"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 70,
-        "functions": 70,
-        "lines": 70,
-        "statements": 70
-      }
-    }
-  },
-  "comments": {
-    "overrides": "react-scripts 5.0.1 is the last release (2022) and pins vulnerable transitive versions that no dependency upgrade can reach — npm audit's `react-scripts@0.0.0` hint is a dead end. These force patched versions instead. Drop this block when the build moves off CRA. webpack-dev-server is deliberately NOT overridden: v5+ dropped the middleware hooks CRA's dev server config uses, so `npm start` would break. It is dev-server-only and never runs in CI or on Netlify. Its advisory is inherited from uuid, which IS overridden — sockjs calls `require('uuid').v4()` with no arguments, and the advisory covers the `buf` argument it never passes."
-  },
-  "overrides": {
-    "nth-check": "^2.1.1",
-    "postcss": "^8.5.28",
-    "serialize-javascript": "^7.1.1",
-    "@svgr/webpack": "^8.1.0",
-    "@tootallnate/once": "^2.0.1",
-    "uuid": "^11.1.1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest --watch",
+    "test:ci": "jest --ci --coverage",
+    "test:coverage": "jest --coverage"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^12.1.5",
-    "@testing-library/user-event": "^14.6.1",
-    "puppeteer": "^25.11.0"
+    "@tailwindcss/postcss": "^4.3.3",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
+    "jest": "^30.5.2",
+    "jest-environment-jsdom": "^30.5.2",
+    "tailwindcss": "^4.3.3"
   }
 }

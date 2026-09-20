@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+/*
+ * Tokens from docs/design/design-system.md. The raw values live on :root as
+ * plain custom properties so the theme can be flipped at runtime; @theme aliases
+ * point at them, so `bg-paper` follows the active theme rather than baking in
+ * the light value at build time.
+ */
+:root {
+  --ink: #141b34;
+  --paper: #fcfaf4;
+  --stock: #f3eee0;
+  --marigold: #e9a425;
+  --stamp: #c7304a;
+  --mint: #1f9b80;
+  --slate: #5d657f;
+  --rule: color-mix(in srgb, var(--slate) 40%, transparent);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #e8eaf2;
+    --paper: #141b34;
+    --stock: #1d2647;
+    --marigold: #f2b546;
+    --stamp: #e8596f;
+    --mint: #3ecaa8;
+    --slate: #9aa3bf;
+  }
+}
+
+[data-theme="dark"] {
+  --ink: #e8eaf2;
+  --paper: #141b34;
+  --stock: #1d2647;
+  --marigold: #f2b546;
+  --stamp: #e8596f;
+  --mint: #3ecaa8;
+  --slate: #9aa3bf;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-stock: var(--stock);
+  --color-marigold: var(--marigold);
+  --color-stamp: var(--stamp);
+  --color-mint: var(--mint);
+  --color-slate: var(--slate);
+  --color-rule: var(--rule);
+
+  --font-display: var(--font-bricolage), "Bricolage Grotesque", system-ui, sans-serif;
+  --font-sans: var(--font-public-sans), "Public Sans", system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
+
+  /* 1.25 scale, display sizes fluid */
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5625rem;
+  --text-2xl: clamp(1.75rem, 1.4rem + 1.6vw, 1.953rem);
+  --text-3xl: clamp(2rem, 1.5rem + 2.4vw, 2.441rem);
+  --text-4xl: clamp(2.35rem, 1.6rem + 3.4vw, 3.052rem);
+
+  --radius-paper: 2px;
+}
+
+@layer base {
+  html {
+    color-scheme: light dark;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  /* Ticket stock: paper shows its edge as a rule, never a soft grey shadow. */
+  .paper {
+    background-color: var(--stock);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-paper);
+  }
+
+  /* A real perforation, dotted through the middle of a ticket. */
+  .perforation {
+    border-top: 2px dotted var(--rule);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--marigold);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--marigold) 35%, transparent);
+  }
+}
+
+/* The draw moment: names riffle past, then the stub drops and the stamp lands. */
+@keyframes riffle {
+  from {
+    transform: translateY(0.35em);
+    opacity: 0.25;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes tear-off {
+  from {
+    transform: translateY(-1.25rem) rotate(-1.2deg);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) rotate(0);
+    opacity: 1;
+  }
+}
+
+@keyframes stamp-down {
+  from {
+    transform: scale(1.9) rotate(-14deg);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(0.96) rotate(-7deg);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1) rotate(-8deg);
+    opacity: 1;
+  }
+}
+
+.animate-riffle {
+  animation: riffle 90ms ease-out;
+}
+
+.animate-tear-off {
+  animation: tear-off 340ms cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
+.animate-stamp-down {
+  animation: stamp-down 380ms cubic-bezier(0.3, 1.5, 0.5, 1) 120ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-riffle,
+  .animate-tear-off,
+  .animate-stamp-down {
+    animation: none;
+  }
+}
