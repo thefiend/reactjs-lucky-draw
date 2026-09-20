@@ -5,12 +5,27 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import TicketStub from "./TicketStub";
 import { certificateUrl } from "../lib/certificate";
-import { normaliseEntries, runDraw } from "../lib/draw";
+import { runDraw } from "../lib/draw";
+import {
+  MAX_ENTRIES,
+  hasHandles,
+  keepHandles,
+  oddsFor,
+  parseEntries,
+  removeNames,
+} from "../lib/entries";
 
 const RIFFLE_MS = 90;
 const RIFFLE_DURATION = 1150;
 
-const SAMPLE = ["Ada Lovelace", "Grace Hopper", "Katherine Johnson", "Alan Turing"];
+// The placeholder doubles as the only documentation anyone reads: the weight on
+// the second line is how people find out the syntax exists.
+const SAMPLE = ["Ada Lovelace", "Grace Hopper x2", "Katherine Johnson", "Alan Turing"];
+
+const percent = new Intl.NumberFormat("en", {
+  style: "percent",
+  maximumFractionDigits: 1,
+});
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -28,9 +43,15 @@ export default function DrawMachine() {
   const [riffleIndex, setRiffleIndex] = useState(0);
   const [animate, setAnimate] = useState(true);
   const [copied, setCopied] = useState(null);
+  const [weights, setWeights] = useState(true);
+  const [dedupe, setDedupe] = useState(false);
   const stageRef = useRef(null);
 
-  const entries = useMemo(() => normaliseEntries(text), [text]);
+  const list = useMemo(() => parseEntries(text, { weights, dedupe }), [dedupe, text, weights]);
+  const entries = list.entries;
+  // A name holding more than one chance is the only reason to talk about odds.
+  const uneven = list.names.length > 0 && list.names.length !== entries.length;
+  const odds = useMemo(() => (uneven ? oddsFor(list) : []), [list, uneven]);
   const picks = Math.min(
     Math.max(1, Number.parseInt(winnerCount, 10) || 1),
     Math.max(entries.length, 1)
@@ -80,12 +101,20 @@ export default function DrawMachine() {
 
   const removeWinners = useCallback(() => {
     if (!result) return;
-    const won = new Set(result.winners.map((winner) => winner.name));
-    const kept = entries.filter((entry) => !won.has(entry));
-    setText(kept.join("\n"));
+    const won = result.winners.map((winner) => winner.name);
+    const kept = removeNames(text, won, { weights });
+    setText(kept);
     setResult(null);
-    setWinnerCount(String(Math.min(picks, Math.max(kept.length, 1))));
-  }, [entries, picks, result]);
+    setWinnerCount(
+      String(Math.min(picks, Math.max(parseEntries(kept, { weights, dedupe }).entries.length, 1)))
+    );
+  }, [dedupe, picks, result, text, weights]);
+
+  // A pasted comment thread is one handle plus a sentence of noise per line.
+  const pickHandles = useCallback(() => {
+    setText(keepHandles(text).join("\n"));
+    setResult(null);
+  }, [text]);
 
   const copyResult = useCallback(async () => {
     if (!result) return;
@@ -120,7 +149,9 @@ export default function DrawMachine() {
           Your entries
         </label>
         <p className="mt-1 text-sm text-slate">
-          One per line. Repeat a name to give it extra chances.
+          One per line. Paste a numbered list or a column from a spreadsheet and it
+          will be tidied up. Write <code className="font-mono">Ada x3</code> for three
+          chances.
         </p>
         <textarea
           id="entries"
@@ -138,7 +169,9 @@ export default function DrawMachine() {
           <p id="entry-count" className="text-sm text-slate" aria-live="polite">
             {entries.length === 0
               ? "No entries yet"
-              : `${entries.length} ${entries.length === 1 ? "entry" : "entries"}`}
+              : uneven
+                ? `${entries.length} chances from ${list.names.length} names`
+                : `${entries.length} ${entries.length === 1 ? "entry" : "entries"}`}
           </p>
 
           <div className="flex items-center gap-2">
@@ -158,6 +191,65 @@ export default function DrawMachine() {
             />
           </div>
         </div>
+
+        <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-slate">
+          <label className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={weights}
+              onChange={(event) => setWeights(event.target.checked)}
+              className="accent-marigold"
+            />
+            Read <code className="font-mono">x3</code> as extra chances
+          </label>
+          <label className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={dedupe}
+              onChange={(event) => setDedupe(event.target.checked)}
+              className="accent-marigold"
+            />
+            Count a repeated name once
+          </label>
+          {hasHandles(text) && (
+            <button
+              type="button"
+              onClick={pickHandles}
+              className="border border-rule px-2 py-1 hover:border-marigold"
+            >
+              Keep only the @handles
+            </button>
+          )}
+        </div>
+
+        {odds.length > 0 && (
+          <details className="mt-3 text-sm">
+            <summary className="cursor-pointer text-slate">
+              Every name&rsquo;s odds
+            </summary>
+            <dl className="mt-2 max-h-56 overflow-y-auto">
+              {odds.map((entrant) => (
+                <div
+                  key={entrant.name}
+                  className="flex items-baseline justify-between gap-4 border-b border-rule py-1"
+                >
+                  <dt>{entrant.name}</dt>
+                  <dd className="font-mono text-xs text-slate">
+                    {entrant.chances} of {entries.length} &middot;{" "}
+                    {percent.format(entrant.share)}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </details>
+        )}
+
+        {list.truncated && (
+          <p className="mt-3 text-sm text-stamp">
+            Only the first {MAX_ENTRIES.toLocaleString("en")} chances are in this draw.
+            Trim the list or lower the weights.
+          </p>
+        )}
 
         <button
           type="submit"

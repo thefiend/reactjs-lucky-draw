@@ -36,6 +36,78 @@ it("counts the entries as they are pasted", async () => {
   expect(screen.getByText("3 entries")).toBeInTheDocument();
 });
 
+describe("the list people actually paste", () => {
+  it("tidies up a numbered list", async () => {
+    const user = userEvent.setup();
+    render(<DrawMachine />);
+
+    await type(user, ["1. Ada Lovelace", "2. Grace Hopper", "3. Katherine Johnson"]);
+    expect(screen.getByText("3 entries")).toBeInTheDocument();
+  });
+
+  it("reads a weight as extra chances and says what the odds became", async () => {
+    const user = userEvent.setup();
+    render(<DrawMachine />);
+
+    await type(user, ["Ada Lovelace x3", "Grace Hopper"]);
+    expect(screen.getByText("4 chances from 2 names")).toBeInTheDocument();
+    expect(screen.getByText(/3 of 4/)).toBeInTheDocument();
+    expect(screen.getByText(/75%/)).toBeInTheDocument();
+  });
+
+  it("can be told that those are just names", async () => {
+    const user = userEvent.setup();
+    render(<DrawMachine />);
+    await type(user, ["Ada Lovelace x3", "Grace Hopper"]);
+
+    await user.click(screen.getByLabelText(/Read x3 as extra chances/));
+    expect(screen.getByText("2 entries")).toBeInTheDocument();
+  });
+
+  it("counts a repeated name once when asked", async () => {
+    const user = userEvent.setup();
+    render(<DrawMachine />);
+    await type(user, ["Ada Lovelace", "Ada Lovelace", "Grace Hopper"]);
+
+    expect(screen.getByText("3 chances from 2 names")).toBeInTheDocument();
+    await user.click(screen.getByLabelText("Count a repeated name once"));
+    expect(screen.getByText("2 entries")).toBeInTheDocument();
+  });
+
+  it("pulls the handles out of a pasted comment thread", async () => {
+    const user = userEvent.setup();
+    render(<DrawMachine />);
+    await type(user, [
+      "@ada_l count me in!",
+      "@grace.hopper me too",
+      "@ada_l one more for luck",
+    ]);
+
+    await user.click(screen.getByRole("button", { name: "Keep only the @handles" }));
+
+    expect(screen.getByLabelText("Your entries")).toHaveValue("@ada_l\n@grace.hopper");
+    expect(screen.getByText("2 entries")).toBeInTheDocument();
+  });
+
+  it("carries the weights into a second round when the winners are removed", async () => {
+    const user = userEvent.setup();
+    render(<DrawMachine />);
+    await type(user, ["Ada Lovelace x2", "Grace Hopper x2", "Katherine Johnson x2"]);
+
+    await user.click(screen.getByRole("button", { name: "Draw a winner" }));
+    await screen.findByRole("list");
+    await user.click(screen.getByRole("button", { name: "Remove winners from the list" }));
+
+    // Whichever name came out, the two that are left keep both of their chances.
+    await waitFor(() =>
+      expect(screen.getByText("4 chances from 2 names")).toBeInTheDocument()
+    );
+    const lines = screen.getByLabelText("Your entries").value.split("\n");
+    expect(lines).toHaveLength(2);
+    lines.forEach((line) => expect(line).toMatch(/ x2$/));
+  });
+});
+
 it("draws a winner from the list and shows the proof alongside it", async () => {
   const user = userEvent.setup();
   render(<DrawMachine />);

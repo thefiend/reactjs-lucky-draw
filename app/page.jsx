@@ -25,10 +25,29 @@ export const metadata = {
   },
 };
 
+const PASTE_FORMATS = [
+  {
+    title: "A numbered or bulleted list",
+    body: "Copy it out of a document as it is. Numbering, bullets, quote marks and stray spaces come off, and a line like Studio 54 is left alone.",
+  },
+  {
+    title: "A column from Sheets or Excel",
+    body: "Select the names column and paste. Whatever sat beside each name — the email address, the ticket number, the timestamp — is ignored.",
+  },
+  {
+    title: "A comment thread",
+    body: "Paste the whole thing, comments and emoji included, then press Keep only the @handles. You get one username per line, first comment each.",
+  },
+  {
+    title: "Entries with different odds",
+    body: "Write Ada x3 for three chances, or put the name on three lines. Either way the pad shows every name's odds as a percentage before you draw.",
+  },
+];
+
 const USE_CASES = [
   {
     title: "Instagram and Facebook giveaways",
-    body: "Paste the commenters, draw, and post the serial number with the winner. Anybody who doubts it can rerun the draw from the seed and get the same name.",
+    body: "Paste the comment thread, reduce it to handles in one press, and post the serial number with the winner. Anybody who doubts it can rerun the draw from the seed and get the same name.",
   },
   {
     title: "Company events and annual dinners",
@@ -119,6 +138,24 @@ export default function HomePage() {
             </p>
           </li>
         </ol>
+      </section>
+
+      <section aria-labelledby="paste" className="mt-16 border-t border-rule pt-8">
+        <h2 id="paste" className="text-2xl">
+          What you can paste
+        </h2>
+        <p className="mt-3 max-w-[68ch] text-slate">
+          Lists arrive messy. Rather than making you clean one up first, the pad reads
+          the usual shapes and tells you what it made of them.
+        </p>
+        <dl className="mt-6 grid gap-x-10 gap-y-5 sm:grid-cols-2">
+          {PASTE_FORMATS.map((format) => (
+            <div key={format.title}>
+              <dt className="text-lg">{format.title}</dt>
+              <dd className="mt-1 text-sm text-slate">{format.body}</dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       <section aria-labelledby="use-cases" className="mt-16 border-t border-rule pt-8">

@@ -111,6 +111,8 @@ export default function Verifier() {
         </label>
         <p className="mt-1 text-sm text-slate">
           Every name that was in the draw, one per line, in the order they were entered.
+          Nothing here is tidied up or reweighted: an entry holding three chances is
+          three lines, because that is the list the draw ran on.
         </p>
         <textarea
           id="verify-entries"
